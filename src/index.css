@@ -21,12 +21,22 @@
   --text-display-xl: 4.75rem;
   --text-display-xl--line-height: 4.875rem;
 
+  /* Caption / eyebrow text — small metadata labels, not body copy.
+     Pair with uppercase + tracking-wide + text-ink-muted, e.g. a "Case
+     Study" eyebrow above a project title. */
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.25rem;
+
   /* ---- Color ----
      Warm ink/paper neutrals + a single clay accent. Deliberately avoids the
      blue/purple gradient palette common to developer portfolios. */
   --color-ink: #1c1a17;
   --color-ink-soft: #57524b;
-  --color-ink-muted: #8a8377;
+  /* Darkened from an earlier draft (#8a8377) — that value only cleared
+     ~3.5:1 against --color-paper, short of the 4.5:1 AA minimum for small
+     text (it's used for footer copy and inactive nav links). This value
+     clears ~5.3:1. */
+  --color-ink-muted: #6b655c;
   --color-paper: #faf8f5;
   --color-paper-muted: #f1ede6;
   --color-line: #e4ded4;
@@ -59,6 +69,18 @@
     font-normal (400) body copy · font-medium (500) UI labels/buttons ·
     font-semibold (600) subheadings/emphasis · font-bold (700) headings only.
     Avoid font-black/extrabold — it reads heavy-handed for this aesthetic.
+  ---- Breakpoints (Tailwind defaults, used deliberately not overridden) ----
+    sm 640px · md 768px · lg 1024px · xl 1280px · 2xl 1536px.
+    Roughly: base = mobile, sm/md = tablet, lg+ = desktop. Build mobile-first
+    (unprefixed styles = mobile) and add sm:/md:/lg: overrides going up.
+  ---- Grid convention ----
+    Card/project grids: `grid gap-8 sm:grid-cols-2 lg:grid-cols-3`.
+    Two-column content grids: `grid gap-12 lg:grid-cols-2`.
+  ---- Inline text link convention ----
+    Links inside body copy (not nav, not Button): text-accent-dark
+    underline-offset-4 hover:underline. Not enforced globally via a bare `a`
+    selector, since Button and Navbar render anchors too and set their own
+    explicit styles.
 */
 
 @layer base {

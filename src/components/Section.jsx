@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
-import { fadeInUp, revealOnce } from '../../lib/motion'
+import { fadeInUp, revealOnce } from '../lib/motion'
 
 const BACKGROUNDS = {
   default: 'bg-paper',

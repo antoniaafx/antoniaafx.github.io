@@ -1,6 +1,6 @@
 import SectionTitle from '../components/SectionTitle'
 import ProjectCard from '../components/ProjectCard'
-import Section from '../components/ui/Section'
+import Section from '../components/Section'
 import projects from '../data/projects'
 
 function Projects() {

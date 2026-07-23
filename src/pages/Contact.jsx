@@ -1,5 +1,5 @@
 import SectionTitle from '../components/SectionTitle'
-import Section from '../components/ui/Section'
+import Section from '../components/Section'
 
 function Contact() {
   return (

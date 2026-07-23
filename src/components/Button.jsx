@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 // Link, and the reduced-motion media query in index.css already disables it
 // for users who ask for less motion.
 const BASE =
-  'inline-flex items-center justify-center gap-2 rounded-control font-medium ' +
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-control font-medium ' +
   'transition-[transform,background-color,color,border-color] duration-150 ease-out ' +
   'hover:scale-[1.015] active:scale-[0.98] ' +
   'disabled:opacity-50 disabled:pointer-events-none disabled:hover:scale-100'

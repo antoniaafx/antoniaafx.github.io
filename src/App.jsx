@@ -13,9 +13,16 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <a
+        href="#main-content"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded-control focus-visible:bg-ink focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-paper"
+      >
+        Skip to content
+      </a>
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <motion.main
+          id="main-content"
           key={location.pathname}
           className="flex-1"
           initial={shouldReduceMotion ? false : 'initial'}

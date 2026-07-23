@@ -1,6 +1,6 @@
 import Hero from '../components/Hero'
-import Section from '../components/ui/Section'
-import Button from '../components/ui/Button'
+import Section from '../components/Section'
+import Button from '../components/Button'
 
 function Home() {
   return (
