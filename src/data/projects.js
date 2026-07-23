@@ -24,88 +24,93 @@ const projects = [
     id: 'keg-and-barrel',
     title: 'Keg & Barrel Website Design',
     description:
-      'Placeholder — replace with a one- to two-sentence overview of the problem this project solved and the outcome.',
+      'A from-scratch website design and build for a local sports pub, taken from competitive research through to a live, deployed site — built solo as unpaid freelance work.',
     category: 'Web Design',
     role: 'UX/UI Designer',
-    timeline: 'Placeholder — e.g. "6 weeks · 2024"',
-    tools: ['Figma', 'FigJam'],
+    timeline: '9 weeks',
+    tools: ['Notion', 'Miro', 'Figma', 'VS Code'],
     heroImage: '',
     featured: true,
 
-    // Project overview / Problem statement / Goals
     overview: {
       problem:
-        'Placeholder — describe the core problem the business or users were facing before this project.',
+        "Keg & Barrel, a local sports pub, had no website at all — no way for visitors to see the menu, check what games were showing, or find the venue online before walking in. For a bar competing directly with other sports pubs in the same area, that's a real disadvantage: people choose the venues they can find and preview online.",
       goals: [
-        "Placeholder goal — e.g. improve the online ordering flow",
-        "Placeholder goal — e.g. strengthen the brand's visual identity",
-        'Placeholder goal — e.g. make the site usable on mobile',
+        'Give the pub a real online presence for the first time, built entirely from scratch',
+        'Make the menu and live-sports schedule easy to find at a glance',
+        "Capture the pub's actual atmosphere — casual, friendly, built around live sport — rather than a generic bar template",
+        'Make the site work well for tourists searching on their phones',
       ],
-      targetUsers: 'Placeholder — who is this product for, and what do they need from it?',
+      targetUsers:
+        'Mainly tourists and visitors looking for a lively spot to watch live sport — Premier League matches, Rugby World Cup-level events — plus regular local pub-goers.',
       responsibilities: [
-        'Placeholder responsibility — e.g. led user research and testing',
-        'Placeholder responsibility — e.g. designed wireframes and high-fidelity UI',
+        'Led the project solo, end to end: research, wireframing, UI design, and prototyping',
+        'Built and deployed the final site myself (Figma through to a live Vercel build), not just static mockups',
       ],
     },
 
-    // Research / Competitor analysis / User insights — blocks are typed
-    // ('text' | 'insights' | 'gallery' | 'image') so this can hold whatever
-    // mix of research artifacts a given project actually has.
     research: {
-      intro: 'Placeholder — introduce the research approach used for this project.',
+      intro:
+        'No formal user interviews were part of this project. Research centered on how Keg & Barrel actually compares to the sports pubs people already choose between locally, and on established patterns for bar and venue websites more broadly.',
       blocks: [
         {
           type: 'text',
-          heading: 'User interviews',
-          body: 'Placeholder — summarize who you talked to and what you were trying to learn.',
+          heading: 'Comparative & best-practice research',
+          body: "Rather than looking at polished cocktail-bar sites — the wrong tone entirely for a sports pub — I focused on what actually matters for a venue like this: a design that mirrors the real atmosphere, strong imagery of the interior, exterior, and drinks, easy navigation, mobile optimization, a clear detailed menu, and contact information that's easy to find.",
         },
         {
           type: 'insights',
-          heading: 'User insights',
+          heading: 'Key insight',
           items: [
-            'Placeholder — insight drawn from research (1)',
-            'Placeholder — insight drawn from research (2)',
-            'Placeholder — insight drawn from research (3)',
+            'The homepage needed to lead with what actually sells the venue: big screens, match-day photography, and the outdoor seating area',
+            "The right feeling to aim for was 'what's on tonight' — simple and immediate — not polished cocktail-bar minimalism",
           ],
         },
         {
           type: 'gallery',
           heading: 'Competitor analysis',
           images: [
-            { src: '', caption: 'Placeholder — competitor 1' },
-            { src: '', caption: 'Placeholder — competitor 2' },
+            {
+              src: '',
+              caption: 'Crocodile Pub — Irish-themed sports bar on Danaes Avenue, also screens Premier League and Rugby World Cup matches',
+            },
+            {
+              src: '',
+              caption: 'Pegasus Pub — frequently mentioned alongside Keg & Barrel and Crocodile Pub in local reviews',
+            },
           ],
         },
       ],
     },
 
-    // UX process — includes wireframes as one of the steps, alongside
-    // flows and later iterations, so the page reads as one evolution
-    // rather than disconnected sections.
     process: {
-      intro: 'Placeholder — introduce the design process, from structure to first drafts.',
+      intro:
+        'With a clear point of reference, the next step was structure: a simple, deliberate flow from homepage to menu to contact, wireframed before any visual design began.',
       steps: [
         {
-          label: 'User flows',
-          description: 'Placeholder — describe the core flow(s) mapped out for this product.',
+          label: 'User flow',
+          description:
+            'Mapped a single, focused path — Home → Menu → Contact — matching how someone would actually use the site: land on the homepage to get a feel for the place, check the menu, then find contact and location details.',
           image: '',
         },
         {
           label: 'Wireframes',
-          description: 'Placeholder — describe the low-fidelity exploration before visual design began.',
+          description:
+            'Wireframed the core pages before moving into high-fidelity design, to lock in hierarchy — leading with the sports-bar atmosphere, then the menu, then practical details — before layering in visual design.',
           image: '',
         },
         {
           label: 'Design iterations',
-          description: 'Placeholder — describe what changed between drafts and why.',
+          description:
+            "Early drafts leaned more neutral and generic. Through iteration, the design shifted deliberately toward the pub's actual identity — bolder use of the maroon brand color, warmer imagery placement, and a tone that read as 'sports pub' rather than a generic bar template.",
           image: '',
         },
       ],
     },
 
-    // UI design — the image gallery for high-fidelity/responsive screens.
     uiDesign: {
-      intro: 'Placeholder — introduce the high-fidelity UI and how it expresses the brand.',
+      intro:
+        'Two typefaces carry the whole site — Fraunces for headings, Geist for everything else — paired with a single confident brand color (a deep maroon) used well beyond just buttons, plus a neutral charcoal for text with no warm tint. Every button, card, shadow, and motion curve follows the same small set of rules — pill-shaped buttons with a consistent hover/tap scale, a clear size-to-radius convention across cards and badges, two shadow strengths reused everywhere, and one easing curve site-wide — rather than one-off choices per section.',
       images: [
         { src: '', caption: 'Homepage — desktop', span: 'wide' },
         { src: '', caption: 'Menu page' },
@@ -113,20 +118,27 @@ const projects = [
       ],
     },
 
-    // Final outcome
     results: {
-      summary: 'Placeholder — describe the shipped result. Only include real feedback/metrics if you have them.',
+      summary:
+        "The final design was taken all the way to a real, working website — built and deployed live on Vercel, not just Figma mockups — and presented directly to the pub's manager for review. Being fully transparent about the outcome: the business ultimately decided not to move forward with adopting the site, but the project was completed end to end as real, functioning software, from research through a deployed build.",
       improvements: [
-        'Placeholder improvement — e.g. clearer navigation',
-        'Placeholder improvement — e.g. faster path to ordering',
+        "A fully responsive, deployed website that reflects the pub's real sports-bar identity, not a generic template",
+        'A clear, easy-to-scan menu and live-sports schedule, front and center on the homepage',
+        'Touch-friendly spacing and layout adjustments for a genuinely usable mobile experience',
+        'A consistent design system — typography, color, buttons, spacing, motion — carried across every page',
       ],
       images: [{ src: '', caption: 'Final homepage', span: 'wide' }],
     },
 
     reflection: {
-      challenges: 'Placeholder — what was hardest about this project?',
-      learned: "Placeholder — what did you learn that you didn't know going in?",
-      improve: 'Placeholder — what would you do differently next time?',
+      challenges:
+        'Working solo for nine weeks was the biggest challenge — there was no team to check in with, so structuring the process end to end fell entirely on me. I used Notion and Miro to keep research, wireframes, and iterations organized without that built-in team structure.',
+      // Drafted from the real facts of this project rather than given directly —
+      // read this and edit it so it actually sounds like you before it goes live.
+      learned:
+        'Working solo for nine weeks meant learning to be my own project manager — using Notion and Miro to stay organized instead of relying on team check-ins to keep momentum. Taking the project all the way from Figma to a deployed Vercel build also pushed me to think about design decisions in terms of what was actually feasible to build, not just what looked good in a mockup.',
+      improve:
+        "If I were starting this project again, I'd bring the pub's manager into the process earlier — sharing wireframes or early drafts for feedback before investing time in high-fidelity design and a full build, rather than presenting a finished product at the end. That would make it easier to catch misalignment on expectations sooner.",
     },
   },
 
