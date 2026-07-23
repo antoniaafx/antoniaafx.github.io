@@ -2,19 +2,28 @@ import Section from './Section'
 import SectionTitle from './SectionTitle'
 
 const BLOCKS = [
-  { label: 'Education', text: 'Placeholder — your degree, school, and graduation year (or expected).' },
-  { label: 'UX/UI journey', text: 'Placeholder — how you got into design and what drew you to UX/UI specifically.' },
-  { label: 'Design interests', text: 'Placeholder — the kinds of problems or products you most enjoy designing for.' },
+  {
+    label: 'Education',
+    text: "A Bachelor's degree in Communications and Internet Studies. Placeholder — add university name and graduation year.",
+  },
+  {
+    label: 'UX/UI journey',
+    text: "My interest in UX/UI design grew out of my degree — I found myself consistently drawn to the parts of any project that involved solving problems and making digital experiences easier and more intuitive to use. That interest turned into a deliberate focus on design, research, and building interfaces people actually enjoy using.",
+  },
+  {
+    label: 'Design interests',
+    text: "I'm especially drawn to interfaces that are clean, accessible, and easy to use without feeling generic — design that's user-centered and visually engaging at the same time, not one at the expense of the other.",
+  },
   {
     label: 'Experience',
-    text: 'Placeholder — a brief note on relevant experience so far (internships, freelance, coursework).',
+    text: 'I completed my internship at Air Balloon Digital Studio, working on UX research, UI design, wireframing, prototyping, competitor analysis, responsive design, and digital marketing tasks across real client projects. One of my strongest projects from that time is the Keg & Barrel website, where I designed and built a modern, responsive site from research through to the final interface.',
   },
 ]
 
 function AboutBackground() {
   return (
     <Section background="muted">
-      <SectionTitle title="Background" />
+      <SectionTitle title="My Story" />
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
         {BLOCKS.map((block) => (
           <div key={block.label} className="rounded-panel border border-line p-6">

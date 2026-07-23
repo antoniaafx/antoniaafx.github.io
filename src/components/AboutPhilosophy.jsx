@@ -4,15 +4,15 @@ import SectionTitle from './SectionTitle'
 const BLOCKS = [
   {
     label: 'How I approach problems',
-    text: 'Placeholder — describe how you break down an ambiguous problem before jumping to solutions.',
+    text: 'I start by making sure I actually understand the problem and the people affected by it before jumping into solutions — asking what users genuinely need, not just what looks good. Good design, to me, starts with a clear problem, not a blank canvas.',
   },
   {
-    label: 'User-centered mindset',
-    text: 'Placeholder — describe how you keep real user needs at the center of your decisions.',
+    label: 'Simple, accessible design',
+    text: "I care about keeping interfaces simple and easy to use, and about accessibility not being an afterthought — clear hierarchy, readable typography, and enough contrast and structure that the experience works for as many people as possible.",
   },
   {
-    label: 'Collaboration approach',
-    text: 'Placeholder — describe how you work with developers, PMs, or other designers.',
+    label: 'Collaboration & growth',
+    text: "I see design as something that improves through feedback, not something to get perfect alone — I'm comfortable sharing early, imperfect work and iterating on it. I'm early in my career, and I want to keep learning from designers with more experience than me.",
   },
 ]
 

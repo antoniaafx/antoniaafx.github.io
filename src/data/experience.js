@@ -1,36 +1,49 @@
-// Placeholder — replace with your real experience and education history.
-// List entries in the order you want them displayed (most recent first is
-// conventional). Shared by the About page timeline and the Resume page, so
-// editing it here updates both.
+// Shared by the About page timeline and the Resume page — editing here
+// updates both. Dates are left as placeholders where the exact date isn't
+// set yet; nothing here is an invented achievement.
 
 export const experience = [
   {
-    id: 'placeholder-experience-1',
-    title: 'Placeholder — company or organization name',
-    role: 'Placeholder — e.g. UX/UI Design Intern',
-    dates: 'Placeholder — e.g. "Jun 2024 – Aug 2024"',
+    id: 'air-balloon-internship',
+    title: 'Air Balloon Digital Studio',
+    role: 'UX/UI Design Intern',
+    dates: 'Placeholder — add internship dates',
     responsibilities: [
-      'Placeholder responsibility — what you were tasked with',
-      'Placeholder responsibility — what you were tasked with',
+      'UX research and competitor analysis',
+      'UI design, wireframing, and prototyping',
+      'Responsive design',
+      'Digital marketing tasks',
+      'Worked on real client projects',
     ],
-    achievements: ['Placeholder achievement — a concrete result, only if real'],
+    achievements: [],
   },
   {
-    id: 'placeholder-experience-2',
-    title: 'Placeholder — project or freelance client name',
-    role: 'Placeholder — e.g. UX/UI Designer',
-    dates: 'Placeholder — e.g. "2023 – 2024"',
-    responsibilities: ['Placeholder responsibility — what you were tasked with'],
+    id: 'keg-and-barrel-project',
+    title: 'Keg & Barrel Website',
+    role: 'Self-directed freelance project',
+    dates: '9 weeks · Placeholder — add year',
+    responsibilities: [
+      'Led the project solo — research, wireframing, UI design, and prototyping',
+      'Designed and built a responsive website from scratch, deployed live on Vercel',
+    ],
+    achievements: [],
+  },
+  {
+    id: 'portfolio-development',
+    title: 'Portfolio Development',
+    role: 'Designing and building this portfolio',
+    dates: 'Present',
+    responsibilities: ['Building a complete UX/UI portfolio site — from design system through case studies'],
     achievements: [],
   },
 ]
 
 export const education = [
   {
-    id: 'placeholder-education-1',
-    degree: 'Placeholder — e.g. B.A. in Graphic Design / UX Design',
-    institution: 'Placeholder — university or school name',
-    dates: 'Placeholder — e.g. "2021 – 2025"',
-    courses: ['Placeholder — relevant course', 'Placeholder — relevant course'],
+    id: 'bachelors-degree',
+    degree: "Bachelor's Degree in Communications and Internet Studies",
+    institution: 'Placeholder — add university name',
+    dates: 'Placeholder — add graduation year',
+    courses: [],
   },
 ]

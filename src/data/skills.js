@@ -1,27 +1,23 @@
-// UX/UI skill lists are the content you specified directly — edit freely.
-// Tools and soft skills include placeholders where specifics weren't given.
-// Shared by the About page and the Resume page.
+// Real skill lists — shared by the About page and the Resume page.
 
 export const uxSkills = [
-  'User Research',
-  'Competitor Analysis',
+  'UX Research',
   'User Flows',
   'Wireframing',
   'Prototyping',
-  'Usability Testing',
+  'Competitor Analysis',
+  'Information Architecture',
 ]
 
-export const uiSkills = ['Visual Design', 'Design Systems', 'Responsive Design', 'Typography', 'Accessibility']
+export const uiSkills = ['Responsive Design', 'Design Systems', 'Typography', 'Visual Design', 'Accessibility']
 
-export const tools = [
-  'Figma',
-  'Canva',
-  'Placeholder — Adobe tool(s), e.g. Photoshop/Illustrator (remove if not applicable)',
-  'Placeholder — development tool(s) you use, e.g. VS Code, GitHub',
-]
+export const tools = ['Figma', 'Canva', 'VS Code', 'GitHub', 'React (Beginner)', 'Claude Code', 'ChatGPT']
 
 export const softSkills = [
-  'Placeholder — e.g. Communication',
-  'Placeholder — e.g. Collaboration',
-  'Placeholder — e.g. Time management',
+  'Communication',
+  'Collaboration',
+  'Problem Solving',
+  'Adaptability',
+  'Attention to Detail',
+  'Time Management',
 ]
