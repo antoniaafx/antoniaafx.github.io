@@ -2,13 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon. favicon.svg is leftover starter-template artwork (a purple
+         lightning bolt, unrelated to this site's real palette) — the
+         16/32/apple-touch/android-chrome files are neutral ink-color
+         placeholders, not real branding. See project notes for what to
+         replace and with what. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1c1a17" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <!-- Static fallback for crawlers that don't run JS; PageMeta overrides
+         this per-page for anything that does (see src/components/PageMeta.jsx). -->
+    <link rel="canonical" href="https://antoniaafx.github.io/" />
+
     <meta name="description" content="Antonia — UX/UI Designer portfolio showcasing product design, UX research, and prototyping work." />
+
+    <!-- Open Graph / Facebook / LinkedIn. This is a client-only SPA with no
+         server rendering, so social-media crawlers (which don't execute JS)
+         will always see these site-wide values, regardless of which page's
+         URL was actually shared — true per-page social previews would need
+         prerendering/SSR, which is out of scope here. -->
+    <meta property="og:site_name" content="Antonia — UX/UI Designer" />
     <meta property="og:title" content="Antonia — UX/UI Designer" />
     <meta property="og:description" content="UX/UI Designer portfolio showcasing product design, UX research, and prototyping work." />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="https://antoniaafx.github.io/" />
+    <!-- public/og-image.png does not exist yet — no file has been generated
+         for it (unlike the favicon set, a placeholder wasn't created here).
+         Add a real 1200x630 image at that path for link previews to show a
+         picture; until then, shared links will show title/description only. -->
+    <meta property="og:image" content="https://antoniaafx.github.io/og-image.png" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Antonia — UX/UI Designer" />
+    <meta name="twitter:description" content="UX/UI Designer portfolio showcasing product design, UX research, and prototyping work." />
+    <meta name="twitter:image" content="https://antoniaafx.github.io/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +55,18 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Companion to public/404.html — GitHub Pages has no server-side
+      // rewrites for client-side routes, so a direct load of a deep link
+      // bounces through 404.html first. This restores the real path from
+      // its ?redirect= param before React Router reads the URL.
+      ;(function () {
+        var redirect = new URLSearchParams(window.location.search).get('redirect')
+        if (redirect) {
+          window.history.replaceState(null, '', redirect)
+        }
+      })()
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

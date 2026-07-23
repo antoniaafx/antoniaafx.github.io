@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import PageMeta from '../components/PageMeta'
 import Section from '../components/Section'
 import Button from '../components/Button'
 import ContactCta from '../components/ContactCta'
@@ -21,6 +22,12 @@ function CaseStudy() {
   if (!project?.overview) {
     return (
       <Section>
+        <PageMeta
+          title="Case Study"
+          description="This case study isn't published yet."
+          path={`/projects/${slug}`}
+          noindex
+        />
         <div className="mx-auto max-w-xl text-center">
           <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Case study</p>
           <h1 className="mt-4 text-display-sm">This case study isn't published yet.</h1>
@@ -37,6 +44,7 @@ function CaseStudy() {
 
   return (
     <>
+      <PageMeta title={project.title} description={project.description} path={`/projects/${project.id}`} />
       <CaseHero {...project} />
       <ProjectOverview {...project.overview} />
       <ResearchSection {...project.research} />

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  To add a new case study once it's published (has a real overview/research/
+  etc. in src/data/projects.js, not just a grid card): copy one of the
+  <url> blocks under "Case studies" below and update loc/lastmod.
+  Unpublished projects (no full case study yet) are deliberately left out —
+  submitting thin/placeholder pages for indexing does more harm than good.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://antoniaafx.github.io/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://antoniaafx.github.io/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://antoniaafx.github.io/projects</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Case studies -->
+  <url>
+    <loc>https://antoniaafx.github.io/projects/keg-and-barrel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://antoniaafx.github.io/resume</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://antoniaafx.github.io/contact</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

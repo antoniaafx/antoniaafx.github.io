@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import Section from '../components/Section'
 import SectionTitle from '../components/SectionTitle'
 import ContactHero from '../components/ContactHero'
@@ -7,6 +8,11 @@ import ContactForm from '../components/ContactForm'
 function Contact() {
   return (
     <>
+      <PageMeta
+        title="Contact"
+        description="Get in touch with Antonia for UX/UI internship and junior design opportunities."
+        path="/contact"
+      />
       <ContactHero />
       <Section background="muted">
         <SectionTitle title="Get in touch" />

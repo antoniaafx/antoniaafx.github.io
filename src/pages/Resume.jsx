@@ -1,3 +1,4 @@
+import PageMeta from '../components/PageMeta'
 import Section from '../components/Section'
 import ResumeHeader from '../components/ResumeHeader'
 import ResumeExperience from '../components/ResumeExperience'
@@ -10,6 +11,11 @@ import ResumeSkills from '../components/ResumeSkills'
 function Resume() {
   return (
     <Section containerSize="narrow">
+      <PageMeta
+        title="Resume"
+        description="Antonia's resume — experience, education, and skills as a Junior UX/UI Designer."
+        path="/resume"
+      />
       <ResumeHeader />
       <div className="mt-12 space-y-12">
         <ResumeExperience />

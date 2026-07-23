@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Antonia — UX/UI Designer</title>
+    <script>
+      // GitHub Pages is static hosting with no server-side rewrites, so a
+      // direct load (or hard refresh) of any client-side route — /about,
+      // /projects/keg-and-barrel, etc. — hits this 404 page instead of
+      // index.html. This encodes the requested path into a query string and
+      // redirects to index.html, where a matching script decodes it and
+      // restores the real URL via history.replaceState before React Router
+      // reads it. Standard technique: https://github.com/rafgraph/spa-github-pages
+      var path = window.location.pathname + window.location.search + window.location.hash
+      window.location.replace('/?redirect=' + encodeURIComponent(path))
+    </script>
+  </head>
+  <body></body>
+</html>
