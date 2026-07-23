@@ -27,9 +27,7 @@ function ResumeHeader() {
         </div>
       </div>
 
-      {/* Placeholder path — add the real PDF to public/resume.pdf so this
-          link works (anything in public/ is served as-is at the root). */}
-      <Button href="/resume.pdf" download variant="primary" size="lg">
+      <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="lg">
         Download Resume
       </Button>
     </div>
