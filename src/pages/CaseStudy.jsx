@@ -9,16 +9,16 @@ import ProcessSection from '../components/CaseStudy/ProcessSection'
 import UIDesignSection from '../components/CaseStudy/UIDesignSection'
 import ResultsSection from '../components/CaseStudy/ResultsSection'
 import ReflectionSection from '../components/CaseStudy/ReflectionSection'
-import caseStudies from '../data/caseStudies'
+import projects from '../data/projects'
 
 function CaseStudy() {
   const { slug } = useParams()
-  const caseStudy = caseStudies[slug]
+  const project = projects.find((item) => item.id === slug)
 
   // Projects can exist in data/projects.js (and link from /projects or the
   // homepage) before their full case study is written — show a clean
   // placeholder rather than a blank or broken page.
-  if (!caseStudy) {
+  if (!project?.overview) {
     return (
       <Section>
         <div className="mx-auto max-w-xl text-center">
@@ -37,13 +37,13 @@ function CaseStudy() {
 
   return (
     <>
-      <CaseHero {...caseStudy} />
-      <ProjectOverview {...caseStudy.overview} />
-      <ResearchSection {...caseStudy.research} />
-      <ProcessSection {...caseStudy.process} />
-      <UIDesignSection {...caseStudy.uiDesign} />
-      <ResultsSection {...caseStudy.results} />
-      <ReflectionSection {...caseStudy.reflection} />
+      <CaseHero {...project} />
+      <ProjectOverview {...project.overview} />
+      <ResearchSection {...project.research} />
+      <ProcessSection {...project.process} />
+      <UIDesignSection {...project.uiDesign} />
+      <ResultsSection {...project.results} />
+      <ReflectionSection {...project.reflection} />
       <ContactCta />
     </>
   )

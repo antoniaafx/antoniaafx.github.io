@@ -5,7 +5,7 @@ import { fadeInUp } from '../lib/motion'
 // Deliberately not the grid ProjectCard used on /projects — a large
 // alternating image/content row reads as storytelling, where a grid of
 // small cards reads as a generic portfolio template.
-function FeaturedProjectCard({ index = 0, id, title, description, image, role, tools = [] }) {
+function FeaturedProjectCard({ index = 0, id, title, description, heroImage, role, tools = [] }) {
   const reversed = index % 2 === 1
 
   return (
@@ -15,9 +15,9 @@ function FeaturedProjectCard({ index = 0, id, title, description, image, role, t
     >
       <div className="overflow-hidden rounded-panel border border-line bg-paper-muted shadow-soft transition-shadow duration-200 group-hover:shadow-lifted lg:w-1/2">
         <div className="aspect-[4/3]">
-          {image ? (
+          {heroImage ? (
             <img
-              src={image}
+              src={heroImage}
               alt={title}
               className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             />

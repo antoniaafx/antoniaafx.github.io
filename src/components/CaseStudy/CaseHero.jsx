@@ -5,7 +5,7 @@ import { fadeInUp, staggerContainer } from '../../lib/motion'
 
 // Mount-triggered stagger, same rationale as the homepage Hero — this is
 // the first thing visible when the page loads, not something scrolled into.
-function CaseHero({ title, summary, role, timeline, tools = [], heroImage }) {
+function CaseHero({ title, description, role, timeline, tools = [], heroImage }) {
   const shouldReduceMotion = useReducedMotion()
   const containerMotion = shouldReduceMotion
     ? {}
@@ -28,9 +28,9 @@ function CaseHero({ title, summary, role, timeline, tools = [], heroImage }) {
         <motion.h1 {...itemMotion} className="mt-3 max-w-3xl text-display-md sm:text-display-lg">
           {title}
         </motion.h1>
-        {summary && (
+        {description && (
           <motion.p {...itemMotion} className="mt-6 max-w-2xl text-lg text-ink-soft">
-            {summary}
+            {description}
           </motion.p>
         )}
 
