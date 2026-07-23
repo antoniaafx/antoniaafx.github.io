@@ -6,12 +6,15 @@ function ContactCard({ label, value, href }) {
     <a
       href={href}
       target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       className="group flex items-center justify-between gap-4 rounded-panel border border-line p-5 transition-colors duration-200 hover:border-ink"
     >
       <div>
         <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{label}</p>
-        <p className="mt-1 font-medium text-ink">{value}</p>
+        <p className="mt-1 font-medium text-ink">
+          {value}
+          {isExternal && <span className="sr-only"> (opens in new tab)</span>}
+        </p>
       </div>
       <span
         aria-hidden="true"
