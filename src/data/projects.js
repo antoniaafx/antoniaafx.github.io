@@ -148,8 +148,7 @@ const projects = [
   {
     id: 'ux-research-project',
     title: 'UX Research Project',
-    description:
-      'Placeholder — replace with a one- to two-sentence overview of the problem this project solved and the outcome.',
+    description: 'Full case study coming soon.',
     category: 'UX Research',
     role: 'UX Researcher',
     tools: ['Figma', 'Maze'],
@@ -161,8 +160,7 @@ const projects = [
   {
     id: 'mobile-app-design',
     title: 'Mobile App Design',
-    description:
-      'Placeholder — replace with a one- to two-sentence overview of the problem this project solved and the outcome.',
+    description: 'Full case study coming soon.',
     category: 'Mobile',
     role: 'UX/UI Designer',
     tools: ['Figma', 'Principle'],

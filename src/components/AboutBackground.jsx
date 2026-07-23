@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle'
 const BLOCKS = [
   {
     label: 'Education',
-    text: "A Bachelor's degree in Communications and Internet Studies. Placeholder — add university name and graduation year.",
+    text: "Currently pursuing a Bachelor's degree in Communications and Internet Studies at Cyprus University of Technology (2023 – Present).",
   },
   {
     label: 'UX/UI journey',

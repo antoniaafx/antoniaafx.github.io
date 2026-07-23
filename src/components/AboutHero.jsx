@@ -27,11 +27,11 @@ function AboutHero() {
             Junior UX/UI Designer
           </motion.p>
           <motion.p {...itemMotion} className="mt-6 max-w-md text-lg text-ink-soft">
-            I recently graduated with a degree in Communications and Internet Studies, and discovered a strong
-            interest in UX/UI design along the way — I enjoy solving problems and building digital experiences
-            that feel intuitive and easy to use. During my internship at Air Balloon Digital Studio I worked
-            across research, UI design, and real client projects, and I'm now looking for a junior role where I
-            can keep learning and grow alongside experienced designers.
+            I'm currently studying Communications and Internet Studies at Cyprus University of Technology, and
+            along the way I've discovered a strong interest in UX/UI design — I enjoy solving problems and
+            building digital experiences that feel intuitive and easy to use. During my internship at Air
+            Balloon Digital Studio I worked across research, UI design, and real client projects, and I'm now
+            looking for a junior role where I can keep learning and grow alongside experienced designers.
           </motion.p>
         </div>
 

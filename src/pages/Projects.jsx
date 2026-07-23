@@ -6,8 +6,11 @@ import projects from '../data/projects'
 function Projects() {
   return (
     <Section animate={false}>
-      <SectionTitle title="Projects" />
-      <div className="mt-10 grid gap-8 sm:grid-cols-2">
+      <SectionTitle
+        title="Projects"
+        subtitle="Selected case studies covering research, structure, and interface design, from problem to shipped product."
+      />
+      <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} {...project} />
         ))}

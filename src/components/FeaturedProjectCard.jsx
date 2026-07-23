@@ -11,7 +11,7 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
   return (
     <motion.article
       variants={fadeInUp}
-      className={`group flex flex-col gap-8 lg:items-center lg:gap-16 ${reversed ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+      className={`group relative flex flex-col gap-8 lg:items-center lg:gap-16 ${reversed ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
     >
       <div className="overflow-hidden rounded-panel border border-line bg-paper-muted shadow-soft transition-shadow duration-200 group-hover:shadow-lifted lg:w-1/2">
         <div className="aspect-[4/3]">
@@ -53,9 +53,12 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
           </dl>
         )}
 
+        {/* Stretched-link pattern — see ProjectCard for the same treatment
+            and reasoning: the whole row is hoverable, so it should be
+            clickable too, via one real anchor with an expanded hit area. */}
         <Link
           to={`/projects/${id}`}
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:content-['']"
         >
           View case study
           <span aria-hidden="true">→</span>

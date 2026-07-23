@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
@@ -31,6 +31,18 @@ function Navbar() {
   // raced with AnimatePresence's exit lifecycle and left the panel stuck
   // at opacity:0 while still occupying its full layout height.
   const closeMenu = () => setOpen(false)
+
+  // Standard subscribe-to-an-external-event Effect (not the render-time
+  // setState pattern above) — only fires setState from within a real
+  // keydown callback, so it doesn't touch AnimatePresence's lifecycle.
+  useEffect(() => {
+    if (!open) return undefined
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [open])
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">

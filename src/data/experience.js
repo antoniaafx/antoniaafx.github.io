@@ -6,14 +6,14 @@ export const experience = [
   {
     id: 'air-balloon-internship',
     title: 'Air Balloon Digital Studio',
-    role: 'UX/UI Design Intern',
+    role: 'UX Researcher & UI/UX Designer Intern',
     dates: 'Placeholder — add internship dates',
     responsibilities: [
-      'UX research and competitor analysis',
-      'UI design, wireframing, and prototyping',
-      'Responsive design',
-      'Digital marketing tasks',
-      'Worked on real client projects',
+      'Conducted competitor analysis and user research to inform design decisions',
+      'Collaborated with designers on UX improvements',
+      'Created wireframes and high-fidelity prototypes',
+      'Designed responsive interfaces and built reusable UI components and visual systems',
+      'Supported SEO and digital marketing research, social media planning, and content analysis',
     ],
     achievements: [],
   },
@@ -42,8 +42,8 @@ export const education = [
   {
     id: 'bachelors-degree',
     degree: "Bachelor's Degree in Communications and Internet Studies",
-    institution: 'Placeholder — add university name',
-    dates: 'Placeholder — add graduation year',
-    courses: [],
+    institution: 'Cyprus University of Technology',
+    dates: '2023 – Present',
+    courses: ['Human-Centered Design', 'Human-Computer Interaction'],
   },
 ]
