@@ -1,9 +1,105 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import "tailwindcss";
+
+/*
+  Design tokens for the portfolio design system.
+  Tailwind v4 generates utility classes directly from these CSS variables
+  (e.g. --color-accent produces bg-accent / text-accent / border-accent).
+*/
+@theme {
+  /* ---- Typography ---- */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Display sizes for hero / section headings, layered on top of Tailwind's
+     default text-xs..text-7xl scale (which covers everything else). */
+  --text-display-sm: 2.25rem;
+  --text-display-sm--line-height: 2.5rem;
+  --text-display-md: 3rem;
+  --text-display-md--line-height: 3.25rem;
+  --text-display-lg: 3.75rem;
+  --text-display-lg--line-height: 4rem;
+  --text-display-xl: 4.75rem;
+  --text-display-xl--line-height: 4.875rem;
+
+  /* ---- Color ----
+     Warm ink/paper neutrals + a single clay accent. Deliberately avoids the
+     blue/purple gradient palette common to developer portfolios. */
+  --color-ink: #1c1a17;
+  --color-ink-soft: #57524b;
+  --color-ink-muted: #8a8377;
+  --color-paper: #faf8f5;
+  --color-paper-muted: #f1ede6;
+  --color-line: #e4ded4;
+  --color-accent: #b1502f;
+  --color-accent-soft: #f4e4da;
+  --color-accent-dark: #8a3c22;
+
+  /* ---- Radius ----
+     Two named roles instead of picking sizes ad hoc: small controls get a
+     tighter radius, large surfaces (cards/images/panels) get a softer one. */
+  --radius-control: 0.5rem;
+  --radius-panel: 1.25rem;
+
+  /* ---- Shadow ----
+     Soft and low-contrast on purpose — ambient elevation, not drop shadows. */
+  --shadow-soft: 0 1px 2px rgba(28, 26, 23, 0.04), 0 12px 28px -12px rgba(28, 26, 23, 0.1);
+  --shadow-lifted: 0 4px 10px rgba(28, 26, 23, 0.06), 0 20px 45px -16px rgba(28, 26, 23, 0.16);
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+/*
+  ---- Spacing & container conventions (documented, not redefined) ----
+  Tailwind's default 4px spacing scale is kept as-is. Conventions to follow:
+    - Section vertical rhythm: py-20 on mobile, sm:py-28 on larger screens
+      (baked into the Section component — don't hand-roll section padding).
+    - Component gaps: gap-4 (tight), gap-6 (default), gap-8/gap-12 (loose).
+    - Containers: use the Container component's `size` prop —
+      "narrow" (max-w-3xl, body copy / prose), "content" (max-w-6xl, default
+      page width), "wide" (max-w-7xl, full-bleed layouts/galleries).
+  ---- Font weight convention ----
+    font-normal (400) body copy · font-medium (500) UI labels/buttons ·
+    font-semibold (600) subheadings/emphasis · font-bold (700) headings only.
+    Avoid font-black/extrabold — it reads heavy-handed for this aesthetic.
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold tracking-tight text-ink;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
