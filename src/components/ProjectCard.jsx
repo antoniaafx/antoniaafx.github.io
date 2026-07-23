@@ -1,4 +1,6 @@
-function ProjectCard({ title, description, image, tags = [] }) {
+import { Link } from 'react-router-dom'
+
+function ProjectCard({ id, title, description, image, tags = [] }) {
   return (
     <article className="group rounded-panel border border-line bg-paper p-6 shadow-soft transition-shadow duration-200 hover:shadow-lifted">
       {image && (
@@ -21,6 +23,13 @@ function ProjectCard({ title, description, image, tags = [] }) {
           ))}
         </ul>
       )}
+      <Link
+        to={`/projects/${id}`}
+        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline"
+      >
+        View case study
+        <span aria-hidden="true">→</span>
+      </Link>
     </article>
   )
 }

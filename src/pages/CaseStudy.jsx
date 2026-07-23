@@ -1,0 +1,52 @@
+import { useParams } from 'react-router-dom'
+import Section from '../components/Section'
+import Button from '../components/Button'
+import ContactCta from '../components/ContactCta'
+import CaseHero from '../components/CaseStudy/CaseHero'
+import ProjectOverview from '../components/CaseStudy/ProjectOverview'
+import ResearchSection from '../components/CaseStudy/ResearchSection'
+import ProcessSection from '../components/CaseStudy/ProcessSection'
+import UIDesignSection from '../components/CaseStudy/UIDesignSection'
+import ResultsSection from '../components/CaseStudy/ResultsSection'
+import ReflectionSection from '../components/CaseStudy/ReflectionSection'
+import caseStudies from '../data/caseStudies'
+
+function CaseStudy() {
+  const { slug } = useParams()
+  const caseStudy = caseStudies[slug]
+
+  // Projects can exist in data/projects.js (and link from /projects or the
+  // homepage) before their full case study is written — show a clean
+  // placeholder rather than a blank or broken page.
+  if (!caseStudy) {
+    return (
+      <Section>
+        <div className="mx-auto max-w-xl text-center">
+          <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Case study</p>
+          <h1 className="mt-4 text-display-sm">This case study isn't published yet.</h1>
+          <p className="mt-4 text-lg text-ink-soft">Check back soon, or explore the rest of the work.</p>
+          <div className="mt-8 flex justify-center">
+            <Button to="/projects" variant="primary">
+              Back to projects
+            </Button>
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  return (
+    <>
+      <CaseHero {...caseStudy} />
+      <ProjectOverview {...caseStudy.overview} />
+      <ResearchSection {...caseStudy.research} />
+      <ProcessSection {...caseStudy.process} />
+      <UIDesignSection {...caseStudy.uiDesign} />
+      <ResultsSection {...caseStudy.results} />
+      <ReflectionSection {...caseStudy.reflection} />
+      <ContactCta />
+    </>
+  )
+}
+
+export default CaseStudy

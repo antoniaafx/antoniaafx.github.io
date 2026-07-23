@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import CaseStudy from './pages/CaseStudy'
 import Contact from './pages/Contact'
 import { pageTransition } from './lib/motion'
 
@@ -34,6 +35,7 @@ function App() {
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<CaseStudy />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </motion.main>
