@@ -1,6 +1,6 @@
 import Section from '../Section'
 import SectionTitle from '../SectionTitle'
-import ImageGallery from './ImageGallery'
+import ImageGallery from '../ImageGallery'
 
 // Research content varies a lot project to project, so blocks are typed
 // rather than fixed fields: 'text' (interviews/methodology), 'insights'

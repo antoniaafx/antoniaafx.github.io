@@ -1,6 +1,6 @@
 import Section from '../Section'
 import SectionTitle from '../SectionTitle'
-import ImageGallery from './ImageGallery'
+import ImageGallery from '../ImageGallery'
 
 function ResultsSection({ summary, improvements = [], images = [] }) {
   return (

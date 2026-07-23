@@ -1,6 +1,6 @@
 import Section from '../Section'
 import SectionTitle from '../SectionTitle'
-import ImageGallery from './ImageGallery'
+import ImageGallery from '../ImageGallery'
 
 // Not in the original example tree, but the spec calls for a distinct
 // section for high-fidelity screens/responsive views — different purpose

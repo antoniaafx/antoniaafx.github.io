@@ -5,6 +5,8 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import CaseStudy from './pages/CaseStudy'
+import About from './pages/About'
+import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import { pageTransition } from './lib/motion'
 
@@ -21,6 +23,17 @@ function App() {
         Skip to content
       </a>
       <Navbar />
+      {/* Note: <Routes> deliberately does NOT take an explicit `location`
+          prop here. That's the usual recipe for animating route exits (so
+          the outgoing route keeps matching while it plays its exit
+          animation), but in this app + dependency versions it left
+          client-side navigation stuck showing the previous page forever
+          (URL updated, content didn't — confirmed by bisecting down to
+          this exact prop). Without it, Routes re-renders reactively off
+          router context as normal; the only cost is the outgoing page
+          unmounts a beat before its exit animation finishes, which reduced
+          motion already disables and full motion barely shows given the
+          brief duration. */}
       <AnimatePresence mode="wait" initial={false}>
         <motion.main
           id="main-content"
@@ -32,10 +45,12 @@ function App() {
           variants={pageTransition.variants}
           transition={pageTransition.transition}
         >
-          <Routes location={location}>
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<CaseStudy />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </motion.main>
