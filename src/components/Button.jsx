@@ -15,6 +15,9 @@ const VARIANTS = {
   primary: 'bg-ink text-paper hover:bg-ink-soft',
   secondary: 'border border-line text-ink hover:border-ink hover:bg-paper-muted',
   ghost: 'text-ink hover:text-accent-dark underline-offset-4 hover:underline',
+  // For use on bg-ink sections (e.g. a closing Contact CTA) where the other
+  // variants lose contrast against a dark background.
+  inverse: 'bg-paper text-ink hover:bg-paper-muted',
 }
 
 const SIZES = {

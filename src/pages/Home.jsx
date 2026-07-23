@@ -1,20 +1,18 @@
 import Hero from '../components/Hero'
-import Section from '../components/Section'
-import Button from '../components/Button'
+import FeaturedProjects from '../components/FeaturedProjects'
+import AboutPreview from '../components/AboutPreview'
+import SkillsOverview from '../components/SkillsOverview'
+import ContactCta from '../components/ContactCta'
 
 function Home() {
   return (
-    <Section animate={false}>
-      <Hero title="Antonia" subtitle="UX/UI Designer" />
-      <div className="mt-8 flex flex-wrap gap-4">
-        <Button to="/projects" variant="primary">
-          View projects
-        </Button>
-        <Button to="/contact" variant="secondary">
-          Get in touch
-        </Button>
-      </div>
-    </Section>
+    <>
+      <Hero />
+      <FeaturedProjects />
+      <AboutPreview />
+      <SkillsOverview />
+      <ContactCta />
+    </>
   )
 }
 
