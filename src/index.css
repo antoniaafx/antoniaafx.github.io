@@ -28,21 +28,28 @@
   --text-caption--line-height: 1.25rem;
 
   /* ---- Color ----
-     Warm ink/paper neutrals + a single clay accent. Deliberately avoids the
-     blue/purple gradient palette common to developer portfolios. */
-  --color-ink: #1c1a17;
-  --color-ink-soft: #57524b;
-  /* Darkened from an earlier draft (#8a8377) — that value only cleared
-     ~3.5:1 against --color-paper, short of the 4.5:1 AA minimum for small
-     text (it's used for footer copy and inactive nav links). This value
-     clears ~5.3:1. */
-  --color-ink-muted: #6b655c;
-  --color-paper: #faf8f5;
-  --color-paper-muted: #f1ede6;
-  --color-line: #e4ded4;
-  --color-accent: #b1502f;
-  --color-accent-soft: #f4e4da;
-  --color-accent-dark: #8a3c22;
+     "Quiet Lavender Luxury" — cool near-neutral ink/paper with a faint
+     violet undertone, plus a single muted, desaturated plum accent used
+     sparingly. Deliberately grayed-down, not the bright violet/indigo
+     common to AI-product branding. */
+  --color-ink: #211e24;
+  --color-ink-soft: #55515b;
+  /* Checked against both backgrounds this renders on: 4.9:1 against
+     --color-paper, 4.7:1 against the darker --color-paper-muted (the
+     binding constraint — footer copy and section eyebrows sit on the
+     muted tier too). Both clear the 4.5:1 AA minimum for small text. */
+  --color-ink-muted: #6a6671;
+  --color-paper: #f8f6f8;
+  --color-paper-muted: #efeaef;
+  --color-line: #e2dce3;
+  /* Lightened slightly from the first pass (#6b5a78) to satisfy two
+     constraints at once: ≥4.5:1 as text against --color-paper (4.8:1) and
+     ≥3:1 as a UI-boundary color against --color-ink (3.2:1) — it's also
+     the :focus-visible ring color, which can land on the dark ContactCta
+     section. */
+  --color-accent: #7a6682;
+  --color-accent-soft: #eae3ec;
+  --color-accent-dark: #453a4e;
 
   /* ---- Radius ----
      Two named roles instead of picking sizes ad hoc: small controls get a
@@ -52,8 +59,8 @@
 
   /* ---- Shadow ----
      Soft and low-contrast on purpose — ambient elevation, not drop shadows. */
-  --shadow-soft: 0 1px 2px rgba(28, 26, 23, 0.04), 0 12px 28px -12px rgba(28, 26, 23, 0.1);
-  --shadow-lifted: 0 4px 10px rgba(28, 26, 23, 0.06), 0 20px 45px -16px rgba(28, 26, 23, 0.16);
+  --shadow-soft: 0 1px 2px rgba(33, 30, 36, 0.04), 0 12px 28px -12px rgba(33, 30, 36, 0.1);
+  --shadow-lifted: 0 4px 10px rgba(33, 30, 36, 0.06), 0 20px 45px -16px rgba(33, 30, 36, 0.16);
 }
 
 /*
