@@ -8,6 +8,17 @@ const BACKGROUNDS = {
   ink: 'bg-ink text-paper',
 }
 
+// 'default' is the normal inter-section rhythm. 'hero' is for whichever
+// section sits first on a page, directly under the sticky nav — the same
+// bottom padding (still needs to separate from whatever follows), but a
+// reduced top (the nav's own height/border already provides separation, so
+// a full section's worth of top padding on top of that reads as an
+// oversized gap rather than intentional breathing room).
+const PADDING = {
+  default: 'py-20 sm:py-28',
+  hero: 'pt-12 sm:pt-16 pb-20 sm:pb-28',
+}
+
 function Section({
   id,
   as = 'section',
@@ -15,6 +26,7 @@ function Section({
   containerSize = 'content',
   container = true,
   animate = true,
+  spacing = 'default',
   className = '',
   children,
   ...props
@@ -34,7 +46,7 @@ function Section({
       : {}
 
   return (
-    <MotionTag id={id} className={`py-20 sm:py-28 ${BACKGROUNDS[background]} ${className}`} {...revealProps} {...props}>
+    <MotionTag id={id} className={`${PADDING[spacing]} ${BACKGROUNDS[background]} ${className}`} {...revealProps} {...props}>
       {content}
     </MotionTag>
   )

@@ -6,7 +6,7 @@ import projects from '../data/projects'
 
 function Projects() {
   return (
-    <Section animate={false}>
+    <Section animate={false} spacing="hero">
       <PageMeta
         title="Projects"
         description="Selected UX/UI case studies covering research, structure, and interface design, from problem to shipped product."

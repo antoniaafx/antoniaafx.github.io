@@ -13,7 +13,7 @@ function CaseHero({ title, description, role, timeline, tools = [], heroImage })
   const itemMotion = shouldReduceMotion ? {} : { variants: fadeInUp }
 
   return (
-    <Section animate={false}>
+    <Section animate={false} spacing="hero">
       <motion.div {...containerMotion}>
         <motion.div {...itemMotion}>
           <Link to="/projects" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink">

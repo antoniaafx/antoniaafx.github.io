@@ -14,7 +14,7 @@ function Hero() {
   const itemMotion = shouldReduceMotion ? {} : { variants: fadeInUp }
 
   return (
-    <Section animate={false}>
+    <Section animate={false} spacing="hero">
       <motion.div {...containerMotion} className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <motion.p {...itemMotion} className="text-caption font-medium uppercase tracking-wide text-ink-muted">

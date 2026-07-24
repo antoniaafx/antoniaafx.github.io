@@ -22,10 +22,14 @@ function ProjectCard({ id, title, description, heroImage, category }) {
       {/* Stretched-link pattern: the whole card is hoverable (image zoom,
           shadow) so the whole card should be clickable, not just this text —
           a single real anchor whose hit area is expanded via ::after rather
-          than wrapping the card in a second, nested link. */}
+          than wrapping the card in a second, nested link. `flex` (not
+          `inline-flex`) so it's block-level and starts on its own line below
+          the category badge instead of sitting beside it — both are
+          inline-level by default, so they were sharing a line whenever
+          there was room. */}
       <Link
         to={`/projects/${id}`}
-        className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:content-['']"
+        className="mt-4 flex w-fit items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:content-['']"
       >
         View case study
         <span aria-hidden="true">→</span>

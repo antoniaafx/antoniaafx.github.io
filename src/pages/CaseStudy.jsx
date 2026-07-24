@@ -21,7 +21,7 @@ function CaseStudy() {
   // placeholder rather than a blank or broken page.
   if (!project?.overview) {
     return (
-      <Section>
+      <Section spacing="hero">
         <PageMeta
           title="Case Study"
           description="This case study isn't published yet."

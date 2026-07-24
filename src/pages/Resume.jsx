@@ -10,7 +10,7 @@ import ResumeSkills from '../components/ResumeSkills'
 // a homepage-style entrance.
 function Resume() {
   return (
-    <Section containerSize="narrow">
+    <Section containerSize="narrow" spacing="hero">
       <PageMeta
         title="Resume"
         description="Antonia's resume — experience, education, and skills as a Junior UX/UI Designer."

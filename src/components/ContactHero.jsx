@@ -10,7 +10,7 @@ function ContactHero() {
   const itemMotion = shouldReduceMotion ? {} : { variants: fadeInUp }
 
   return (
-    <Section animate={false}>
+    <Section animate={false} spacing="hero">
       <motion.div {...containerMotion} className="max-w-2xl">
         <motion.p {...itemMotion} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
           Contact
