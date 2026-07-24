@@ -77,7 +77,7 @@ function Navbar() {
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="inline-flex min-h-11 items-center rounded-control px-3 text-sm font-medium text-ink sm:hidden"
+            className="inline-flex min-h-11 cursor-pointer items-center rounded-control px-3 text-sm font-medium text-ink sm:hidden"
           >
             {open ? 'Close' : 'Menu'}
           </button>

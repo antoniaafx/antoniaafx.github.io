@@ -35,7 +35,7 @@ function AboutHero() {
           </motion.p>
         </div>
 
-        <motion.div {...itemMotion} className="relative mx-auto w-full max-w-md lg:max-w-none">
+        <motion.div {...itemMotion} className="relative mx-auto w-full max-w-md">
           <div className="overflow-hidden rounded-panel border border-line shadow-lifted">
             <div className="aspect-[3/4]">
               <img
