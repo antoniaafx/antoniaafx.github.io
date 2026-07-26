@@ -1,10 +1,15 @@
-import ResumeSection from './ResumeSection'
+import Section from './Section'
+import SectionTitle from './SectionTitle'
 import { education } from '../data/experience'
 
-function ResumeEducation() {
+// Moved in from the removed Resume page — same card content as before, now
+// under the standard Section rhythm used across the rest of About instead
+// of the Resume page's denser, unpadded ResumeSection wrapper.
+function AboutEducation() {
   return (
-    <ResumeSection title="Education">
-      <div className="space-y-6">
+    <Section>
+      <SectionTitle title="Education" />
+      <div className="mt-10 space-y-6">
         {education.map((item) => (
           <div key={item.id} className="rounded-panel border border-line p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -25,8 +30,8 @@ function ResumeEducation() {
           </div>
         ))}
       </div>
-    </ResumeSection>
+    </Section>
   )
 }
 
-export default ResumeEducation
+export default AboutEducation

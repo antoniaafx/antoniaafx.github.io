@@ -1,4 +1,4 @@
-// Real skill lists — shared by the About page and the Resume page.
+// Real skill lists, used by the About page.
 
 export const uxSkills = ['User Research', 'Wireframing', 'Prototyping', 'User Flows', 'Competitor Analysis']
 

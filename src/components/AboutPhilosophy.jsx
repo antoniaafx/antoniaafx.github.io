@@ -19,7 +19,7 @@ const BLOCKS = [
 function AboutPhilosophy() {
   return (
     <Section>
-      <SectionTitle title="Design philosophy" />
+      <SectionTitle eyebrow="How I Design" title="Design philosophy" />
       <div className="mt-10 grid gap-6 sm:grid-cols-3">
         {BLOCKS.map((block) => (
           <div key={block.label} className="rounded-panel border border-line p-6">

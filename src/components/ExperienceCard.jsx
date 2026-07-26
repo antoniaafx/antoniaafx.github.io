@@ -1,5 +1,5 @@
-// Reusable card for one entry in the Resume page's Experience section —
-// internship, freelance project, or relevant work.
+// Reusable card for one entry in About's Experience section — internship,
+// freelance project, or relevant work.
 function ExperienceCard({ title, role, dates, responsibilities = [], achievements = [] }) {
   return (
     <article className="rounded-panel border border-line p-6">

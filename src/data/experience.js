@@ -1,6 +1,6 @@
-// Shared by the About page timeline and the Resume page — editing here
-// updates both. Dates are left as placeholders where the exact date isn't
-// set yet; nothing here is an invented achievement.
+// Used by About's timeline and its Experience/Education detail sections —
+// editing here updates all of them. Dates are left as placeholders where the
+// exact date isn't set yet; nothing here is an invented achievement.
 
 export const experience = [
   {

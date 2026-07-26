@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
+import Button from './Button'
 import { fadeInUp, staggerContainer } from '../lib/motion'
 import profilePhoto from '../assets/images/antonia-profile.jpg'
 
@@ -33,6 +34,11 @@ function AboutHero() {
             Balloon Digital Studio I worked across research, UI design, and real client projects, and I'm now
             looking for a junior role where I can keep learning and grow alongside experienced designers.
           </motion.p>
+          <motion.div {...itemMotion} className="mt-8">
+            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="lg">
+              Download Resume
+            </Button>
+          </motion.div>
         </div>
 
         <motion.div {...itemMotion} className="relative mx-auto w-full max-w-md">

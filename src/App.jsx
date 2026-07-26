@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -7,13 +7,22 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import CaseStudy from './pages/CaseStudy'
 import About from './pages/About'
-import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import { pageTransition } from './lib/motion'
 
 function App() {
   const location = useLocation()
   const shouldReduceMotion = useReducedMotion()
+
+  // The standalone Resume page was removed — its content now lives in
+  // About's own resume section. Redirected here, before the animated route
+  // tree below, rather than as a normal <Route element={<Navigate .../>}>:
+  // that would still mount and key into AnimatePresence for a "page" that
+  // never renders anything, playing a full exit/enter transition cycle for
+  // a blank flash before landing on About. This redirects instantly instead.
+  if (location.pathname === '/resume') {
+    return <Navigate to="/about#resume" replace />
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -52,7 +61,6 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<CaseStudy />} />
             <Route path="/about" element={<About />} />
-            <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </motion.main>

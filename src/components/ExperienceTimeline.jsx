@@ -11,7 +11,11 @@ const timelineItems = [
 function ExperienceTimeline() {
   return (
     <Section>
-      <SectionTitle title="Experience & education" subtitle="A snapshot of my design journey so far." />
+      <SectionTitle
+        eyebrow="What I Learned"
+        title="Experience & education"
+        subtitle="A snapshot of my design journey so far."
+      />
       <div className="mt-12">
         <Timeline items={timelineItems} />
       </div>

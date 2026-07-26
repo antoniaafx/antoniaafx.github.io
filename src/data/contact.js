@@ -1,4 +1,4 @@
-// Shared by the Contact page and the Resume header. Email is your account
+// Shared by the Contact page and About's resume header. Email is your account
 // address — double-check it's the one you want public-facing on the site.
 
 const contact = [
