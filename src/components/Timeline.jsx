@@ -11,7 +11,7 @@ function Timeline({ items = [] }) {
       {items.map((item, index) => (
         <li key={item.label ?? index} className="flex gap-6">
           <div className="flex flex-col items-center">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent-dark">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-dark text-sm font-semibold text-paper">
               {index + 1}
             </span>
             {index < items.length - 1 && <span className="mt-2 w-px flex-1 bg-line" aria-hidden="true" />}

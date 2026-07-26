@@ -28,28 +28,67 @@
   --text-caption--line-height: 1.25rem;
 
   /* ---- Color ----
-     "Quiet Lavender Luxury" — cool near-neutral ink/paper with a faint
-     violet undertone, plus a single muted, desaturated plum accent used
-     sparingly. Deliberately grayed-down, not the bright violet/indigo
-     common to AI-product branding. */
-  --color-ink: #211e24;
-  --color-ink-soft: #55515b;
-  /* Checked against both backgrounds this renders on: 4.9:1 against
-     --color-paper, 4.7:1 against the darker --color-paper-muted (the
-     binding constraint — footer copy and section eyebrows sit on the
-     muted tier too). Both clear the 4.5:1 AA minimum for small text. */
-  --color-ink-muted: #6a6671;
-  --color-paper: #f8f6f8;
-  --color-paper-muted: #efeaef;
-  --color-line: #e2dce3;
-  /* Lightened slightly from the first pass (#6b5a78) to satisfy two
-     constraints at once: ≥4.5:1 as text against --color-paper (4.8:1) and
-     ≥3:1 as a UI-boundary color against --color-ink (3.2:1) — it's also
-     the :focus-visible ring color, which can land on the dark ContactCta
-     section. */
-  --color-accent: #7a6682;
-  --color-accent-soft: #eae3ec;
-  --color-accent-dark: #453a4e;
+     "Digital Atelier" — a UX designer's workspace where research ideas
+     become digital products: creative, digital, human, intentional.
+     Deliberately NOT wellness/café/vintage-stationery — cool violet-tinted
+     neutrals (not warm cream/beige) and full-strength, unmuted accent hues.
+
+     ink/paper — cool neutrals with a faint violet undertone (from the same
+     family as --color-accent), not warm brown. Body text and backgrounds
+     read as "clean digital workspace," not "notebook paper." */
+  --color-ink: #17151f;
+  /* Derived (no second ink value was specified) — cool violet-gray,
+     deliberately not warm/brown, so secondary text stays in the same
+     "digital" family as --color-ink rather than drifting toward the
+     brown accent. 8.7:1 on --color-paper, 7.8:1 on --color-paper-muted. */
+  --color-ink-soft: #4a4459;
+  /* Checked against both backgrounds this renders on (caption/eyebrow text
+     and footer copy sit on both) — 5.7:1 and 5.1:1, clearing the 4.5:1 AA
+     minimum for small text on the darker --color-paper-muted, the binding
+     case. */
+  --color-ink-muted: #665f79;
+  --color-paper: #f8f7fc;
+  --color-paper-muted: #eeeaf5;
+  --color-line: #ded8ec;
+
+  /* accent — the main brand identity color: creativity, digital products,
+     design thinking. Primary buttons, active navigation, links, skill
+     badges, focus rings — the site's primary-interactive color, full
+     strength, no muting. Used exactly as specified; this palette's darker
+     ink and brighter paper gave enough room that neither constraint needed
+     a nudge: 5.0:1 as a button fill under paper-colored text, 3.4:1 as a
+     focus ring against --color-ink (can land on the dark ContactCta
+     section). Comfortable margins both directions. */
+  --color-accent: #7652d4;
+  --color-accent-soft: #e4dbf7;
+  /* Text-safe variant (9.5:1 on --color-paper) — every inline-link and
+     "Case Study" eyebrow use goes through this, never bare --color-accent. */
+  --color-accent-dark: #4a2c94;
+
+  /* sage — UX process and human understanding: research sections, journey/
+     timeline elements, supporting highlights. Full-strength as given, used
+     for fills (project tags) paired with --color-sage-dark text. Skill
+     badges deliberately do NOT use sage — skills are a purple/interactive
+     surface, not a process indicator. */
+  --color-sage: #7faf8a;
+  /* The one small indicator color — timeline markers, bullet points, any
+     small process/status mark. Deliberately used here instead of the
+     lighter --color-sage: small marks read clearer and more confident at
+     this depth ("improves hierarchy and visibility"), and it's the
+     text-safe partner for --color-sage fills (5.0:1) with a lot of margin
+     everywhere else (11.8:1 on --color-paper). No separate pale "soft"
+     tier — --color-sage is already light enough to be the fill itself. */
+  --color-sage-dark: #24391d;
+
+  /* brown — extremely limited: one small paper/workspace-inspired detail
+     (a bar in the homepage hero's decorative graphic), nothing else. Never
+     text, never a card, never more than that single touch. The case-study
+     image-placeholder borders that briefly used brown went back to plain
+     --color-line — repeating it across every unfinished image slot in a
+     case study (there can be many) isn't "extremely limited" anymore. No
+     soft/dark variant because nothing here needs one; add one only when a
+     real second use case actually shows up. */
+  --color-brown: #8b6f47;
 
   /* ---- Radius ----
      Two named roles instead of picking sizes ad hoc: small controls get a
@@ -59,8 +98,8 @@
 
   /* ---- Shadow ----
      Soft and low-contrast on purpose — ambient elevation, not drop shadows. */
-  --shadow-soft: 0 1px 2px rgba(33, 30, 36, 0.04), 0 12px 28px -12px rgba(33, 30, 36, 0.1);
-  --shadow-lifted: 0 4px 10px rgba(33, 30, 36, 0.06), 0 20px 45px -16px rgba(33, 30, 36, 0.16);
+  --shadow-soft: 0 1px 2px rgba(23, 21, 31, 0.04), 0 12px 28px -12px rgba(23, 21, 31, 0.1);
+  --shadow-lifted: 0 4px 10px rgba(23, 21, 31, 0.06), 0 20px 45px -16px rgba(23, 21, 31, 0.16);
 }
 
 /*

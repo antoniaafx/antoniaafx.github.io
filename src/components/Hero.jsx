@@ -38,17 +38,21 @@ function Hero() {
         </div>
 
         {/* Decorative — an abstract wireframe motif rather than a stock
-            illustration, built from design tokens only. */}
+            illustration, built from design tokens only. The small top bar
+            is brown (a notebook-style annotation mark) and the mock button
+            is accent (matching the real primary buttons beside it) — a
+            small, deliberate nod to paper-sketch-becoming-digital-product
+            using the new palette's roles, not a new illustration. */}
         <motion.div {...itemMotion} aria-hidden="true" className="relative mx-auto w-full max-w-md lg:max-w-none">
           <div className="absolute -right-4 -top-4 hidden h-full w-full rounded-panel border border-line bg-accent-soft sm:block" />
           <div className="relative rounded-panel border border-line bg-paper p-6 shadow-lifted">
-            <div className="h-2.5 w-16 rounded-full bg-accent-soft" />
+            <div className="h-2.5 w-16 rounded-full bg-brown" />
             <div className="mt-5 aspect-[4/3] rounded-control bg-paper-muted" />
             <div className="mt-5 space-y-2">
               <div className="h-2.5 w-3/4 rounded-full bg-line" />
               <div className="h-2.5 w-1/2 rounded-full bg-line" />
             </div>
-            <div className="mt-5 h-9 w-28 rounded-control bg-ink" />
+            <div className="mt-5 h-9 w-28 rounded-control bg-accent" />
           </div>
         </motion.div>
       </motion.div>

@@ -55,7 +55,10 @@ function CaseHero({ title, description, role, timeline, tools = [], heroImage })
           )}
         </motion.dl>
 
-        <motion.div {...itemMotion} className="mt-10 overflow-hidden rounded-panel border border-line bg-paper-muted shadow-lifted">
+        <motion.div
+          {...itemMotion}
+          className="mt-10 overflow-hidden rounded-panel border border-line bg-paper-muted shadow-lifted"
+        >
           <div className="aspect-[16/9]">
             {heroImage ? (
               <img src={heroImage} alt={title} className="h-full w-full object-cover" />

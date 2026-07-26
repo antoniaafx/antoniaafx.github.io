@@ -15,7 +15,7 @@ function ProjectCard({ id, title, description, heroImage, category }) {
       <h3 className="text-xl">{title}</h3>
       {description && <p className="mt-2 text-ink-soft">{description}</p>}
       {category && (
-        <span className="mt-4 inline-block rounded-control bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent-dark">
+        <span className="mt-4 inline-block rounded-control bg-sage px-2.5 py-1 text-xs font-medium text-sage-dark">
           {category}
         </span>
       )}

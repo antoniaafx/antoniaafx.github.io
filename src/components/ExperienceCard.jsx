@@ -13,7 +13,7 @@ function ExperienceCard({ title, role, dates, responsibilities = [], achievement
         <ul className="mt-4 space-y-2">
           {responsibilities.map((item, index) => (
             <li key={index} className="flex gap-2 text-ink-soft">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-dark" aria-hidden="true" />
               {item}
             </li>
           ))}
@@ -26,7 +26,7 @@ function ExperienceCard({ title, role, dates, responsibilities = [], achievement
           <ul className="mt-2 space-y-2">
             {achievements.map((item, index) => (
               <li key={index} className="flex gap-2 text-ink-soft">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-dark" aria-hidden="true" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-dark" aria-hidden="true" />
                 {item}
               </li>
             ))}

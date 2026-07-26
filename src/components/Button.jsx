@@ -12,7 +12,11 @@ const BASE =
   'disabled:opacity-50 disabled:pointer-events-none disabled:hover:scale-100'
 
 const VARIANTS = {
-  primary: 'bg-ink text-paper hover:bg-ink-soft',
+  // The site's one primary-interactive color (lavender purple) — reserved
+  // for the main call-to-action on a screen. Darkens on hover to
+  // --color-accent-dark, which has far more contrast margin than the
+  // 4.6:1 the fill itself needs, so the hover state stays safely accessible.
+  primary: 'bg-accent text-paper hover:bg-accent-dark',
   secondary: 'border border-line text-ink hover:border-ink hover:bg-paper-muted',
   ghost: 'text-ink hover:text-accent-dark underline-offset-4 hover:underline',
   // For use on bg-ink sections (e.g. a closing Contact CTA) where the other
