@@ -100,11 +100,17 @@ function WireframeElements() {
           <span className="block h-1 w-1/2 rounded-full bg-line" />
           <span className="mt-1.5 block h-3 w-10 rounded bg-accent" />
         </motion.div>
-        {/* Small design measurement — a Figma-style spacing annotation. */}
-        <motion.div variants={pieceMotion} className="mt-2 flex items-center justify-center gap-1.5 text-ink-muted">
-          <span className="h-px w-3 bg-line" />
-          <span className="text-[0.5625rem] font-medium tabular-nums">64px</span>
-          <span className="h-px w-3 bg-line" />
+        {/* Figma-like alignment guide + spacing measurement — the dashed
+            line is the "how far apart these are" guide a design tool draws
+            between two frames; the number is what it's measuring. One
+            detail, not two. */}
+        <motion.div variants={pieceMotion} className="flex flex-col items-center text-ink-muted">
+          <span className="h-3 w-px border-l border-dashed border-current" />
+          <span className="mt-1 flex items-center gap-1.5">
+            <span className="h-px w-3 bg-line" />
+            <span className="text-[0.5625rem] font-medium tabular-nums">64px</span>
+            <span className="h-px w-3 bg-line" />
+          </span>
         </motion.div>
       </motion.div>
 

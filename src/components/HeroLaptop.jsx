@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button'
 import LaptopFrame from './LaptopFrame'
 import LaptopScreen from './LaptopScreen'
+import HeroPortrait from './HeroPortrait'
 import { EASE, fadeIn, sequenceGroup } from '../lib/motion'
 
 // Slightly larger offset than the shared fadeInUp, to read clearly at the
@@ -14,14 +15,14 @@ const frameMotion = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 }
 
-// The hero laptop: a window into a UX designer's workspace, not a device
-// mockup or a screenshot of the real site. Real content (name, role,
-// headline, buttons) sits directly on the screen's canvas — no card, no
-// background fill of its own — framed by a thin selection-box outline with
-// corner handles instead, reading as "the frame currently selected in the
-// file" rather than a floating panel. Only the chassis and the wireframe
-// scaffolding around it are aria-hidden (see LaptopFrame/LaptopScreen/
-// WireframeElements); the selection box and cursor here are decorative too.
+// The hero laptop: a window into a UX designer's workspace ("this is where
+// I think"), not a device mockup or a screenshot of a finished product.
+// Real content (portrait, name, role, headline, buttons) sits directly on
+// the screen's canvas — no card, no bounding box, no background fill of
+// its own — distinguished from the surrounding wireframe scaffolding
+// purely by scale and hierarchy, not by a containing shape. Only the
+// chassis and the wireframe scaffolding around it are aria-hidden (see
+// LaptopFrame/LaptopScreen/WireframeElements).
 //
 // Full "opening a design file" sequence (~1s total): frame settles (this
 // component) → screen/grid activates and the research cluster appears
@@ -48,34 +49,13 @@ function HeroLaptop() {
             {...contentMotion}
             className="relative z-10 flex w-full max-w-xs flex-col items-center px-5 py-4 text-center sm:max-w-sm sm:px-8 sm:py-6 md:max-w-md"
           >
-            {/* Selection box — a thin outline with corner handles, the same
-                visual language as the screen's own corner brackets, rather
-                than a card floating on top of the canvas. */}
-            <motion.div
-              variants={pieceMotion}
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 border border-accent/70"
-            >
-              <span className="absolute -left-[3px] -top-[3px] h-1.5 w-1.5 bg-accent" />
-              <span className="absolute -right-[3px] -top-[3px] h-1.5 w-1.5 bg-accent" />
-              <span className="absolute -bottom-[3px] -left-[3px] h-1.5 w-1.5 bg-accent" />
-              <span className="absolute -bottom-[3px] -right-[3px] h-1.5 w-1.5 bg-accent" />
-            </motion.div>
-
-            {/* Cursor + alignment guide — "someone is actively working in
-                this file" rather than a static screenshot. */}
-            <motion.div
-              variants={pieceMotion}
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-7 -right-10 hidden sm:block"
-            >
-              <span className="absolute left-2.5 top-1 h-px w-9 border-t border-dashed border-accent/50" />
-              <span className="block h-0 w-0 -rotate-[20deg] border-b-[11px] border-r-[7px] border-b-accent border-r-transparent" />
+            <motion.div variants={pieceMotion}>
+              <HeroPortrait />
             </motion.div>
 
             <motion.p
               variants={pieceMotion}
-              className="text-xs font-semibold uppercase tracking-[0.2em] text-ink sm:text-sm"
+              className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-ink sm:text-sm"
             >
               Antonia Afx
             </motion.p>
