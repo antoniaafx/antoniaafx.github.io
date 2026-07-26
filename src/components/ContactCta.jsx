@@ -4,6 +4,11 @@ import Button from './Button'
 // `eyebrow` is optional — only About's usage passes one, to close out its
 // journey structure ("Where I'm Going"). Home and CaseStudy render this
 // without it, unchanged.
+//
+// Links to /about#resume, not /contact — the standalone Contact page was
+// removed and merged into About's own closing section (AboutContact),
+// which is now the site's single "get in touch" destination everywhere
+// this button appears.
 function ContactCta({ eyebrow }) {
   return (
     <Section background="ink">
@@ -17,7 +22,7 @@ function ContactCta({ eyebrow }) {
           I'd love to hear from you.
         </p>
         <div className="mt-8 flex justify-center">
-          <Button to="/contact" variant="inverse" size="lg">
+          <Button to="/about#resume" variant="inverse" size="lg">
             Contact Me
           </Button>
         </div>

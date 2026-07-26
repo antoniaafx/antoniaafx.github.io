@@ -3,13 +3,12 @@ import Section from './Section'
 import SectionTitle from './SectionTitle'
 import SkillBadge from './SkillBadge'
 import { staggerContainer, fadeInUp, revealOnce } from '../lib/motion'
-import { uxSkills, uiSkills, tools, softSkills } from '../data/skills'
+import { research, design, tools } from '../data/skills'
 
 const GROUPS = [
-  { label: 'UX Skills', items: uxSkills },
-  { label: 'UI Skills', items: uiSkills },
+  { label: 'Research', items: research },
+  { label: 'Design', items: design },
   { label: 'Tools', items: tools },
-  { label: 'Soft Skills', items: softSkills },
 ]
 
 function SkillGroup({ label, items }) {

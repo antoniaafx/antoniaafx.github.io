@@ -7,20 +7,20 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import CaseStudy from './pages/CaseStudy'
 import About from './pages/About'
-import Contact from './pages/Contact'
 import { pageTransition } from './lib/motion'
 
 function App() {
   const location = useLocation()
   const shouldReduceMotion = useReducedMotion()
 
-  // The standalone Resume page was removed — its content now lives in
-  // About's own resume section. Redirected here, before the animated route
-  // tree below, rather than as a normal <Route element={<Navigate .../>}>:
-  // that would still mount and key into AnimatePresence for a "page" that
-  // never renders anything, playing a full exit/enter transition cycle for
-  // a blank flash before landing on About. This redirects instantly instead.
-  if (location.pathname === '/resume') {
+  // The standalone Resume and Contact pages were both removed — their
+  // content now lives in About's own closing section (AboutContact).
+  // Redirected here, before the animated route tree below, rather than as
+  // normal <Route element={<Navigate .../>}> entries: that would still
+  // mount and key into AnimatePresence for a "page" that never renders
+  // anything, playing a full exit/enter transition cycle for a blank flash
+  // before landing on About. This redirects instantly instead.
+  if (location.pathname === '/resume' || location.pathname === '/contact') {
     return <Navigate to="/about#resume" replace />
   }
 
@@ -61,7 +61,6 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<CaseStudy />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
           </Routes>
         </motion.main>
       </AnimatePresence>

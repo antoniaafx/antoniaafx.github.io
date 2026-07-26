@@ -1,9 +1,20 @@
-// Real skill lists, used by the About page.
+// Real skill lists, used by the About page. Grouped by what each skill is
+// actually for (research vs. design vs. tooling) rather than the old ux/ui/
+// tools/soft-skills split, which read as four similar-looking grids. The
+// former "soft skills" list (communication, collaboration, etc.) isn't
+// carried over here — those are expected/generic rather than specifically
+// UX-categorized, so they didn't earn a place in a deliberately shorter list.
 
-export const uxSkills = ['User Research', 'Wireframing', 'Prototyping', 'User Flows', 'Competitor Analysis']
+export const research = ['User Research', 'Competitive Analysis', 'User Flows']
 
-export const uiSkills = ['Visual Design', 'Responsive Design', 'Design Systems', 'Typography', 'Accessibility']
+export const design = [
+  'Wireframing',
+  'Prototyping',
+  'Visual Design',
+  'Design Systems',
+  'Typography',
+  'Accessibility',
+  'Responsive Design',
+]
 
 export const tools = ['Figma', 'Canva', 'GitHub', 'VS Code', 'React (Beginner)', 'Claude Code']
-
-export const softSkills = ['Communication', 'Problem Solving', 'Collaboration', 'Time Management']

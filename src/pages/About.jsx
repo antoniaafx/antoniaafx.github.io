@@ -1,35 +1,36 @@
 import PageMeta from '../components/PageMeta'
 import AboutHero from '../components/AboutHero'
 import AboutBackground from '../components/AboutBackground'
+import AboutPhilosophy from '../components/AboutPhilosophy'
+import AboutSkills from '../components/AboutSkills'
 import ExperienceTimeline from '../components/ExperienceTimeline'
 import AboutExperience from '../components/AboutExperience'
 import AboutEducation from '../components/AboutEducation'
-import AboutPhilosophy from '../components/AboutPhilosophy'
-import AboutSkills from '../components/AboutSkills'
-import ContactCta from '../components/ContactCta'
+import AboutContact from '../components/AboutContact'
 
-// Ordered as a four-stage journey — Where I started (AboutBackground) → What
-// I learned (ExperienceTimeline, then the fuller Experience/Education detail
-// moved in from the removed Resume page) → How I design (AboutPhilosophy,
-// AboutSkills) → Where I'm going (ContactCta) — per DESIGN_DIRECTION.md.
-// Now the complete personal profile page: the standalone /resume route
-// redirects to /about#resume (see App.jsx).
+// The site's single final destination — the standalone Contact page was
+// removed and merged in here (AboutContact, at the end). Ordered as one
+// story: Where I started (AboutBackground) → How I design (AboutPhilosophy,
+// AboutSkills) → What I learned (ExperienceTimeline, AboutExperience,
+// AboutEducation) → Where I'm going (AboutContact — resume download +
+// contact details + invitation to reach out). The old /resume URL and
+// every "Contact Me" button on the site both land on AboutContact.
 function About() {
   return (
     <>
       <PageMeta
         title="About"
-        description="Learn about Antonia's background, design philosophy, and journey into UX/UI design."
+        description="Learn about Antonia's background, design philosophy, and how to get in touch."
         path="/about"
       />
       <AboutHero />
       <AboutBackground />
+      <AboutPhilosophy />
+      <AboutSkills />
       <ExperienceTimeline />
       <AboutExperience />
       <AboutEducation />
-      <AboutPhilosophy />
-      <AboutSkills />
-      <ContactCta eyebrow="Where I'm Going" />
+      <AboutContact />
     </>
   )
 }

@@ -25,6 +25,10 @@ const projects = [
     title: 'Keg & Barrel Website Design',
     description:
       'A from-scratch website design and build for a local sports pub, taken from competitive research through to a live, deployed site — built solo as unpaid freelance work.',
+    // Short, card-friendly version of overview.problem below — same fact,
+    // condensed, not a new claim.
+    problemStatement:
+      'A local sports pub had no online presence — no way to see the menu or what was on before walking in.',
     category: 'Web Design',
     role: 'UX/UI Designer',
     timeline: '9 weeks',

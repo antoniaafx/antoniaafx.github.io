@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
-import Button from './Button'
 import { fadeInUp, staggerContainer } from '../lib/motion'
 import profilePhoto from '../assets/images/antonia-profile.jpg'
 
@@ -28,17 +27,9 @@ function AboutHero() {
             Junior UX/UI Designer
           </motion.p>
           <motion.p {...itemMotion} className="mt-6 max-w-md text-lg text-ink-soft">
-            I'm currently studying Communications and Internet Studies at Cyprus University of Technology, and
-            along the way I've discovered a strong interest in UX/UI design — I enjoy solving problems and
-            building digital experiences that feel intuitive and easy to use. During my internship at Air
-            Balloon Digital Studio I worked across research, UI design, and real client projects, and I'm now
-            looking for a junior role where I can keep learning and grow alongside experienced designers.
+            I'm currently studying Communications and Internet Studies at Cyprus University of Technology. I care
+            about solving real problems and building digital experiences that feel intuitive and easy to use.
           </motion.p>
-          <motion.div {...itemMotion} className="mt-8">
-            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="lg">
-              Download Resume
-            </Button>
-          </motion.div>
         </div>
 
         <motion.div {...itemMotion} className="relative mx-auto w-full max-w-md">
