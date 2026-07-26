@@ -13,8 +13,15 @@ const NAV_LINKS = [
 const desktopLinkClasses = ({ isActive }) =>
   `inline-block py-2 text-sm font-medium transition-colors ${isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'}`
 
+// Left-edge accent bar marks the active item (a colored index-tab flag,
+// not an underline) — `border-transparent` on every other state so the
+// border-width itself never changes and nothing shifts horizontally when
+// the active page changes. Hover gets a quieter neutral edge in the same
+// gutter, distinct from the solid accent used for "you are here".
 const mobileLinkClasses = ({ isActive }) =>
-  `block py-2.5 text-base font-medium transition-colors ${isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'}`
+  `block border-l-2 py-2.5 pl-4 text-base font-medium transition-colors ${
+    isActive ? 'border-accent text-ink' : 'border-transparent text-ink-muted hover:border-line hover:text-ink'
+  }`
 
 function Navbar() {
   const { pathname } = useLocation()
@@ -50,21 +57,31 @@ function Navbar() {
             Antonia
           </NavLink>
 
-          <ul className="hidden items-center gap-6 sm:flex">
-            {NAV_LINKS.map((link) => {
+          {/* Thin hairline dividers between items (not the first) — organised
+              sections rather than a plain evenly-gapped row, the closest
+              this gets to "notebook dividers": structure and line-work, no
+              literal tab/folder shape. The active tick sits on its own
+              inline wrapper around just the link text, not the <li> (which
+              also carries the divider's left padding) — so it never
+              stretches into that empty gutter. */}
+          <ul className="hidden items-center sm:flex">
+            {NAV_LINKS.map((link, index) => {
               const isActive = link.to === '/' ? pathname === '/' : pathname.startsWith(link.to)
               return (
-                <li key={link.to} className="relative">
-                  <NavLink to={link.to} className={desktopLinkClasses} end={link.to === '/'}>
-                    {link.label}
-                  </NavLink>
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-accent"
-                      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: EASE }}
-                    />
-                  )}
+                <li key={link.to} className={index > 0 ? 'ml-6 border-l border-line pl-6' : ''}>
+                  <span className="relative inline-block">
+                    <NavLink to={link.to} className={desktopLinkClasses} end={link.to === '/'}>
+                      {link.label}
+                    </NavLink>
+                    {isActive && (
+                      <motion.span
+                        aria-hidden="true"
+                        layoutId="nav-active-tick"
+                        className="absolute inset-x-0 -bottom-px h-px bg-accent"
+                        transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: EASE }}
+                      />
+                    )}
+                  </span>
                 </li>
               )
             })}
@@ -94,8 +111,8 @@ function Navbar() {
           >
             <Container>
               <ul className="flex flex-col py-2">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.to}>
+                {NAV_LINKS.map((link, index) => (
+                  <li key={link.to} className={index > 0 ? 'border-t border-line' : ''}>
                     <NavLink to={link.to} className={mobileLinkClasses} end={link.to === '/'} onClick={closeMenu}>
                       {link.label}
                     </NavLink>
