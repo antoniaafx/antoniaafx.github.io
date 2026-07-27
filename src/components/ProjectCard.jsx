@@ -38,16 +38,25 @@ function ProjectCard({ index = 0, id, title, description, problemStatement, hero
           a new colour. Border is ink-muted at partial opacity, not the
           near-invisible `line` token — paper-on-paper needs a visible
           edge, not just a fill-colour difference, to actually read as a
-          separate sheet. */}
+          separate sheet.
+          Horizontal offset kept deliberately small — the grid's own
+          gap-8 is what has to absorb it on both sides of every card, and
+          rotation expands a tall rectangle's *visual* bounding box well
+          beyond its raw translate value, so even a modest horizontal
+          number was reading as more crowding than the px suggested. The
+          reveal leans vertical instead: pages stacked behind a file
+          naturally peek out upward more than sideways anyway, so this is
+          the more accurate version of the metaphor, not a compromise. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 translate-x-1 -translate-y-1 rounded-panel border border-ink-muted/25 bg-accent-soft shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:translate-x-2 lg:-translate-y-1.5 lg:-rotate-2 group-hover/file:translate-x-2 group-hover/file:-translate-y-2 group-focus-within/file:translate-x-2 group-focus-within/file:-translate-y-2 lg:group-hover/file:translate-x-4 lg:group-hover/file:-translate-y-3.5 lg:group-hover/file:-rotate-3 lg:group-focus-within/file:translate-x-4 lg:group-focus-within/file:-translate-y-3.5 lg:group-focus-within/file:-rotate-3"
+        className="pointer-events-none absolute inset-0 z-0 translate-x-0.5 -translate-y-1 rounded-panel border border-ink-muted/25 bg-accent-soft shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:translate-x-1 lg:-translate-y-2 lg:-rotate-1 group-hover/file:translate-x-1 group-hover/file:-translate-y-2 group-focus-within/file:translate-x-1 group-focus-within/file:-translate-y-2 lg:group-hover/file:translate-x-1.5 lg:group-hover/file:-translate-y-4 lg:group-hover/file:-rotate-2 lg:group-focus-within/file:translate-x-1.5 lg:group-focus-within/file:-translate-y-4 lg:group-focus-within/file:-rotate-2"
       />
       {/* Middle sheet — a warmer/darker off-white (paper-muted), same
-          border treatment. */}
+          border treatment and same reduced-horizontal/vertical-led
+          reasoning as the back sheet. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[1] -translate-x-0.5 -translate-y-0.5 rounded-panel border border-ink-muted/25 bg-paper-muted shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:-translate-x-1 lg:-translate-y-1 lg:rotate-2 group-hover/file:-translate-x-1.5 group-hover/file:-translate-y-1.5 group-focus-within/file:-translate-x-1.5 group-focus-within/file:-translate-y-1.5 lg:group-hover/file:-translate-x-2.5 lg:group-hover/file:-translate-y-2.5 lg:group-hover/file:rotate-3 lg:group-focus-within/file:-translate-x-2.5 lg:group-focus-within/file:-translate-y-2.5 lg:group-focus-within/file:rotate-3"
+        className="pointer-events-none absolute inset-0 z-[1] -translate-x-0.5 -translate-y-0.5 rounded-panel border border-ink-muted/25 bg-paper-muted shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:-translate-x-1 lg:-translate-y-1.5 lg:rotate-1 group-hover/file:-translate-x-1 group-hover/file:-translate-y-1.5 group-focus-within/file:-translate-x-1 group-focus-within/file:-translate-y-1.5 lg:group-hover/file:-translate-x-1.5 lg:group-hover/file:-translate-y-3 lg:group-hover/file:rotate-2 lg:group-focus-within/file:-translate-x-1.5 lg:group-focus-within/file:-translate-y-3 lg:group-focus-within/file:rotate-2"
       />
 
       <article className="group relative z-[2] rounded-panel border border-line bg-paper p-6 shadow-soft transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-lifted group-hover/file:-translate-y-1 group-hover/file:shadow-lifted group-focus-within/file:-translate-y-1 group-focus-within/file:shadow-lifted">
