@@ -1,13 +1,12 @@
 import Section from './Section'
-import HeroLaptop from './HeroLaptop'
+import HeroCanvas from './HeroCanvas'
 
-// HeroLaptop now owns all of the hero's real content (it lives inside the
-// laptop screen) and its own mount-triggered entrance animation — Hero
-// itself is just the section wrapper.
+// HeroCanvas owns all of the hero's real content and its own mount-
+// triggered entrance animation — Hero itself is just the section wrapper.
 function Hero() {
   return (
     <Section animate={false} spacing="hero">
-      <HeroLaptop />
+      <HeroCanvas />
     </Section>
   )
 }

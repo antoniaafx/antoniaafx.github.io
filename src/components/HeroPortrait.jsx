@@ -1,13 +1,11 @@
 import profilePhoto from '../assets/images/antonia-profile.jpg'
 
-// A small portrait pinned into the workspace, not a decorative flourish —
-// it's who this workspace belongs to. Hovering reveals the "research
-// sketch" behind the finished photo: a simple, deliberately rough
-// head-and-shoulders abstraction in the same pose, standing in for "how
-// this started" the same way the surrounding wireframe cluster's own
-// sketch mark does. Not a traced likeness (that isn't something to fake) —
-// an honest, generic sketch abstraction, same dashed/loose line language
-// as the rest of the workspace's paper-inspired details.
+// A portrait pinned into the workspace, not a decorative flourish — it's
+// who this workspace belongs to. Hovering reveals the placeholder behind
+// the finished photo: a flat, filled avatar-placeholder shape (head circle
+// + shoulders), the kind an empty avatar slot shows in Figma or a
+// wireframe kit — not a hand-drawn sketch. The point isn't "here's a cute
+// doodle," it's "this image existed before the final photo was added."
 //
 // Plain CSS transition + Tailwind's `group-hover`, not Framer Motion —
 // same reasoning as Button.jsx's own hover feedback: simpler for a
@@ -18,35 +16,15 @@ import profilePhoto from '../assets/images/antonia-profile.jpg'
 function HeroPortrait() {
   return (
     <div className="group relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-line shadow-soft sm:h-24 sm:w-24">
+      <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full bg-paper-muted">
+        <circle cx="50" cy="38" r="18" fill="var(--color-line)" />
+        <path d="M20 96 C20 69 33 56 50 56 C67 56 80 69 80 96 Z" fill="var(--color-line)" />
+      </svg>
       <img
         src={profilePhoto}
         alt="Portrait of Antonia, Junior UX/UI Designer"
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-out group-hover:opacity-0"
+        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
       />
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full bg-paper-muted p-3 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
-      >
-        <circle
-          cx="50"
-          cy="34"
-          r="16"
-          fill="none"
-          stroke="var(--color-ink-soft)"
-          strokeWidth="2"
-          strokeDasharray="3 3"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 92 C22 66 34 54 50 54 C66 54 78 66 78 92"
-          fill="none"
-          stroke="var(--color-ink-soft)"
-          strokeWidth="2"
-          strokeDasharray="3 3"
-          strokeLinecap="round"
-        />
-      </svg>
     </div>
   )
 }
