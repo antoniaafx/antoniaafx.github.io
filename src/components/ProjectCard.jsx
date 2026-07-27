@@ -10,32 +10,47 @@ function ProjectCard({ index = 0, id, title, description, problemStatement, hero
   const number = String(index + 1).padStart(2, '0')
 
   return (
-    // The card sits on a small stack of its own project files — two
-    // sheets barely offset behind it, separating by only a few more
-    // pixels on hover. A different, named hover group (`group/file`) from
-    // the article's own unnamed `group` below, so the two hover effects
-    // (this stack, and the article's existing image zoom) run
-    // independently off the same pointer without colliding. Sheets are
-    // `pointer-events-none` and offset by only a few px, well inside the
-    // grid's own gap-8, so they never affect card size or overlap a
+    // Two paper sheets behind the card. Root cause of the last pass not
+    // reading as visible: this wrapper was `relative` with no z-index, so
+    // it never established its own stacking context — the sheets'
+    // negative z-index was being compared against ancestors far beyond
+    // this card (Section backgrounds, sibling grid cells), not reliably
+    // "just behind" it. Fixed with an explicit, self-contained hierarchy:
+    // the wrapper gets `relative z-0` (an explicit, non-auto z-index is
+    // what actually creates a stacking context — `relative` alone does
+    // not), and every layer inside it uses positive z-index (0/1/2)
+    // scoped to that one context, so paint order is guaranteed regardless
+    // of what's around it in the grid. `overflow-visible` is explicit
+    // too, even though nothing here currently clips it.
+    //
+    // Sheets/card all respond to one named hover group (`group/file`, on
+    // this wrapper) rather than the article's own unnamed `group` (kept
+    // only for its existing image-zoom effect), since the sheets are the
+    // article's siblings, not descendants of it. `group-focus-within/file:`
+    // mirrors every `group-hover/file:` state so keyboard focus on the
+    // "View case study" link reveals the same effect hover does. Sheets
+    // are `pointer-events-none` and stay well inside the grid's own
+    // gap-8, so nothing here can be clicked, shift layout, or overlap a
     // neighbouring card.
-    <div className="group/file relative">
+    <div className="group/file relative z-0 overflow-visible">
+      {/* Back sheet — a pale purple tint (accent-soft), already used
+          elsewhere in the palette (::selection, skill badges) rather than
+          a new colour. Border is ink-muted at partial opacity, not the
+          near-invisible `line` token — paper-on-paper needs a visible
+          edge, not just a fill-colour difference, to actually read as a
+          separate sheet. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 -rotate-2 translate-x-1 translate-y-1.5 rounded-panel border border-line bg-paper-muted shadow-soft transition-transform duration-300 ease-out group-hover/file:-rotate-3 group-hover/file:translate-x-2 group-hover/file:translate-y-2.5"
+        className="pointer-events-none absolute inset-0 z-0 translate-x-1 -translate-y-1 rounded-panel border border-ink-muted/25 bg-accent-soft shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:translate-x-2 lg:-translate-y-1.5 lg:-rotate-2 group-hover/file:translate-x-2 group-hover/file:-translate-y-2 group-focus-within/file:translate-x-2 group-focus-within/file:-translate-y-2 lg:group-hover/file:translate-x-4 lg:group-hover/file:-translate-y-3.5 lg:group-hover/file:-rotate-3 lg:group-focus-within/file:translate-x-4 lg:group-focus-within/file:-translate-y-3.5 lg:group-focus-within/file:-rotate-3"
       />
+      {/* Middle sheet — a warmer/darker off-white (paper-muted), same
+          border treatment. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 rotate-1 -translate-x-0.5 translate-y-1 rounded-panel border border-line bg-paper-muted transition-transform duration-300 ease-out group-hover/file:rotate-2 group-hover/file:-translate-x-1.5 group-hover/file:translate-y-2"
+        className="pointer-events-none absolute inset-0 z-[1] -translate-x-0.5 -translate-y-0.5 rounded-panel border border-ink-muted/25 bg-paper-muted shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:-translate-x-1 lg:-translate-y-1 lg:rotate-2 group-hover/file:-translate-x-1.5 group-hover/file:-translate-y-1.5 group-focus-within/file:-translate-x-1.5 group-focus-within/file:-translate-y-1.5 lg:group-hover/file:-translate-x-2.5 lg:group-hover/file:-translate-y-2.5 lg:group-hover/file:rotate-3 lg:group-focus-within/file:-translate-x-2.5 lg:group-focus-within/file:-translate-y-2.5 lg:group-focus-within/file:rotate-3"
       />
 
-      <article className="group relative rounded-panel border border-line bg-paper p-6 shadow-soft transition-shadow duration-200 hover:shadow-lifted">
-        {/* Corner brackets — the same "selected frame" chrome as the hero
-            laptop screen, carried into the grid so the whole page reads as
-            one workspace, not a hero gimmick. */}
-        <span aria-hidden="true" className="absolute left-3 top-3 h-2.5 w-2.5 border-l-2 border-t-2 border-line" />
-        <span aria-hidden="true" className="absolute bottom-3 right-3 h-2.5 w-2.5 border-b-2 border-r-2 border-line" />
-
+      <article className="group relative z-[2] rounded-panel border border-line bg-paper p-6 shadow-soft transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-lifted group-hover/file:-translate-y-1 group-hover/file:shadow-lifted group-focus-within/file:-translate-y-1 group-focus-within/file:shadow-lifted">
         {heroImage ? (
           <div className="mb-5 aspect-[4/3] overflow-hidden rounded-control bg-paper-muted">
             <img
