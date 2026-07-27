@@ -91,14 +91,42 @@ function HeroWireframeLayer({ contentPadding }) {
           </div>
 
           <div className="flex flex-col items-start pt-1">
-            <span className="h-3.5 w-20 rounded-full bg-line sm:h-4" />
-            <span className="mt-1 h-2 w-16 rounded-full bg-line" />
+            {/* Each placeholder sits on an invisible copy of its real-layer
+                text (same font/size/weight/line-height/breakpoints) so the
+                block takes up exactly the same height the real text does
+                at any screen size — that's what keeps the bar directly
+                under its real counterpart, and everything after it (the
+                headline, the buttons) landing in the right place too,
+                rather than drifting once the real text wraps differently
+                than a fixed-height bar would. */}
+            <div className="relative">
+              <p aria-hidden="true" className="invisible font-display text-xl font-semibold tracking-tight sm:text-2xl">
+                Antonia Afx
+              </p>
+              <span className="absolute left-0 top-0 h-3.5 w-20 rounded-full bg-line sm:h-4" />
+            </div>
+
+            <div className="relative mt-1">
+              <p aria-hidden="true" className="invisible text-[0.6875rem] font-semibold uppercase tracking-wide sm:text-xs">
+                UX/UI Designer
+              </p>
+              <span className="absolute left-0 top-0 h-2 w-16 rounded-full bg-line" />
+            </div>
+
             <span className="mt-2.5 h-px w-8 bg-line" />
 
-            <div className="mt-6 space-y-2">
-              <span className="block h-2 w-56 rounded-full bg-line" />
-              <span className="block h-2 w-48 rounded-full bg-line" />
-              <span className="block h-2 w-40 rounded-full bg-line" />
+            <div className="relative mt-6 max-w-md">
+              <h1
+                aria-hidden="true"
+                className="invisible font-display text-lg font-semibold leading-snug sm:text-xl md:text-2xl lg:text-display-sm"
+              >
+                I design thoughtful digital experiences through research, strategy, and human-centred design.
+              </h1>
+              <div className="absolute left-0 top-0 space-y-2">
+                <span className="block h-2 w-56 rounded-full bg-line" />
+                <span className="block h-2 w-48 rounded-full bg-line" />
+                <span className="block h-2 w-40 rounded-full bg-line" />
+              </div>
             </div>
 
             {/* Wireframe buttons — an outlined control with a placeholder
