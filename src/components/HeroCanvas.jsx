@@ -64,38 +64,38 @@ function HeroCanvas() {
         className="relative grid overflow-hidden rounded-panel border border-line bg-paper shadow-soft"
         {...hoverHandlers}
       >
-        {/* Finished layer — the hero as it appears on load. Everything hangs
-            off one left edge set by the portrait: identity, headline and
-            buttons all share it, rather than the copy re-centring under an
-            off-centre photo. The identity block sits in the heading
-            typeface (font-display) rather than the site's generic
-            uppercase-caption register, so it reads as a name, not a
-            "Role"/"Tools"-style meta tag. */}
+        {/* Finished layer — the hero as it appears on load. The portrait is
+            a persistent anchor beside the ENTIRE introduction (name, title,
+            headline, CTAs) rather than a separate row above it — one
+            editorial "photo + copy column" unit instead of two stacked
+            sections. The name reuses the nav's own logotype treatment
+            (font-display, semibold, tracking-tight — see Navbar.jsx) at a
+            larger size, so the hero reads as the expanded version of the
+            same personal mark rather than a new typographic voice. */}
         <div className={`relative z-10 flex flex-col items-start [grid-area:1/1] ${CONTENT_PADDING}`}>
-          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-start sm:gap-5">
+          <div className="flex w-full flex-col items-start gap-6 sm:flex-row sm:items-start sm:gap-8">
             <HeroPortrait />
-            <div className="flex flex-col pt-1">
-              <p className="font-display text-lg font-medium text-ink sm:text-xl">Antonia Afx</p>
+
+            <div className="flex flex-col items-start pt-1">
+              <p className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">Antonia Afx</p>
               <p className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-muted sm:text-xs">
                 UX/UI Designer
               </p>
               <span aria-hidden="true" className="mt-2.5 h-px w-8 bg-line" />
+
+              <h1 className="mt-6 max-w-md font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
+                I design thoughtful digital experiences through research, strategy, and human-centred design.
+              </h1>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Button to="/projects" variant="primary" size="md">
+                  View Projects
+                </Button>
+                <Button to="/about" variant="secondary" size="md">
+                  About Me
+                </Button>
+              </div>
             </div>
-          </div>
-
-          <div className="mt-10 max-w-md">
-            <h1 className="font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
-              I design thoughtful digital experiences through research, strategy, and human-centred design.
-            </h1>
-          </div>
-
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button to="/projects" variant="primary" size="md">
-              View Projects
-            </Button>
-            <Button to="/about" variant="secondary" size="md">
-              About Me
-            </Button>
           </div>
         </div>
 
