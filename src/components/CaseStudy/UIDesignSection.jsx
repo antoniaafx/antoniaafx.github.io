@@ -10,7 +10,7 @@ function UIDesignSection({ intro, images = [] }) {
     <Section containerSize="wide">
       <SectionTitle title="UI design" subtitle={intro} />
       {images.length > 0 && (
-        <div className="mt-12">
+        <div className="mt-10">
           <ImageGallery images={images} />
         </div>
       )}

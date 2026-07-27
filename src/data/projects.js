@@ -71,16 +71,16 @@ const projects = [
           ],
         },
         {
-          type: 'gallery',
+          type: 'comparison',
           heading: 'Competitor analysis',
-          images: [
+          items: [
             {
-              src: '',
-              caption: 'Crocodile Pub — Irish-themed sports bar on Danaes Avenue, also screens Premier League and Rugby World Cup matches',
+              name: 'Crocodile Pub',
+              note: 'Irish-themed sports bar on Danaes Avenue, also screens Premier League and Rugby World Cup matches.',
             },
             {
-              src: '',
-              caption: 'Pegasus Pub — frequently mentioned alongside Keg & Barrel and Crocodile Pub in local reviews',
+              name: 'Pegasus Pub',
+              note: 'Frequently mentioned alongside Keg & Barrel and Crocodile Pub in local reviews.',
             },
           ],
         },

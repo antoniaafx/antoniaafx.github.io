@@ -1,3 +1,5 @@
+import ImagePlaceholder from './ImagePlaceholder'
+
 // Shared by ResearchSection, ProcessSection, UIDesignSection, and
 // ResultsSection — anywhere a case study needs to show one or more images.
 // Pass `span: 'wide'` on an item to let it take the full row.
@@ -17,9 +19,7 @@ function ImageGallery({ images = [] }) {
             {img.src ? (
               <img src={img.src} alt={img.alt ?? img.caption ?? ''} className="h-full w-full object-cover" />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-caption text-ink-muted">
-                Image coming soon
-              </div>
+              <ImagePlaceholder />
             )}
           </div>
           {img.caption && (

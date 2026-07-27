@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Section from '../Section'
+import ImagePlaceholder from '../ImagePlaceholder'
 import { fadeInUp, staggerContainer } from '../../lib/motion'
 
 // Mount-triggered stagger, same rationale as the homepage Hero — this is
@@ -63,9 +64,7 @@ function CaseHero({ title, description, role, timeline, tools = [], heroImage })
             {heroImage ? (
               <img src={heroImage} alt={title} className="h-full w-full object-cover" />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-caption text-ink-muted">
-                Hero image coming soon
-              </div>
+              <ImagePlaceholder label="Hero image coming soon" />
             )}
           </div>
         </motion.div>
