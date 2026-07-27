@@ -72,7 +72,6 @@ function ExperienceTimeline() {
   return (
     <Section>
       <SectionTitle
-        chapter="03"
         eyebrow="What I Learned"
         title="Experience & education"
         subtitle="A snapshot of my design journey so far — expand any entry for the full detail."

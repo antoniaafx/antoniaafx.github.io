@@ -66,19 +66,23 @@
   --color-accent-dark: #4a2c94;
 
   /* sage — UX process and human understanding: research sections, journey/
-     timeline elements, supporting highlights. Full-strength as given, used
-     for fills (project tags) paired with --color-sage-dark text. Skill
-     badges deliberately do NOT use sage — skills are a purple/interactive
-     surface, not a process indicator. */
-  --color-sage: #7faf8a;
+     timeline elements, supporting highlights. Used for fills (project
+     tags) paired with --color-sage-dark text. Skill badges deliberately do
+     NOT use sage — skills are a purple/interactive surface, not a process
+     indicator. Shifted cooler (~105°→~165° hue, an olive-forest toward a
+     blue-green/teal-forest) at the same muted saturation and depth as
+     before — this palette's neutrals are explicitly "cool, violet-tinted...
+     not warm brown" (see ink/paper above), and the old sage was the one
+     warm-leaning hue in an otherwise cool system. */
+  --color-sage: #6fa99b;
   /* The one small indicator color — timeline markers, bullet points, any
      small process/status mark. Deliberately used here instead of the
      lighter --color-sage: small marks read clearer and more confident at
-     this depth ("improves hierarchy and visibility"), and it's the
-     text-safe partner for --color-sage fills (5.0:1) with a lot of margin
-     everywhere else (11.8:1 on --color-paper). No separate pale "soft"
-     tier — --color-sage is already light enough to be the fill itself. */
-  --color-sage-dark: #24391d;
+     this depth, and it's the text-safe partner for --color-sage fills
+     (4.9:1) with a lot of margin everywhere else (12.4:1 on --color-paper,
+     11.1:1 on --color-paper-muted). No separate pale "soft" tier —
+     --color-sage is already light enough to be the fill itself. */
+  --color-sage-dark: #1b352c;
 
   /* brown — extremely limited: one small paper/workspace-inspired detail
      (a bar in the homepage hero's decorative graphic), nothing else. Never

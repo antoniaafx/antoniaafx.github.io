@@ -61,8 +61,22 @@ function FieldError({ id, message }) {
   )
 }
 
-const fieldClasses =
-  'mt-2 w-full rounded-control border bg-paper px-4 py-2.5 text-ink placeholder:text-ink-muted transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40'
+// Underline fields, not boxed ones — a page a visitor is signing/writing
+// on, not a generic web form's input boxes. The message field is the one
+// exception: a multi-line field needs a visible boundary to read as a
+// field at all, so it keeps a light border, styled as ruled notebook
+// paper via RULED_PAPER_STYLE below — the same repeating-line technique
+// already used for the homepage hero's grid-paper wireframe layer,
+// applied here literally as lined paper for the one field that's actually
+// "write your note."
+const lineFieldClasses =
+  'mt-2 w-full border-0 border-b bg-transparent px-1 pb-2 pt-1 text-ink placeholder:text-ink-muted transition-colors focus:outline-none'
+
+const RULED_PAPER_STYLE = {
+  backgroundImage:
+    'repeating-linear-gradient(var(--color-line) 0px, var(--color-line) 1px, transparent 1px, transparent 28px)',
+  backgroundPositionY: '2.5rem',
+}
 
 // Fields, validation, submit states (idle/submitting/success/error) and a
 // hidden honeypot field for basic spam filtering — everything a working
@@ -160,7 +174,7 @@ function ContactForm() {
           onChange={handleChange}
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? `${nameId}-error` : undefined}
-          className={`${fieldClasses} ${errors.name ? 'border-ink' : 'border-line focus-visible:border-accent'}`}
+          className={`${lineFieldClasses} ${errors.name ? 'border-b-2 border-ink' : 'border-line focus-visible:border-accent'}`}
         />
         <FieldError id={`${nameId}-error`} message={errors.name} />
       </div>
@@ -178,7 +192,7 @@ function ContactForm() {
           onChange={handleChange}
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? `${emailId}-error` : undefined}
-          className={`${fieldClasses} ${errors.email ? 'border-ink' : 'border-line focus-visible:border-accent'}`}
+          className={`${lineFieldClasses} ${errors.email ? 'border-b-2 border-ink' : 'border-line focus-visible:border-accent'}`}
         />
         <FieldError id={`${emailId}-error`} message={errors.email} />
       </div>
@@ -195,7 +209,10 @@ function ContactForm() {
           onChange={handleChange}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? `${messageId}-error` : undefined}
-          className={`${fieldClasses} resize-y ${errors.message ? 'border-ink' : 'border-line focus-visible:border-accent'}`}
+          style={RULED_PAPER_STYLE}
+          className={`mt-2 w-full resize-y rounded-control border bg-paper px-4 py-3 text-ink placeholder:text-ink-muted transition-colors focus:outline-none ${
+            errors.message ? 'border-ink' : 'border-line focus-visible:border-accent'
+          }`}
         />
         <FieldError id={`${messageId}-error`} message={errors.message} />
       </div>

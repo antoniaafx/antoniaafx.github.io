@@ -33,7 +33,7 @@ function AboutHero() {
           </motion.p>
 
           <motion.div {...itemMotion} className="mt-8">
-            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="md">
+            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="md">
               Download Resume
             </Button>
           </motion.div>
