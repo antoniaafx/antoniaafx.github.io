@@ -1,30 +1,34 @@
 import profilePhoto from '../assets/images/antonia-profile.jpg'
 
-// A portrait pinned into the workspace, not a decorative flourish — it's
-// who this workspace belongs to. Hovering reveals the placeholder behind
-// the finished photo: a flat, filled avatar-placeholder shape (head circle
-// + shoulders), the kind an empty avatar slot shows in Figma or a
-// wireframe kit — not a hand-drawn sketch. The point isn't "here's a cute
-// doodle," it's "this image existed before the final photo was added."
+// The finished portrait — a printed photo pinned to the workspace, not a
+// centred avatar. Rectangular, not circular: a circular crop reads as "app
+// avatar," a plain rectangular print reads as "a physical reference
+// someone attached to their desk," which is the object this is meant to
+// be. A small strip of matte tape (not a yellow sticky note) holds it in
+// place at a slight angle.
 //
-// Plain CSS transition + Tailwind's `group-hover`, not Framer Motion —
-// same reasoning as Button.jsx's own hover feedback: simpler for a
-// straightforward crossfade, and avoids coordinating two separately
-// hover-tracked motion elements stacked on top of each other. The site's
-// global reduced-motion rule in index.css already collapses this
-// transition to near-instant, so no separate handling is needed here.
+// This component only ever renders the finished state now — its wireframe
+// counterpart lives in HeroWireframeLayer, positioned and rotated
+// identically, revealed only through the cursor-following mask in
+// HeroCanvas. Keeping "real photo" and "wireframe placeholder" as two
+// separate, precisely-aligned elements (rather than one component
+// swapping its own contents) is what lets a single shared mask reveal the
+// correct thing no matter where in the hero the cursor happens to be.
 function HeroPortrait() {
   return (
-    <div className="group relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-line shadow-soft sm:h-24 sm:w-24">
-      <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full bg-paper-muted">
-        <circle cx="50" cy="38" r="18" fill="var(--color-line)" />
-        <path d="M20 96 C20 69 33 56 50 56 C67 56 80 69 80 96 Z" fill="var(--color-line)" />
-      </svg>
-      <img
-        src={profilePhoto}
-        alt="Portrait of Antonia, Junior UX/UI Designer"
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
+    <div className="relative w-24 -rotate-3 sm:w-28">
+      <span
+        aria-hidden="true"
+        className="absolute -top-2 left-1/2 h-4 w-11 -translate-x-1/2 rotate-2 bg-line/80 shadow-soft"
       />
+      <div className="aspect-[3/4] overflow-hidden rounded-sm border border-line bg-paper-muted shadow-lifted">
+        <img
+          src={profilePhoto}
+          alt="Portrait of Antonia, Junior UX/UI Designer"
+          className="h-full w-full object-cover"
+          fetchPriority="high"
+        />
+      </div>
     </div>
   )
 }

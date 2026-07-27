@@ -1,49 +1,61 @@
-// The workspace texture around the hero's content — grid paper, corner
-// brackets, an alignment guide, a spacing measurement, a small "early
-// version" annotation, and a pair of footprint marks suggesting the path
-// that led here. All permanently present at low visual weight (this is
-// what an in-progress Figma file looks like even before you touch
-// anything), not hidden until hover — the hover-driven transformation is
-// reserved for the content itself (text, portrait). Every piece maps to
-// something the brief actually asked for; nothing here is unexplained
-// decoration. Hidden below `md` to keep mobile calm and uncluttered.
-function HeroWireframeLayer() {
+// The design-process layer — invisible on load, only ever visible through
+// the cursor-following circular mask applied by its parent in HeroCanvas.
+// Nothing here is unexplained decoration: the grid and guide read as "a
+// Figma file," the measurement and footprints are specific, named ideas
+// from the brief (attention to spacing; the journey that led here), and
+// the portrait placeholder + text bars are what the finished layer looks
+// like before the work is done.
+//
+// `contentPadding` must equal the finished layer's own padding exactly —
+// passed in as a prop from HeroCanvas rather than duplicated here, so
+// there's one source of truth and the two layers can't quietly drift out
+// of alignment. The portrait-placeholder and text-bar block below use the
+// same width/rotation/spacing values as HeroPortrait and the real text,
+// for the same reason: whatever the cursor is hovering should reveal the
+// correct wireframe underneath it, not a misaligned one.
+function HeroWireframeLayer({ contentPadding }) {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      {/* Grid paper */}
+    <div className="relative h-full w-full bg-paper">
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
             'linear-gradient(var(--color-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-line) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          opacity: 0.3,
+          backgroundSize: '24px 24px',
         }}
       />
 
-      {/* Corner brackets — "this is a frame in the file" */}
-      <span className="absolute left-4 top-4 hidden h-3 w-3 border-l-2 border-t-2 border-line md:block" />
-      <span className="absolute bottom-4 right-4 hidden h-3 w-3 border-b-2 border-r-2 border-line md:block" />
+      <span className="absolute left-3 top-3 h-3 w-3 border-l-2 border-t-2 border-ink-muted/50" />
+      <span className="absolute bottom-3 right-3 h-3 w-3 border-b-2 border-r-2 border-ink-muted/50" />
 
-      {/* Alignment guide */}
-      <span className="absolute left-1/2 top-6 hidden h-5 w-px -translate-x-1/2 border-l border-dashed border-ink-muted/40 md:block" />
+      <span className="absolute left-1/2 top-5 h-5 w-px -translate-x-1/2 border-l border-dashed border-ink-muted/50" />
 
-      {/* Spacing measurement */}
-      <div className="absolute bottom-8 left-8 hidden flex-col items-center gap-1 text-ink-muted/70 md:flex">
+      <div className="absolute bottom-6 left-6 flex flex-col items-center gap-1 text-ink-muted">
         <span className="h-4 w-px border-l border-dashed border-current" />
         <span className="text-[0.5625rem] font-medium tabular-nums">24px</span>
       </div>
 
-      {/* "Early version" annotation */}
-      <div className="absolute right-8 top-8 hidden items-center gap-1.5 text-ink-muted/70 md:flex">
-        <span className="text-[0.5625rem] font-medium uppercase tracking-wide">v1 draft</span>
-        <span className="h-px w-5 border-t border-dashed border-current" />
+      <div className="absolute bottom-5 right-8">
+        <span className="block h-4 w-2.5 -rotate-12 rounded-full bg-ink-muted/40" />
+        <span className="ml-3 mt-1 block h-4 w-2.5 rotate-12 rounded-full bg-ink-muted/40" />
       </div>
 
-      {/* Footprints — the journey that led to this screen */}
-      <div className="absolute bottom-6 right-10 hidden md:block">
-        <span className="block h-4 w-2.5 -rotate-12 rounded-full bg-line" />
-        <span className="ml-3 mt-1 block h-4 w-2.5 rotate-12 rounded-full bg-line" />
+      <div className={`relative flex flex-col items-center ${contentPadding}`}>
+        <div className="flex w-full justify-start">
+          <div className="w-24 -rotate-3 sm:w-28">
+            <div className="aspect-[3/4] rounded-sm border border-line bg-paper-muted" />
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-col items-center">
+          <span className="h-2.5 w-24 rounded-full bg-line" />
+          <span className="mt-2 h-2 w-20 rounded-full bg-line" />
+          <div className="mt-5 space-y-2">
+            <span className="block h-2 w-56 rounded-full bg-line" />
+            <span className="block h-2 w-48 rounded-full bg-line" />
+            <span className="block h-2 w-40 rounded-full bg-line" />
+          </div>
+        </div>
       </div>
     </div>
   )
