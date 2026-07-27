@@ -16,14 +16,22 @@ const BLOCKS = [
   },
 ]
 
+// Numbered tiles reuse SkillBadge's own numbering device (same classes) —
+// three parallel, enumerable principles are exactly what a grid is for,
+// unlike AboutBackground's narrative just above; the numbers make the
+// count ("three ways I think about design") legible at a glance instead
+// of visitors having to read all three to realise that's the shape of it.
 function AboutPhilosophy() {
   return (
     <Section>
-      <SectionTitle eyebrow="How I Design" title="Design philosophy" />
+      <SectionTitle chapter="02" eyebrow="How I Design" title="Design philosophy" />
       <div className="mt-10 grid gap-6 sm:grid-cols-3">
-        {BLOCKS.map((block) => (
+        {BLOCKS.map((block, index) => (
           <div key={block.label} className="rounded-panel border border-line p-6">
-            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{block.label}</p>
+            <span className="flex h-8 w-8 items-center justify-center rounded-control bg-accent-soft text-caption font-semibold text-accent-dark">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p className="mt-4 text-caption font-medium uppercase tracking-wide text-ink-muted">{block.label}</p>
             <p className="mt-3 text-ink-soft">{block.text}</p>
           </div>
         ))}

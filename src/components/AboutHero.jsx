@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
+import Button from './Button'
 import { fadeInUp, staggerContainer } from '../lib/motion'
 import profilePhoto from '../assets/images/antonia-profile.jpg'
 
@@ -30,11 +31,20 @@ function AboutHero() {
             I'm currently studying Communications and Internet Studies at Cyprus University of Technology. I care
             about solving real problems and building digital experiences that feel intuitive and easy to use.
           </motion.p>
+
+          <motion.div {...itemMotion} className="mt-8">
+            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="md">
+              Download Resume
+            </Button>
+          </motion.div>
         </div>
 
+        {/* aspect-[4/5], not the site's usual aspect-[3/4] portrait crop —
+            a touch shorter so the image no longer towers over the text
+            column beside it at this width. */}
         <motion.div {...itemMotion} className="relative mx-auto w-full max-w-md">
           <div className="overflow-hidden rounded-panel border border-line shadow-lifted">
-            <div className="aspect-[3/4]">
+            <div className="aspect-[4/5]">
               <img
                 src={profilePhoto}
                 alt="Portrait of Antonia, Junior UX/UI Designer"

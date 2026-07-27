@@ -2,9 +2,9 @@ import Section from './Section'
 import SectionTitle from './SectionTitle'
 
 // Education and Experience used to have their own brief blurbs here — both
-// now have their own dedicated, fuller sections below (AboutExperience,
-// AboutEducation, moved in from the removed Resume page), so repeating a
-// short version of the same facts here would just be duplication.
+// now have their own fuller detail further down the page (as each
+// ExperienceTimeline entry's expandable "Show more"), so repeating a short
+// version of the same facts here would just be duplication.
 const BLOCKS = [
   {
     label: 'UX/UI journey',
@@ -16,15 +16,20 @@ const BLOCKS = [
   },
 ]
 
+// Deliberately not a card grid, unlike every other section on this page —
+// this is a personal narrative, not a set of parallel/enumerable items, so
+// it reads as continuous prose instead. The left rule (the same device a
+// notebook's margin line or a pulled quote would use) is what visually
+// marks it as "chapter one" of the story rather than another box.
 function AboutBackground() {
   return (
     <Section background="muted">
-      <SectionTitle eyebrow="Where I Started" title="My Story" />
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+      <SectionTitle chapter="01" eyebrow="Where I Started" title="My Story" />
+      <div className="mt-10 max-w-3xl space-y-8 border-l-2 border-line pl-6 sm:pl-8">
         {BLOCKS.map((block) => (
-          <div key={block.label} className="rounded-panel border border-line p-6">
+          <div key={block.label}>
             <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{block.label}</p>
-            <p className="mt-3 text-ink-soft">{block.text}</p>
+            <p className="mt-2 text-lg leading-relaxed text-ink-soft">{block.text}</p>
           </div>
         ))}
       </div>
