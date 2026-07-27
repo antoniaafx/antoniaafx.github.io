@@ -41,20 +41,27 @@ function HeroWireframeLayer({ contentPadding }) {
       </div>
 
       <div className={`relative flex flex-col items-center ${contentPadding}`}>
-        <div className="flex w-full justify-start">
-          <div className="w-24 -rotate-3 sm:w-28">
+        <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+          <div className="w-32 shrink-0 -rotate-3 sm:w-48">
             <div className="aspect-[3/4] rounded-sm border border-line bg-paper-muted" />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <span className="h-2.5 w-20 rounded-full bg-line" />
+            <span className="h-2 w-16 rounded-full bg-line" />
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center">
-          <span className="h-2.5 w-24 rounded-full bg-line" />
-          <span className="mt-2 h-2 w-20 rounded-full bg-line" />
-          <div className="mt-5 space-y-2">
+        <div className="mt-8 flex flex-col items-center">
+          <div className="space-y-2">
             <span className="block h-2 w-56 rounded-full bg-line" />
             <span className="block h-2 w-48 rounded-full bg-line" />
             <span className="block h-2 w-40 rounded-full bg-line" />
           </div>
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <span className="h-11 w-32 rounded-control border border-line" />
+          <span className="h-11 w-28 rounded-control border border-line" />
         </div>
       </div>
     </div>

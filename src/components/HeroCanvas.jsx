@@ -64,18 +64,23 @@ function HeroCanvas() {
         className="relative grid overflow-hidden rounded-panel border border-line bg-paper shadow-soft"
         {...hoverHandlers}
       >
-        {/* Finished layer — the hero as it appears on load. */}
+        {/* Finished layer — the hero as it appears on load. Portrait is now
+            the hero element, with the identity block reading as its
+            caption/reference tag rather than sitting in the main
+            centred content — an ID badge, not a headline. */}
         <div className={`relative z-10 flex flex-col items-center [grid-area:1/1] ${CONTENT_PADDING}`}>
-          <div className="flex w-full justify-start">
+          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
             <HeroPortrait />
+            <div className="flex flex-col">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink sm:text-sm">Antonia Afx</p>
+              <p className="mt-1.5 text-[0.6875rem] font-medium uppercase tracking-wide text-ink-muted sm:text-xs">
+                UX/UI Designer
+              </p>
+            </div>
           </div>
 
-          <div className="mt-6 flex flex-col items-center text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink sm:text-sm">Antonia Afx</p>
-            <p className="mt-1.5 text-[0.6875rem] font-medium uppercase tracking-wide text-ink-muted sm:text-xs">
-              UX/UI Designer
-            </p>
-            <h1 className="mt-4 max-w-md font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
+          <div className="mt-8 flex flex-col items-center text-center">
+            <h1 className="max-w-md font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
               I design thoughtful digital experiences through research, strategy, and human-centred design.
             </h1>
           </div>
