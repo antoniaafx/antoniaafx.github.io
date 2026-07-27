@@ -19,6 +19,8 @@
 // finding, quote, or metric — where real content is missing, it says so
 // instead of inventing a plausible-sounding result.
 
+import kegAndBarrelHero from '../assets/images/projects/keg-and-barrel/hero.webp.png'
+
 const projects = [
   {
     id: 'keg-and-barrel',
@@ -33,7 +35,7 @@ const projects = [
     role: 'UX/UI Designer',
     timeline: '9 weeks',
     tools: ['Notion', 'Miro', 'Figma', 'VS Code'],
-    heroImage: '',
+    heroImage: kegAndBarrelHero,
     featured: true,
 
     overview: {
