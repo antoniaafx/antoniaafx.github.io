@@ -40,26 +40,25 @@ function HeroWireframeLayer({ contentPadding }) {
         <span className="ml-3 mt-1 block h-4 w-2.5 rotate-12 rounded-full bg-ink-muted/40" />
       </div>
 
-      <div className={`relative flex flex-col items-center ${contentPadding}`}>
-        <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+      <div className={`relative flex flex-col items-start ${contentPadding}`}>
+        <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-start sm:gap-5">
           <div className="w-32 shrink-0 -rotate-3 sm:w-48">
             <div className="aspect-[3/4] rounded-sm border border-line bg-paper-muted" />
           </div>
-          <div className="flex flex-col gap-1.5">
-            <span className="h-2.5 w-20 rounded-full bg-line" />
+          <div className="flex flex-col gap-1.5 pt-1">
+            <span className="h-3 w-20 rounded-full bg-line sm:h-3.5" />
             <span className="h-2 w-16 rounded-full bg-line" />
+            <span className="mt-1 h-px w-8 bg-line" />
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center">
-          <div className="space-y-2">
-            <span className="block h-2 w-56 rounded-full bg-line" />
-            <span className="block h-2 w-48 rounded-full bg-line" />
-            <span className="block h-2 w-40 rounded-full bg-line" />
-          </div>
+        <div className="mt-10 max-w-md space-y-2">
+          <span className="block h-2 w-56 rounded-full bg-line" />
+          <span className="block h-2 w-48 rounded-full bg-line" />
+          <span className="block h-2 w-40 rounded-full bg-line" />
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-7 flex flex-wrap items-center gap-3">
           <span className="h-11 w-32 rounded-control border border-line" />
           <span className="h-11 w-28 rounded-control border border-line" />
         </div>

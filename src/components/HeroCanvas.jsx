@@ -64,28 +64,32 @@ function HeroCanvas() {
         className="relative grid overflow-hidden rounded-panel border border-line bg-paper shadow-soft"
         {...hoverHandlers}
       >
-        {/* Finished layer — the hero as it appears on load. Portrait is now
-            the hero element, with the identity block reading as its
-            caption/reference tag rather than sitting in the main
-            centred content — an ID badge, not a headline. */}
-        <div className={`relative z-10 flex flex-col items-center [grid-area:1/1] ${CONTENT_PADDING}`}>
-          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+        {/* Finished layer — the hero as it appears on load. Everything hangs
+            off one left edge set by the portrait: identity, headline and
+            buttons all share it, rather than the copy re-centring under an
+            off-centre photo. The identity block sits in the heading
+            typeface (font-display) rather than the site's generic
+            uppercase-caption register, so it reads as a name, not a
+            "Role"/"Tools"-style meta tag. */}
+        <div className={`relative z-10 flex flex-col items-start [grid-area:1/1] ${CONTENT_PADDING}`}>
+          <div className="flex w-full flex-col items-start gap-3 sm:flex-row sm:items-start sm:gap-5">
             <HeroPortrait />
-            <div className="flex flex-col">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink sm:text-sm">Antonia Afx</p>
-              <p className="mt-1.5 text-[0.6875rem] font-medium uppercase tracking-wide text-ink-muted sm:text-xs">
+            <div className="flex flex-col pt-1">
+              <p className="font-display text-lg font-medium text-ink sm:text-xl">Antonia Afx</p>
+              <p className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-muted sm:text-xs">
                 UX/UI Designer
               </p>
+              <span aria-hidden="true" className="mt-2.5 h-px w-8 bg-line" />
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col items-center text-center">
-            <h1 className="max-w-md font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
+          <div className="mt-10 max-w-md">
+            <h1 className="font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
               I design thoughtful digital experiences through research, strategy, and human-centred design.
             </h1>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <Button to="/projects" variant="primary" size="md">
               View Projects
             </Button>
