@@ -77,7 +77,7 @@ function ExperienceTimeline() {
         subtitle="A snapshot of my design journey so far — expand any entry for the full detail."
       />
       <div className="mt-12">
-        <Timeline items={timelineItems} />
+        <Timeline items={timelineItems} markerColor="bg-raspberry" />
       </div>
     </Section>
   )

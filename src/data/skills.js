@@ -7,14 +7,6 @@
 
 export const research = ['User Research', 'Competitive Analysis', 'User Flows']
 
-export const design = [
-  'Wireframing',
-  'Prototyping',
-  'Visual Design',
-  'Design Systems',
-  'Typography',
-  'Accessibility',
-  'Responsive Design',
-]
+export const design = ['Wireframing', 'Prototyping', 'Accessibility']
 
-export const tools = ['Figma', 'Canva', 'GitHub', 'VS Code', 'React (Beginner)', 'Claude Code']
+export const tools = ['Figma', 'Canva', 'GitHub', 'VS Code']

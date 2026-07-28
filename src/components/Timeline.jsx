@@ -14,7 +14,7 @@ import ImageGallery from './ImageGallery'
 // lets the compact chronological view stay the default read, while the
 // full resume-style detail is still there for anyone who wants it, instead
 // of repeating as a second, separate section further down the page.
-function Timeline({ items = [] }) {
+function Timeline({ items = [], markerColor = 'bg-sage-dark' }) {
   const shouldReduceMotion = useReducedMotion()
   const [openIndex, setOpenIndex] = useState(null)
 
@@ -27,7 +27,9 @@ function Timeline({ items = [] }) {
         return (
           <li key={item.label ?? index} className="flex gap-6">
             <div className="flex flex-col items-center">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-dark text-sm font-semibold text-paper">
+              <span
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${markerColor} text-sm font-semibold text-paper`}
+              >
                 {index + 1}
               </span>
               {index < items.length - 1 && <span className="mt-2 w-px flex-1 bg-line" aria-hidden="true" />}

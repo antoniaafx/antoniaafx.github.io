@@ -163,7 +163,7 @@ function ContactForm() {
 
       <div>
         <label htmlFor={nameId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          Name
+          Who am I writing back to?
         </label>
         <input
           id={nameId}
@@ -181,7 +181,7 @@ function ContactForm() {
 
       <div>
         <label htmlFor={emailId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          Email
+          Where can I reach you?
         </label>
         <input
           id={emailId}
@@ -199,7 +199,7 @@ function ContactForm() {
 
       <div>
         <label htmlFor={messageId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          Message
+          What's on your mind?
         </label>
         <textarea
           id={messageId}
@@ -231,7 +231,7 @@ function ContactForm() {
       )}
 
       <Button type="submit" variant="primary" size="md" disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Sending…' : 'Send message'}
+        {status === 'submitting' ? 'Sending…' : 'Send it my way'}
       </Button>
     </form>
   )

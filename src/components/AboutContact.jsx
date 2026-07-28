@@ -22,32 +22,38 @@ function AboutContact() {
         subtitle="I'm currently looking for UX/UI internship and junior design opportunities. If my work looks like a fit, I'd love to hear from you."
         onDark
       />
-      <div className="mt-8">
-        <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="lg">
-          Download Resume
-        </Button>
-      </div>
-      <div className="mt-10 max-w-2xl">
-        <ContactOptions onDark />
-      </div>
-      {/* The form's own container, not just the field styling, is what
-          used to make it read as a bolted-on web form — it just sat
-          there, unrelated to anything else on the page. Framing it as a
-          pinned page (same washi-tape device as the hero portrait, a
-          different physical touch than My Story's paper clip so the two
-          don't repeat) makes it read as the notebook's actual last page,
-          not a form appended after the notebook ends. */}
-      <div className="relative mt-12 max-w-2xl">
-        <span
-          aria-hidden="true"
-          className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-2 bg-line/80 shadow-soft"
-        />
-        <div className="rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
-          <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-            The last page — leave me a note
-          </p>
-          <div className="mt-4">
-            <ContactForm />
+      {/* Two columns at lg: — the same pattern AboutHero.jsx already uses
+          for its own text+visual split, just `items-start` instead of
+          `items-center` since these two columns have very different
+          content heights (a short link list vs. a full form). Source
+          order already has links before the form, so mobile keeps the
+          same stacking with no extra work. */}
+      <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div>
+          <div>
+            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="lg">
+              Download Resume
+            </Button>
+          </div>
+          <div className="mt-10">
+            <ContactOptions onDark />
+          </div>
+        </div>
+
+        {/* The pinned-page treatment (tape + paper panel) is unchanged —
+            just moved beside the links instead of underneath them. */}
+        <div className="relative">
+          <span
+            aria-hidden="true"
+            className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-2 bg-line/80 shadow-soft"
+          />
+          <div className="rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
+            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">
+              The last page — leave me a note
+            </p>
+            <div className="mt-4">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
