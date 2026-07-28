@@ -12,11 +12,14 @@ const BASE =
   'disabled:opacity-50 disabled:pointer-events-none disabled:hover:scale-100'
 
 const VARIANTS = {
-  // The site's one primary-interactive color (lavender purple) — reserved
-  // for the main call-to-action on a screen. Darkens on hover to
-  // --color-accent-dark, which has far more contrast margin than the
-  // 4.6:1 the fill itself needs, so the hover state stays safely accessible.
-  primary: 'bg-accent text-paper hover:bg-accent-dark',
+  // The site's primary-interactive color (rich plum) — reserved for the
+  // main call-to-action on a screen. Brightens on hover to
+  // --color-raspberry (the accent system's energetic counterpart) rather
+  // than darkening — an intentional shift from the conventional "darken
+  // on hover" pattern, so the primary CTA reads as coming alive under the
+  // cursor instead of receding. 5.1:1 under paper-colored text, clearing
+  // the 4.5:1 minimum with room to spare.
+  primary: 'bg-accent text-paper hover:bg-raspberry',
   secondary: 'border border-line text-ink hover:border-ink hover:bg-paper-muted',
   ghost: 'text-ink hover:text-accent-dark underline-offset-4 hover:underline',
   // For use on bg-ink sections (e.g. a closing Contact CTA) where the other

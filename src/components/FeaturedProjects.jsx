@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
 import SectionTitle from './SectionTitle'
 import FeaturedProjectCard from './FeaturedProjectCard'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { staggerContainer, revealOnce } from '../lib/motion'
 import projects from '../data/projects'
 
@@ -11,10 +12,11 @@ function FeaturedProjects() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <Section background="muted" animate={false}>
+    <Section background="ink" animate={false} artwork={<EnvironmentalArtwork variant="featured" />}>
       <SectionTitle
         title="Featured work"
         subtitle="A closer look at how I move from problem to shipped product — research, structure, and interface design."
+        onDark
       />
       <motion.div
         initial={shouldReduceMotion ? undefined : 'hidden'}
@@ -24,7 +26,7 @@ function FeaturedProjects() {
         className="mt-14 flex flex-col gap-16 sm:gap-20"
       >
         {featuredProjects.map((project, index) => (
-          <FeaturedProjectCard key={project.id} index={index} {...project} />
+          <FeaturedProjectCard key={project.id} index={index} {...project} onDark />
         ))}
       </motion.div>
     </Section>

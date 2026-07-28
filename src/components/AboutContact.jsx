@@ -3,6 +3,7 @@ import SectionTitle from './SectionTitle'
 import Button from './Button'
 import ContactOptions from './ContactOptions'
 import ContactForm from './ContactForm'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 
 // The page's closing section — merged in from the removed standalone
 // Contact page (its hero heading and contact options, reused as-is). Its
@@ -15,11 +16,12 @@ import ContactForm from './ContactForm'
 // button on the site points to.
 function AboutContact() {
   return (
-    <Section id="resume" background="muted">
+    <Section id="resume" background="ink" artwork={<EnvironmentalArtwork variant="contact" />}>
       <SectionTitle
         eyebrow="Where I'm Going"
         title="Let's build something great together."
         subtitle="I'm currently looking for UX/UI internship and junior design opportunities. If my work looks like a fit, I'd love to hear from you."
+        onDark
       />
       <div className="mt-8">
         <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="lg">
@@ -27,7 +29,7 @@ function AboutContact() {
         </Button>
       </div>
       <div className="mt-10 max-w-2xl">
-        <ContactOptions />
+        <ContactOptions onDark />
       </div>
       {/* The form's own container, not just the field styling, is what
           used to make it read as a bolted-on web form — it just sat

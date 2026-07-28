@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
 import SectionTitle from './SectionTitle'
 import SkillBadge from './SkillBadge'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { staggerContainer, fadeInUp, revealOnce } from '../lib/motion'
 import { research, design, tools } from '../data/skills'
 
@@ -36,7 +37,7 @@ function SkillGroup({ label, items }) {
 
 function AboutSkills() {
   return (
-    <Section background="muted" animate={false}>
+    <Section background="muted" animate={false} artwork={<EnvironmentalArtwork variant="skills" />}>
       <SectionTitle title="Skills & tools" subtitle="What I bring to a design process, end to end." />
       <div className="mt-12 space-y-12">
         {GROUPS.map((group) => (

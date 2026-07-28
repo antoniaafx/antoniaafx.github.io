@@ -28,6 +28,7 @@ function Section({
   animate = true,
   spacing = 'default',
   className = '',
+  artwork = null,
   children,
   ...props
 }) {
@@ -46,8 +47,21 @@ function Section({
       : {}
 
   return (
-    <MotionTag id={id} className={`${PADDING[spacing]} ${BACKGROUNDS[background]} ${className}`} {...revealProps} {...props}>
-      {content}
+    <MotionTag
+      id={id}
+      className={`${artwork ? 'relative overflow-hidden' : ''} ${PADDING[spacing]} ${BACKGROUNDS[background]} ${className}`}
+      {...revealProps}
+      {...props}
+    >
+      {artwork}
+      {/* When artwork is present, content needs its own stacking context
+          above it — an absolutely-positioned sibling with z-index:auto
+          paints above static in-flow siblings regardless of DOM order
+          (a CSS stacking quirk), so without this the artwork could paint
+          over the real content instead of behind it. No-op — same
+          `content` node as before — when artwork is null, so every
+          existing caller renders byte-for-byte identically. */}
+      {artwork ? <div className="relative z-10">{content}</div> : content}
     </MotionTag>
   )
 }

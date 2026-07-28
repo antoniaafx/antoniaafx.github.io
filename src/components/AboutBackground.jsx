@@ -1,5 +1,6 @@
 import Section from './Section'
 import SectionTitle from './SectionTitle'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 
 // Education and Experience used to have their own brief blurbs here — both
 // now have their own fuller detail further down the page (as each
@@ -31,7 +32,7 @@ const BLOCKS = [
 // together at the seam.
 function AboutBackground() {
   return (
-    <Section background="muted">
+    <Section background="muted" artwork={<EnvironmentalArtwork variant="myStory" />}>
       <SectionTitle eyebrow="Where I Started" title="My Story" />
       <div className="relative mt-10 max-w-3xl">
         <span aria-hidden="true" className="absolute -top-3 left-1/2 z-10 h-9 w-4 -translate-x-1/2 rotate-6">

@@ -15,8 +15,24 @@ const PROCESS_STAGES = ['Research', 'Strategy', 'Wireframes', 'UI Design', 'Prot
 // deliberate touches, not overlap or clutter. Nothing here obscures
 // content or breaks the read order; it's all still one image, then one
 // text column, same as before.
-function FeaturedProjectCard({ index = 0, id, title, description, heroImage, role, tools = [] }) {
+//
+// `onDark` — new, for the section's move to the dark `ink` background.
+// Every text/border colour here (text-accent-dark, text-ink-soft,
+// text-ink-muted, border-line, the paper clip's border-ink-muted) was
+// tuned for a light background and fails contrast against dark ink —
+// checked directly (e.g. text-accent-dark against ink lands around
+// 2.2:1). Paper-based light tones are the only pairing that's actually
+// safe in both directions, so onDark swaps to those rather than trying to
+// keep the accent tint. Defaults to false — the /projects grid's
+// ProjectCard is a separate component and is untouched by this.
+function FeaturedProjectCard({ index = 0, id, title, description, heroImage, role, tools = [], onDark = false }) {
   const reversed = index % 2 === 1
+  const clipBorder = onDark ? 'border-paper/40' : 'border-ink-muted/70'
+  const imageBorder = onDark ? 'border-paper/15' : 'border-line'
+  const eyebrowColor = onDark ? 'text-paper' : 'text-accent-dark'
+  const bodyColor = onDark ? 'text-paper/75' : 'text-ink-soft'
+  const labelColor = onDark ? 'text-paper/55' : 'text-ink-muted'
+  const linkColor = onDark ? 'text-paper' : 'text-accent-dark'
 
   return (
     <motion.article
@@ -34,11 +50,13 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
           passes through to the stretched link below, not this wrapper. */}
       <div className={`pointer-events-none relative lg:w-1/2 ${reversed ? 'rotate-1' : '-rotate-1'}`}>
         <span aria-hidden="true" className="absolute -left-2 -top-3 z-10 h-9 w-4 rotate-[12deg]">
-          <span className="absolute inset-x-0 top-0 h-9 w-3 rounded-full border-[1.5px] border-ink-muted/70" />
-          <span className="absolute left-1 top-1.5 h-6 w-3 rounded-full border-[1.5px] border-ink-muted/70" />
+          <span className={`absolute inset-x-0 top-0 h-9 w-3 rounded-full border-[1.5px] ${clipBorder}`} />
+          <span className={`absolute left-1 top-1.5 h-6 w-3 rounded-full border-[1.5px] ${clipBorder}`} />
         </span>
 
-        <div className="overflow-hidden rounded-panel border border-line bg-paper-muted shadow-soft transition-shadow duration-200 group-hover:shadow-lifted">
+        <div
+          className={`overflow-hidden rounded-panel border ${imageBorder} bg-paper-muted shadow-soft transition-shadow duration-200 group-hover:shadow-lifted`}
+        >
           <div className="aspect-[4/3]">
             {heroImage ? (
               <img
@@ -56,18 +74,15 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
       </div>
 
       <div className="lg:w-1/2">
-        <p className="text-caption font-medium uppercase tracking-wide text-accent-dark">
+        <p className={`text-caption font-medium uppercase tracking-wide ${eyebrowColor}`}>
           Case Study {String(index + 1).padStart(2, '0')}
         </p>
-        <h3 className="mt-3 text-2xl sm:text-3xl">{title}</h3>
-        {description && <p className="mt-3 text-ink-soft">{description}</p>}
+        <h3 className={`mt-3 text-2xl sm:text-3xl ${onDark ? 'text-paper' : ''}`}>{title}</h3>
+        {description && <p className={`mt-3 ${bodyColor}`}>{description}</p>}
 
         <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">
           {PROCESS_STAGES.map((stage) => (
-            <span
-              key={stage}
-              className="flex items-center gap-1 text-[0.625rem] font-medium uppercase tracking-wide text-ink-muted"
-            >
+            <span key={stage} className={`flex items-center gap-1 text-[0.625rem] font-medium uppercase tracking-wide ${labelColor}`}>
               <span aria-hidden="true" className="h-1 w-1 rounded-full bg-sage-dark" />
               {stage}
             </span>
@@ -78,14 +93,14 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
           <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
             {role && (
               <div>
-                <dt className="text-caption font-medium uppercase tracking-wide text-ink-muted">Role</dt>
-                <dd className="mt-1 text-sm text-ink-soft">{role}</dd>
+                <dt className={`text-caption font-medium uppercase tracking-wide ${labelColor}`}>Role</dt>
+                <dd className={`mt-1 text-sm ${bodyColor}`}>{role}</dd>
               </div>
             )}
             {tools.length > 0 && (
               <div>
-                <dt className="text-caption font-medium uppercase tracking-wide text-ink-muted">Tools</dt>
-                <dd className="mt-1 text-sm text-ink-soft">{tools.join(' · ')}</dd>
+                <dt className={`text-caption font-medium uppercase tracking-wide ${labelColor}`}>Tools</dt>
+                <dd className={`mt-1 text-sm ${bodyColor}`}>{tools.join(' · ')}</dd>
               </div>
             )}
           </dl>
@@ -99,7 +114,7 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
             extends past the image box's own edge. */}
         <Link
           to={`/projects/${id}`}
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:z-20 after:content-['']"
+          className={`mt-6 inline-flex items-center gap-1.5 text-sm font-medium ${linkColor} underline-offset-4 hover:underline after:absolute after:inset-0 after:z-20 after:content-['']`}
         >
           View case study
           <span aria-hidden="true">→</span>

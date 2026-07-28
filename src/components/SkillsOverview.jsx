@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
 import SectionTitle from './SectionTitle'
 import SkillBadge from './SkillBadge'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { staggerContainer, fadeInUp, revealOnce } from '../lib/motion'
 
 const SKILLS = ['Figma', 'UX Research', 'Wireframing', 'Prototyping', 'Responsive Design', 'User Testing']
@@ -10,7 +11,7 @@ function SkillsOverview() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <Section background="muted" animate={false}>
+    <Section background="muted" animate={false} artwork={<EnvironmentalArtwork variant="skills" />}>
       <SectionTitle title="Skills & tools" subtitle="The core of how I work, from early research to final interface." />
       <motion.ul
         initial={shouldReduceMotion ? undefined : 'hidden'}

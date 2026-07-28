@@ -1,5 +1,6 @@
 import Section from './Section'
 import Button from './Button'
+import EnvironmentalArtwork from './EnvironmentalArtwork'
 
 // `eyebrow` is optional — only About's usage passes one, to close out its
 // journey structure ("Where I'm Going"). Home and CaseStudy render this
@@ -11,7 +12,7 @@ import Button from './Button'
 // this button appears.
 function ContactCta({ eyebrow }) {
   return (
-    <Section background="ink">
+    <Section background="ink" artwork={<EnvironmentalArtwork variant="contact" />}>
       <div className="mx-auto max-w-2xl text-center">
         {eyebrow && <p className="text-caption font-medium uppercase tracking-wide text-paper/80">{eyebrow}</p>}
         <h2 className={`text-display-sm text-paper sm:text-display-md ${eyebrow ? 'mt-3' : ''}`}>
