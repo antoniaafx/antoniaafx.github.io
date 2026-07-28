@@ -25,7 +25,7 @@ function FeaturedProjects() {
         className="mt-14 flex flex-col gap-16 sm:gap-20"
       >
         {featuredProjects.map((project, index) => (
-          <FeaturedProjectCard key={project.id} index={index} {...project} onDark />
+          <FeaturedProjectCard key={project.id} index={index} {...project} />
         ))}
       </motion.div>
     </Section>

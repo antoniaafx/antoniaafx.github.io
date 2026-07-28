@@ -256,6 +256,29 @@
     background-blend-mode: overlay, normal, normal, normal;
   }
 
+  /* Featured Work "physical project sheet" pass — a hand-torn paper edge
+     for FeaturedProjectCard, used instead of the site's usual rounded
+     rectangle. `clip-path: polygon()` is the lightweight, reusable way to
+     do this (no image asset, one CSS property) — every point stays a
+     small perturbation (0–2%) around the box's own edge and each edge's
+     points move monotonically along their own axis, so the shape can't
+     self-intersect. One shared shape reused by all three cards — the
+     brief's per-card variation is carried by rotation and the attachment
+     device instead, not by three different tear shapes, which would read
+     as trying too hard rather than organised-but-authentic. `box-shadow`
+     doesn't follow a clip-path (it always follows the untouched
+     rectangular border-box), so the card's own "resting on a surface"
+     shadow is applied as `filter: drop-shadow()` instead — the one CSS
+     shadow mechanism that respects the actual clipped silhouette. */
+  .card-torn-edge {
+    clip-path: polygon(
+      0% 2%, 12% 0%, 25% 1.5%, 38% 0%, 52% 1%, 65% 0%, 78% 1.5%, 90% 0%, 100% 1.5%,
+      99% 15%, 100% 35%, 99% 55%, 100% 75%, 99% 92%, 100% 100%,
+      85% 99%, 70% 100%, 55% 99%, 40% 100%, 25% 99%, 10% 100%, 0% 98%,
+      1% 80%, 0% 60%, 1% 40%, 0% 20%
+    );
+  }
+
   :focus-visible {
     /* --color-raspberry, not --color-accent — see the --color-raspberry
        comment above for why the deep plum fails as a focus ring on dark
