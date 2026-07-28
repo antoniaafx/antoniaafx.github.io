@@ -206,6 +206,56 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  /* Materiality pass 3 — real, visible texture per background type, not
+     more lighting. The sitewide grain above (opacity 0.035, blended over
+     literally everything including text) was deliberately kept subtle;
+     this is a separate, much stronger texture baked directly into each
+     Section's own background-image list, replacing the plain lighting-
+     only gradients from the previous pass. Two different noise-filter
+     SVGs (data URIs, not raster assets — no network request, no external
+     dependency) — a coarser one for the paper backgrounds, a finer one
+     for the dark ink background — so light and dark sections read as
+     genuinely different materials rather than the same grain recoloured.
+     `background-blend-mode` blends these background layers with each
+     other and with the section's own bg-color *within the background
+     paint step only* — this happens entirely behind the section's real
+     content, so no matter how visible the texture reads, it is
+     mechanically impossible for it to touch text colour, contrast, or
+     any child element. `overlay` (not the gentler `soft-light` used in
+     the previous pass) is the blend mode doing the actual visible work
+     here — this is the deliberate fix for "the previous pass wasn't
+     visible enough." Class-based (not Tailwind arbitrary values) because
+     three multi-layer background-image lists this size are far easier to
+     read and verify correct as real CSS than as one long bracketed
+     utility string. Applied via Section.jsx's BACKGROUNDS map, alongside
+     (not replacing) the existing bg-paper/bg-paper-muted/bg-ink colour
+     utilities — those set background-color only, so there's no property
+     collision. */
+  .bg-texture-paper {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+      radial-gradient(130% 70% at 50% -10%, rgba(255, 255, 255, 0.55), transparent 50%),
+      radial-gradient(150% 130% at 50% 60%, transparent 60%, rgba(30, 24, 64, 0.03) 100%);
+    background-size: 260px 260px, auto, auto;
+    background-blend-mode: overlay, normal, normal;
+  }
+
+  .bg-texture-paper-muted {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+      radial-gradient(130% 70% at 50% -10%, rgba(255, 255, 255, 0.4), transparent 50%),
+      radial-gradient(150% 130% at 50% 60%, transparent 60%, rgba(30, 24, 64, 0.04) 100%);
+    background-size: 260px 260px, auto, auto;
+    background-blend-mode: overlay, normal, normal;
+  }
+
+  .bg-texture-ink {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3C/svg%3E"),
+      radial-gradient(120% 60% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 55%),
+      radial-gradient(140% 120% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.18) 100%),
+      linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0%, transparent 35%);
+    background-size: 160px 160px, auto, auto, auto;
+    background-blend-mode: overlay, normal, normal, normal;
+  }
+
   :focus-visible {
     /* --color-raspberry, not --color-accent — see the --color-raspberry
        comment above for why the deep plum fails as a focus ring on dark
