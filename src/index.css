@@ -117,9 +117,17 @@
   /* ---- Shadow ----
      Soft and low-contrast on purpose — ambient elevation, not drop shadows.
      rgba values are --color-ink's own RGB (30, 24, 64) at low alpha, kept
-     in sync with the token above rather than an independent tint. */
-  --shadow-soft: 0 1px 2px rgba(30, 24, 64, 0.04), 0 12px 28px -12px rgba(30, 24, 64, 0.1);
-  --shadow-lifted: 0 4px 10px rgba(30, 24, 64, 0.06), 0 20px 45px -16px rgba(30, 24, 64, 0.16);
+     in sync with the token above rather than an independent tint. Three
+     stacked layers each (tight contact shadow, mid-range falloff, wide
+     soft ambient) rather than one hard-edged Material-style shadow — the
+     Apple/Linear/Notion technique for a shadow that reads as a real object
+     resting on a surface instead of a flat drop-shadow. Values only —
+     every component that already uses shadow-soft/shadow-lifted picks this
+     up automatically, no component edits needed. */
+  --shadow-soft: 0 1px 2px rgba(30, 24, 64, 0.04), 0 8px 16px -10px rgba(30, 24, 64, 0.08),
+    0 24px 40px -24px rgba(30, 24, 64, 0.08);
+  --shadow-lifted: 0 2px 4px rgba(30, 24, 64, 0.05), 0 14px 24px -10px rgba(30, 24, 64, 0.12),
+    0 32px 56px -20px rgba(30, 24, 64, 0.14);
 }
 
 /*
@@ -168,6 +176,34 @@
   ::selection {
     background: var(--color-accent-soft);
     color: var(--color-accent-dark);
+  }
+
+  /* A single, sitewide grain layer — the "materiality" pass. One shared
+     film-grain texture over the whole viewport reads as "looking at a
+     real screen" rather than a flat rectangle, the same technique used on
+     Linear/Stripe-style sites. Fixed (not part of page flow, doesn't
+     scroll with content, doesn't add height anywhere), `content: ''` on a
+     pseudo-element so it's not a real DOM node — nothing here is exposed
+     to the accessibility tree, and there's nothing to mark aria-hidden.
+     pointer-events: none means it can never intercept a click regardless
+     of stacking order, so the very high z-index is safe even above the
+     sticky nav (z-40) and mobile menu (z-50). mix-blend-mode: overlay
+     against a ~50%-gray noise source barely shifts lightness either way,
+     which is what keeps this "felt, not noticed" at this opacity — it's
+     the single foundation the per-section treatments below build on top
+     of, per the brief's "keep the existing grid, build on top of it"
+     instruction (this doesn't touch or replace that grid). */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   :focus-visible {

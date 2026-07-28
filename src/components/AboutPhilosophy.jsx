@@ -1,6 +1,5 @@
 import Section from './Section'
 import SectionTitle from './SectionTitle'
-import EnvironmentalArtwork from './EnvironmentalArtwork'
 
 const BLOCKS = [
   {
@@ -24,7 +23,7 @@ const BLOCKS = [
 // of visitors having to read all three to realise that's the shape of it.
 function AboutPhilosophy() {
   return (
-    <Section artwork={<EnvironmentalArtwork variant="philosophy" />}>
+    <Section>
       <SectionTitle eyebrow="How I Design" title="Design philosophy" />
       <div className="mt-10 grid gap-6 sm:grid-cols-3">
         {BLOCKS.map((block, index) => (

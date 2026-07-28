@@ -3,7 +3,6 @@ import SectionTitle from './SectionTitle'
 import Button from './Button'
 import ContactOptions from './ContactOptions'
 import ContactForm from './ContactForm'
-import EnvironmentalArtwork from './EnvironmentalArtwork'
 
 // The page's closing section — merged in from the removed standalone
 // Contact page (its hero heading and contact options, reused as-is). Its
@@ -16,7 +15,7 @@ import EnvironmentalArtwork from './EnvironmentalArtwork'
 // button on the site points to.
 function AboutContact() {
   return (
-    <Section id="resume" background="ink" artwork={<EnvironmentalArtwork variant="contact" />}>
+    <Section id="resume" background="ink">
       <SectionTitle
         eyebrow="Where I'm Going"
         title="Let's build something great together."

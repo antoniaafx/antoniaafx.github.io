@@ -1,7 +1,6 @@
 import Section from './Section'
 import SectionTitle from './SectionTitle'
 import Timeline from './Timeline'
-import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { experience, education } from '../data/experience'
 
 function DetailList({ items }) {
@@ -71,7 +70,7 @@ const timelineItems = [
 
 function ExperienceTimeline() {
   return (
-    <Section artwork={<EnvironmentalArtwork variant="timeline" />}>
+    <Section>
       <SectionTitle
         eyebrow="What I Learned"
         title="Experience & education"

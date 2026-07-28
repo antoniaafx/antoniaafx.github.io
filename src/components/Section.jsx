@@ -2,10 +2,21 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
 import { fadeInUp, revealOnce } from '../lib/motion'
 
+// The `ink` value carries two background-image layers on top of the flat
+// `bg-ink` colour: a soft light-from-above glow (like a monitor's own
+// backlight) and a wide vignette that only darkens toward the outer edges
+// — real content sits well inside that radius, so this doesn't touch the
+// contrast of anything actually on the page, just gives the section
+// depth instead of reading as one flat dark rectangle. Values only, on
+// the existing `ink` entry — every current `background="ink"` caller
+// (Featured Project, both Contact sections) picks this up automatically.
+const INK_DEPTH =
+  'bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.05),transparent_55%),radial-gradient(140%_120%_at_50%_50%,transparent_55%,rgba(0,0,0,0.18)_100%)]'
+
 const BACKGROUNDS = {
   default: 'bg-paper',
   muted: 'bg-paper-muted',
-  ink: 'bg-ink text-paper',
+  ink: `bg-ink text-paper ${INK_DEPTH}`,
 }
 
 // 'default' is the normal inter-section rhythm. 'hero' is for whichever

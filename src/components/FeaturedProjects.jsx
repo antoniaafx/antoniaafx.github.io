@@ -2,7 +2,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Section from './Section'
 import SectionTitle from './SectionTitle'
 import FeaturedProjectCard from './FeaturedProjectCard'
-import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { staggerContainer, revealOnce } from '../lib/motion'
 import projects from '../data/projects'
 
@@ -12,7 +11,7 @@ function FeaturedProjects() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <Section background="ink" animate={false} artwork={<EnvironmentalArtwork variant="featured" />}>
+    <Section background="ink" animate={false}>
       <SectionTitle
         title="Featured work"
         subtitle="A closer look at how I move from problem to shipped product — research, structure, and interface design."
