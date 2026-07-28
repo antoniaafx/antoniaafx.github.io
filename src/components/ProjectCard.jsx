@@ -1,128 +1,75 @@
 import { Link } from 'react-router-dom'
 
-// Same 5-stage methodology on every card — a consistent "how I work" badge
-// row, not a per-project claim about which stages were actually documented
-// for that specific project (several of these cards don't have a full case
-// study yet, so nothing here asserts project-specific facts).
-const PROCESS_STAGES = ['Research', 'Strategy', 'Wireframes', 'UI Design', 'Prototype']
-
-function ProjectCard({ index = 0, id, title, description, problemStatement, heroImage, category }) {
-  const number = String(index + 1).padStart(2, '0')
+// A pivot away from the "physical file" language of the previous few
+// passes — no folder tab, no stacked sheets, no resting-state tilt. This
+// reads as an editorial cover instead: a calm, evenly-aligned grid where
+// the only physicality comes from proportion and a refined shadow, not
+// from a permanently skewed card. Rotation now only happens as a hover
+// micro-interaction (see the article's own hover:/focus-within: classes
+// below), not as a fixed per-card identity.
+//
+// Reduced to exactly what was asked for — image, title, one line, "Open
+// Project →" — nothing else. The project number, category tab, and every
+// other field this card used to carry now live only on the case study
+// page itself.
+function ProjectCard({ id, title, description, problemStatement, heroImage }) {
+  const summary = problemStatement || description
 
   return (
-    // Two paper sheets behind the card. Root cause of the last pass not
-    // reading as visible: this wrapper was `relative` with no z-index, so
-    // it never established its own stacking context — the sheets'
-    // negative z-index was being compared against ancestors far beyond
-    // this card (Section backgrounds, sibling grid cells), not reliably
-    // "just behind" it. Fixed with an explicit, self-contained hierarchy:
-    // the wrapper gets `relative z-0` (an explicit, non-auto z-index is
-    // what actually creates a stacking context — `relative` alone does
-    // not), and every layer inside it uses positive z-index (0/1/2)
-    // scoped to that one context, so paint order is guaranteed regardless
-    // of what's around it in the grid. `overflow-visible` is explicit
-    // too, even though nothing here currently clips it.
-    //
-    // Sheets/card all respond to one named hover group (`group/file`, on
-    // this wrapper) rather than the article's own unnamed `group` (kept
-    // only for its existing image-zoom effect), since the sheets are the
-    // article's siblings, not descendants of it. `group-focus-within/file:`
-    // mirrors every `group-hover/file:` state so keyboard focus on the
-    // "View case study" link reveals the same effect hover does. Sheets
-    // are `pointer-events-none` and stay well inside the grid's own
-    // gap-8, so nothing here can be clicked, shift layout, or overlap a
-    // neighbouring card.
-    <div className="group/file relative z-0 overflow-visible">
-      {/* Back sheet — a pale purple tint (accent-soft), already used
-          elsewhere in the palette (::selection, skill badges) rather than
-          a new colour. Border is ink-muted at partial opacity, not the
-          near-invisible `line` token — paper-on-paper needs a visible
-          edge, not just a fill-colour difference, to actually read as a
-          separate sheet.
-          Horizontal offset kept deliberately small — the grid's own
-          gap-8 is what has to absorb it on both sides of every card, and
-          rotation expands a tall rectangle's *visual* bounding box well
-          beyond its raw translate value, so even a modest horizontal
-          number was reading as more crowding than the px suggested. The
-          reveal leans vertical instead: pages stacked behind a file
-          naturally peek out upward more than sideways anyway, so this is
-          the more accurate version of the metaphor, not a compromise. */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 translate-x-0.5 -translate-y-1 rounded-panel border border-ink-muted/25 bg-accent-soft shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:translate-x-1 lg:-translate-y-2 lg:-rotate-1 group-hover/file:translate-x-1 group-hover/file:-translate-y-2 group-focus-within/file:translate-x-1 group-focus-within/file:-translate-y-2 lg:group-hover/file:translate-x-1.5 lg:group-hover/file:-translate-y-4 lg:group-hover/file:-rotate-2 lg:group-focus-within/file:translate-x-1.5 lg:group-focus-within/file:-translate-y-4 lg:group-focus-within/file:-rotate-2"
-      />
-      {/* Middle sheet — a warmer/darker off-white (paper-muted), same
-          border treatment and same reduced-horizontal/vertical-led
-          reasoning as the back sheet. */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-[1] -translate-x-0.5 -translate-y-0.5 rounded-panel border border-ink-muted/25 bg-paper-muted shadow-soft transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] lg:-translate-x-1 lg:-translate-y-1.5 lg:rotate-1 group-hover/file:-translate-x-1 group-hover/file:-translate-y-1.5 group-focus-within/file:-translate-x-1 group-focus-within/file:-translate-y-1.5 lg:group-hover/file:-translate-x-1.5 lg:group-hover/file:-translate-y-3 lg:group-hover/file:rotate-2 lg:group-focus-within/file:-translate-x-1.5 lg:group-focus-within/file:-translate-y-3 lg:group-focus-within/file:rotate-2"
-      />
-
-      <article className="group relative z-[2] rounded-panel border border-line bg-paper p-6 shadow-soft transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-lifted group-hover/file:-translate-y-1 group-hover/file:shadow-lifted group-focus-within/file:-translate-y-1 group-focus-within/file:shadow-lifted">
-        {heroImage ? (
-          <div className="mb-5 aspect-[4/3] overflow-hidden rounded-control bg-paper-muted">
-            <img
-              src={heroImage}
-              alt={title}
-              className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-            />
-          </div>
-        ) : (
-          // No photo yet — a loose wireframe sketch instead of a blank box,
-          // reading as "still being explored" rather than a missing image.
-          <div
-            aria-hidden="true"
-            className="mb-5 flex aspect-[4/3] flex-col justify-center gap-2 rounded-control border border-line bg-paper-muted p-4"
-          >
-            <span className="h-1.5 w-2/3 rounded-full bg-line" />
-            <span className="h-1.5 w-1/2 rounded-full bg-line" />
-            <span className="mt-2 h-10 rounded-control border border-dashed border-line" />
-          </div>
-        )}
-
-        <div className="flex items-start justify-between gap-4">
-          <span className="font-display text-2xl font-semibold text-line">
-            <span className="sr-only">Project </span>
-            {number}
-          </span>
-          {category && (
-            <span className="mt-1 inline-block rounded-control bg-sage px-2.5 py-1 text-xs font-medium text-sage-dark">
-              {category}
-            </span>
-          )}
+    // The article is the whole object now — no outer wrapper needed once
+    // there's no separate tab/sheet elements to keep in sync with it.
+    // Its own hover:/focus-within: (not a `group-hover` from a parent)
+    // drive the lift/rotate/shadow directly, since this element itself
+    // is what's hovered or focused-within. `overflow-hidden` is what
+    // makes the image sit full-bleed at the top while still respecting
+    // the card's own rounded corners.
+    <article className="group relative overflow-hidden rounded-panel bg-paper shadow-[0_1px_2px_rgba(30,24,64,0.08),0_10px_24px_-14px_rgba(30,24,64,0.18)] transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:rotate-[1.5deg] hover:shadow-[0_4px_10px_rgba(30,24,64,0.1),0_26px_44px_-18px_rgba(30,24,64,0.26)] focus-within:-translate-y-1 focus-within:rotate-[1.5deg] focus-within:shadow-[0_4px_10px_rgba(30,24,64,0.1),0_26px_44px_-18px_rgba(30,24,64,0.26)]">
+      {heroImage ? (
+        // Full-bleed, edge to edge — a cover image, not a thumbnail
+        // sitting inside a second bordered box. The very slight
+        // independent scale + drift on the image (distinct from the
+        // card's own lift) is the "gentle parallax" — the cover and the
+        // image underneath it moving at a faint, different rate.
+        <div className="aspect-[3/2] overflow-hidden">
+          <img
+            src={heroImage}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-[1.035]"
+          />
         </div>
-
-        <h3 className="mt-3 text-xl">{title}</h3>
-        {(problemStatement || description) && (
-          <p className="mt-2 text-ink-soft">{problemStatement || description}</p>
-        )}
-
-        <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5">
-          {PROCESS_STAGES.map((stage) => (
-            <span
-              key={stage}
-              className="flex items-center gap-1 text-[0.625rem] font-medium uppercase tracking-wide text-ink-muted"
-            >
-              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-sage-dark" />
-              {stage}
-            </span>
-          ))}
+      ) : (
+        // No photo yet — a plain, quiet placeholder rather than a busy
+        // sketch; the calmer aesthetic this pass asks for doesn't want a
+        // decorative wireframe drawing here either.
+        <div
+          aria-hidden="true"
+          className="flex aspect-[3/2] items-center justify-center bg-paper-muted"
+        >
+          <span className="text-caption font-medium uppercase tracking-wide text-ink-muted">Preview coming soon</span>
         </div>
+      )}
 
-        {/* Stretched-link pattern: the whole card is hoverable (image zoom,
-            shadow) so the whole card should be clickable, not just this text —
-            a single real anchor whose hit area is expanded via ::after rather
-            than wrapping the card in a second, nested link. */}
+      <div className="p-5 sm:p-6">
+        <h3 className="text-xl">{title}</h3>
+        {/* `line-clamp-1`, not 2 — "one concise sentence" is a hard rule
+            here, enforced in CSS with an ellipsis fallback rather than
+            relying on every project's copy happening to already be short
+            enough. */}
+        {summary && <p className="mt-1.5 line-clamp-1 text-ink-soft">{summary}</p>}
+
+        {/* Stretched-link pattern: the whole cover is hoverable, so the
+            whole cover should be clickable — one real anchor whose hit
+            area is expanded via ::after rather than a second, nested
+            link wrapping the card. */}
         <Link
           to={`/projects/${id}`}
-          className="mt-5 flex w-fit items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:content-['']"
+          className="mt-4 flex w-fit items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:content-['']"
         >
-          View case study
+          Open Project
           <span aria-hidden="true">→</span>
         </Link>
-      </article>
-    </div>
+      </div>
+    </article>
   )
 }
 
