@@ -2,20 +2,30 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
 import { fadeInUp, revealOnce } from '../lib/motion'
 
-// The `ink` value carries two background-image layers on top of the flat
-// `bg-ink` colour: a soft light-from-above glow (like a monitor's own
-// backlight) and a wide vignette that only darkens toward the outer edges
-// — real content sits well inside that radius, so this doesn't touch the
-// contrast of anything actually on the page, just gives the section
-// depth instead of reading as one flat dark rectangle. Values only, on
-// the existing `ink` entry — every current `background="ink"` caller
-// (Featured Project, both Contact sections) picks this up automatically.
+// Every background variant carries the same underlying idea: one implied
+// light source from above, and a wide vignette that only darkens toward
+// the outer edges — real content sits well inside that radius everywhere,
+// so none of this touches the contrast of anything actually on the page.
+// `ink` had this from the previous materiality pass (glow + vignette);
+// `default`/`muted` get the same treatment here, at a much lower intensity
+// since paper is already near-white and only needs a whisper of it — the
+// point is that every section reads as one consistently-lit room instead
+// of separate flat colour blocks. Values only, on the same three existing
+// keys — no new Section prop, no component touched.
+const PAPER_LIGHT =
+  'bg-[radial-gradient(130%_70%_at_50%_-10%,rgba(255,255,255,0.55),transparent_50%),radial-gradient(150%_130%_at_50%_60%,transparent_60%,rgba(30,24,64,0.025)_100%)]'
+const PAPER_MUTED_LIGHT =
+  'bg-[radial-gradient(130%_70%_at_50%_-10%,rgba(255,255,255,0.4),transparent_50%),radial-gradient(150%_130%_at_50%_60%,transparent_60%,rgba(30,24,64,0.035)_100%)]'
+// The original two ink layers are untouched from the previous pass — the
+// third layer here is new: a faint diagonal sheen (a highlight band, not
+// a stronger version of the existing glow/vignette) standing in for a
+// matte monitor surface catching light at an angle.
 const INK_DEPTH =
-  'bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.05),transparent_55%),radial-gradient(140%_120%_at_50%_50%,transparent_55%,rgba(0,0,0,0.18)_100%)]'
+  'bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.05),transparent_55%),radial-gradient(140%_120%_at_50%_50%,transparent_55%,rgba(0,0,0,0.18)_100%),linear-gradient(115deg,rgba(255,255,255,0.035)_0%,transparent_35%)]'
 
 const BACKGROUNDS = {
-  default: 'bg-paper',
-  muted: 'bg-paper-muted',
+  default: `bg-paper ${PAPER_LIGHT}`,
+  muted: `bg-paper-muted ${PAPER_MUTED_LIGHT}`,
   ink: `bg-ink text-paper ${INK_DEPTH}`,
 }
 
