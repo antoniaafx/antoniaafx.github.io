@@ -62,15 +62,44 @@ function FieldError({ id, message }) {
 }
 
 // Underline fields, not boxed ones — a page a visitor is signing/writing
-// on, not a generic web form's input boxes. The message field is the one
-// exception: a multi-line field needs a visible boundary to read as a
-// field at all, so it keeps a light border, styled as ruled notebook
-// paper via RULED_PAPER_STYLE below — the same repeating-line technique
-// already used for the homepage hero's grid-paper wireframe layer,
-// applied here literally as lined paper for the one field that's actually
-// "write your note."
-const lineFieldClasses =
-  'mt-2 w-full border-0 border-b bg-transparent px-1 pb-2 pt-1 text-ink placeholder:text-ink-muted transition-colors focus:outline-none'
+// on, not a generic web form's input boxes. Thin at rest, thickening to
+// a solid accent line while focused — a clear, deliberate "you're writing
+// here now" state rather than a faint colour shift. The message field is
+// the one exception: a multi-line field needs a visible boundary to read
+// as a field at all, so it keeps a border, softened (bg-transparent
+// rather than a second bg-paper box sitting inside the already-bg-paper
+// panel) and styled as ruled notebook paper via RULED_PAPER_STYLE below —
+// the same repeating-line technique already used for the homepage hero's
+// grid-paper wireframe layer, applied here literally as lined paper for
+// the one field that's actually "write your note."
+//
+// Focus state is tracked in real React state (see `focusedField` below),
+// not `:focus-visible` — a plain `focus-visible:border-accent` variant
+// wasn't reliably showing as applied when checked live in the dev
+// environment's browser pane (border-*-width changes via the same variant
+// pattern did apply correctly; only the colour swap didn't), and that
+// pane is already known (from earlier work this session) to sometimes
+// misreport paint-only computed style for interaction-driven state rather
+// than layout-affecting ones. Rather than ship a CSS-variant approach I
+// couldn't fully re-verify, driving both the border colour and width from
+// one JS boolean is deterministic and easy to confirm directly (the
+// className itself, not just a computed paint value). The sitewide
+// `:focus-visible` outline (index.css) still applies on top of this
+// independently for keyboard users — this isn't a replacement for that,
+// just an additional, reliable signal.
+const lineFieldClasses = 'mt-2 w-full border-0 bg-transparent px-1 pb-2.5 pt-1.5 text-ink placeholder:text-ink-muted/70 transition-colors focus:outline-none'
+
+function lineFieldBorder(hasError, isFocused) {
+  if (hasError) return 'border-b-2 border-ink'
+  if (isFocused) return 'border-b-2 border-accent'
+  return 'border-b-[1.5px] border-line'
+}
+
+function messageFieldBorder(hasError, isFocused) {
+  if (hasError) return 'border-2 border-ink'
+  if (isFocused) return 'border-2 border-accent'
+  return 'border border-line/70'
+}
 
 const RULED_PAPER_STYLE = {
   backgroundImage:
@@ -90,11 +119,20 @@ function ContactForm() {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [focusedField, setFocusedField] = useState(null)
 
   function handleChange(event) {
     const { name, value } = event.target
     setValues((prev) => ({ ...prev, [name]: value }))
     setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev))
+  }
+
+  function handleFocus(event) {
+    setFocusedField(event.target.name)
+  }
+
+  function handleBlur() {
+    setFocusedField(null)
   }
 
   async function handleSubmit(event) {
@@ -163,7 +201,7 @@ function ContactForm() {
 
       <div>
         <label htmlFor={nameId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          Who am I writing back to?
+          Your name
         </label>
         <input
           id={nameId}
@@ -172,16 +210,18 @@ function ContactForm() {
           autoComplete="name"
           value={values.name}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? `${nameId}-error` : undefined}
-          className={`${lineFieldClasses} ${errors.name ? 'border-b-2 border-ink' : 'border-line focus-visible:border-accent'}`}
+          className={`${lineFieldClasses} ${lineFieldBorder(Boolean(errors.name), focusedField === 'name')}`}
         />
         <FieldError id={`${nameId}-error`} message={errors.name} />
       </div>
 
       <div>
         <label htmlFor={emailId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          Where can I reach you?
+          Your email
         </label>
         <input
           id={emailId}
@@ -190,16 +230,18 @@ function ContactForm() {
           autoComplete="email"
           value={values.email}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? `${emailId}-error` : undefined}
-          className={`${lineFieldClasses} ${errors.email ? 'border-b-2 border-ink' : 'border-line focus-visible:border-accent'}`}
+          className={`${lineFieldClasses} ${lineFieldBorder(Boolean(errors.email), focusedField === 'email')}`}
         />
         <FieldError id={`${emailId}-error`} message={errors.email} />
       </div>
 
       <div>
         <label htmlFor={messageId} className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-          What's on your mind?
+          Your message
         </label>
         <textarea
           id={messageId}
@@ -207,12 +249,15 @@ function ContactForm() {
           rows={5}
           value={values.message}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? `${messageId}-error` : undefined}
           style={RULED_PAPER_STYLE}
-          className={`mt-2 w-full resize-y rounded-control border bg-paper px-4 py-3 text-ink placeholder:text-ink-muted transition-colors focus:outline-none ${
-            errors.message ? 'border-ink' : 'border-line focus-visible:border-accent'
-          }`}
+          className={`mt-2 w-full resize-y rounded-sm bg-transparent px-3 py-2.5 text-ink placeholder:text-ink-muted/70 transition-colors focus:outline-none ${messageFieldBorder(
+            Boolean(errors.message),
+            focusedField === 'message',
+          )}`}
         />
         <FieldError id={`${messageId}-error`} message={errors.message} />
       </div>

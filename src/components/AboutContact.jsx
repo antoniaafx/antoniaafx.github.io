@@ -47,7 +47,11 @@ function AboutContact() {
             aria-hidden="true"
             className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-2 bg-line/80 shadow-soft"
           />
-          <div className="rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
+          {/* -rotate-[0.3deg]: a barely-there natural warp, not a
+              scrapbook tilt — the requested "slight irregularity" without
+              paper texture, ripped edges, or anything that would compete
+              with the section's own dark, textured background. */}
+          <div className="-rotate-[0.3deg] rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
             <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">
               The last page — leave me a note
             </p>

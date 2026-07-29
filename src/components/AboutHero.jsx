@@ -39,8 +39,12 @@ function AboutHero() {
           </motion.div>
 
           {/* One small, human line — not a second paragraph. Same stagger
-              item as everything else above it, just the last one. */}
-          <motion.p {...itemMotion} className="mt-6 text-sm text-ink-muted">
+              item as everything else above it, just the last one.
+              `max-w-md` matches the intro paragraph above it — without it
+              this was the only text element in the column with no width
+              cap, so it would stretch noticeably wider than everything
+              else at large desktop widths. */}
+          <motion.p {...itemMotion} className="mt-6 max-w-md text-sm text-ink-muted">
             Currently exploring UX design · Fuelled by iced lattes · Happiest when a problem finally clicks
           </motion.p>
         </div>
