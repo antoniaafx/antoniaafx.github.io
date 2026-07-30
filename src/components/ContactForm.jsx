@@ -68,10 +68,9 @@ function FieldError({ id, message }) {
 // the one exception: a multi-line field needs a visible boundary to read
 // as a field at all, so it keeps a border, softened (bg-transparent
 // rather than a second bg-paper box sitting inside the already-bg-paper
-// panel) and styled as ruled notebook paper via RULED_PAPER_STYLE below —
-// the same repeating-line technique already used for the homepage hero's
-// grid-paper wireframe layer, applied here literally as lined paper for
-// the one field that's actually "write your note."
+// panel) — a clean, minimal box, no ruled-paper lines (removed per
+// explicit request) and no manual resize handle (`resize-none`), so its
+// height stays exactly what `rows` sets at every screen size.
 //
 // Focus state is tracked in real React state (see `focusedField` below),
 // not `:focus-visible` — a plain `focus-visible:border-accent` variant
@@ -99,12 +98,6 @@ function messageFieldBorder(hasError, isFocused) {
   if (hasError) return 'border-2 border-ink'
   if (isFocused) return 'border-2 border-accent'
   return 'border border-line/70'
-}
-
-const RULED_PAPER_STYLE = {
-  backgroundImage:
-    'repeating-linear-gradient(var(--color-line) 0px, var(--color-line) 1px, transparent 1px, transparent 28px)',
-  backgroundPositionY: '2.5rem',
 }
 
 // Fields, validation, submit states (idle/submitting/success/error) and a
@@ -253,8 +246,7 @@ function ContactForm() {
           onBlur={handleBlur}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? `${messageId}-error` : undefined}
-          style={RULED_PAPER_STYLE}
-          className={`mt-2 w-full resize-y rounded-sm bg-transparent px-3 py-2.5 text-ink placeholder:text-ink-muted/70 transition-colors focus:outline-none ${messageFieldBorder(
+          className={`mt-2 w-full resize-none rounded-sm bg-transparent px-3 py-2.5 text-ink placeholder:text-ink-muted/70 transition-colors focus:outline-none ${messageFieldBorder(
             Boolean(errors.message),
             focusedField === 'message',
           )}`}

@@ -52,9 +52,7 @@ function AboutContact() {
               paper texture, ripped edges, or anything that would compete
               with the section's own dark, textured background. */}
           <div className="-rotate-[0.3deg] rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
-            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">
-              The last page — leave me a note
-            </p>
+            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Leave me a note</p>
             <div className="mt-4">
               <ContactForm />
             </div>
