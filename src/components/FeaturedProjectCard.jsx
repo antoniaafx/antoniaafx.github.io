@@ -115,7 +115,7 @@ function FeaturedProjectCard({ index = 0, id, title, description, heroImage, rol
             <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">
               {PROCESS_STAGES.map((stage) => (
                 <span key={stage} className="flex items-center gap-1 text-[0.625rem] font-medium uppercase tracking-wide text-ink-muted">
-                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-sage-dark" />
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-ink-muted" />
                   {stage}
                 </span>
               ))}

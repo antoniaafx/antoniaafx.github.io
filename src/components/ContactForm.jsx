@@ -165,7 +165,7 @@ function ContactForm() {
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className="h-5 w-5 shrink-0 text-sage-dark"
+            className="h-5 w-5 shrink-0 text-ink"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"

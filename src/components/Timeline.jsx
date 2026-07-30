@@ -14,7 +14,7 @@ import ImageGallery from './ImageGallery'
 // lets the compact chronological view stay the default read, while the
 // full resume-style detail is still there for anyone who wants it, instead
 // of repeating as a second, separate section further down the page.
-function Timeline({ items = [], markerColor = 'bg-sage-dark' }) {
+function Timeline({ items = [], markerColor = 'bg-ink-muted' }) {
   const shouldReduceMotion = useReducedMotion()
   const [openIndex, setOpenIndex] = useState(null)
 

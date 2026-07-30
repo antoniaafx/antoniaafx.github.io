@@ -82,22 +82,6 @@
      brief's own allowance for that. */
   --color-raspberry: #d12a6b;
 
-  /* sage — UX process and human understanding: research sections, journey/
-     timeline elements, supporting highlights. Used for fills (project
-     tags) paired with --color-sage-dark text. Skill badges deliberately do
-     NOT use sage — skills are an accent/interactive surface, not a process
-     indicator. Unchanged by the indigo/raspberry work above — still clears
-     AA against the new, more-saturated --color-paper-muted (10.98:1). */
-  --color-sage: #6fa99b;
-  /* The one small indicator color — timeline markers, bullet points, any
-     small process/status mark. Deliberately used here instead of the
-     lighter --color-sage: small marks read clearer and more confident at
-     this depth, and it's the text-safe partner for --color-sage fills
-     (4.9:1) with a lot of margin everywhere else (12.4:1 on --color-paper,
-     11.1:1 on --color-paper-muted). No separate pale "soft" tier —
-     --color-sage is already light enough to be the fill itself. */
-  --color-sage-dark: #1b352c;
-
   /* brown — extremely limited: one small paper/workspace-inspired detail
      (a bar in the homepage hero's decorative graphic), nothing else. Never
      text, never a card, never more than that single touch. The case-study
