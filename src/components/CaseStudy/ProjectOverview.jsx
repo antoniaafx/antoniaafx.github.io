@@ -38,7 +38,7 @@ function ProjectOverview({ problem, goals = [], targetUsers, responsibilities = 
             <div key={block.label} className="rounded-panel border border-line p-6">
               <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{block.label}</p>
               {block.type === 'text' ? (
-                <p className="mt-3 font-display text-lg text-ink-soft sm:text-xl">{block.value}</p>
+                <p className="mt-3 text-ink-soft">{block.value}</p>
               ) : (
                 <ul className="mt-3 space-y-2">
                   {block.value.map((item, index) => (
