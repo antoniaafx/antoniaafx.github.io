@@ -99,14 +99,14 @@ function BeatContent({ beat }) {
   return (
     <div className="lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-10">
       <div
-        className={`mx-auto mb-6 w-40 sm:w-48 lg:mb-0 lg:w-full ${
+        className={`mx-auto mb-6 w-40 sm:w-48 lg:mb-0 lg:w-64 xl:w-72 ${
           reversed ? 'lg:order-1 lg:col-span-5 lg:col-start-1' : 'lg:col-span-5 lg:col-start-8'
         }`}
       >
         <Artefact />
       </div>
       <p
-        className={`mx-auto max-w-md text-center text-base leading-relaxed text-ink lg:text-left ${
+        className={`mx-auto max-w-md text-center text-base leading-relaxed text-ink lg:mx-0 lg:text-left ${
           reversed ? 'lg:col-span-6 lg:col-start-7' : 'lg:col-span-6 lg:col-start-1'
         }`}
       >
@@ -173,7 +173,7 @@ function ScrollBeat({ beat, index, total, scrollYProgress }) {
   return (
     <motion.div
       style={{ opacity, y }}
-      className="absolute inset-0 flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-16"
+      className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-16"
     >
       <BeatContent beat={beat} />
     </motion.div>
@@ -194,13 +194,18 @@ function PinnedStory({ scrollYProgress }) {
 // Desktop-and-up only — see StaticStory's comment for why. Checked via a
 // real media query (not a Tailwind class toggle) because which behaviour
 // mounts changes which hooks/interaction actually run, not just how
-// something is styled.
+// something is styled. The lazy useState initializer is a best-effort
+// synchronous guess for the very first paint; the effect re-reads the
+// real value immediately after mount and corrects it if that guess was
+// ever wrong, instead of relying solely on a future 'change' event that
+// only fires if the viewport later crosses the breakpoint.
 function useIsDesktop() {
   const query = '(min-width: 1024px)'
   const [matches, setMatches] = useState(() => typeof window !== 'undefined' && window.matchMedia(query).matches)
 
   useEffect(() => {
     const mql = window.matchMedia(query)
+    setMatches(mql.matches)
     const onChange = () => setMatches(mql.matches)
     mql.addEventListener('change', onChange)
     return () => mql.removeEventListener('change', onChange)

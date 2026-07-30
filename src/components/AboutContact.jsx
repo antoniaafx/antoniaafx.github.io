@@ -31,7 +31,7 @@ function AboutContact() {
       <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
         <div>
           <div>
-            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="primary" size="lg">
+            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="inverse" size="lg">
               Download Resume
             </Button>
           </div>
