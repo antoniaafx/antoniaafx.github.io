@@ -170,9 +170,25 @@ function ScrollBeat({ beat, index, total, scrollYProgress }) {
     isFirst ? [0, 0, 0, -14] : isLast ? [14, 0, 0, 0] : [14, 0, 0, -14]
   )
 
+  // The fade above is a soft, continuous signal — during its own transition
+  // a beat spends real time at partial opacity, which is exactly the
+  // window in which it can still be read. Nothing was previously stopping
+  // two beats from both sitting at a legible partial opacity at once (or
+  // a paused/screenshotted scroll from catching that moment). `visibility`
+  // and `zIndex` add a hard, binary gate on top of the same fade: outside
+  // a beat's own window it is not just faint, it is fully removed from
+  // paint. The gate's edges line up exactly with where opacity has already
+  // reached 0, so it never clips the fade itself — it only guarantees that
+  // whatever the fade is doing, at most one beat is ever paintable.
+  const windowStart = isFirst ? Number.NEGATIVE_INFINITY : start
+  const windowEnd = isLast ? Number.POSITIVE_INFINITY : end
+  const isActive = (v) => v >= windowStart && v <= windowEnd
+  const visibility = useTransform(scrollYProgress, (v) => (isActive(v) ? 'visible' : 'hidden'))
+  const zIndex = useTransform(scrollYProgress, (v) => (isActive(v) ? 1 : 0))
+
   return (
     <motion.div
-      style={{ opacity, y }}
+      style={{ opacity, y, visibility, zIndex }}
       className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-16"
     >
       <BeatContent beat={beat} />
