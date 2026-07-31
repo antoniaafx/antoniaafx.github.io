@@ -4,26 +4,28 @@ import Section from './Section'
 import SectionTitle from './SectionTitle'
 import { fadeInUp } from '../lib/motion'
 
-// Content is unchanged from the previous pass — same four sentences, same
-// two artefacts, same pairing and order. Only how this is presented
-// changes in this pass, not what it says.
+// Copy refined to remove repetition across beats — each one now answers a
+// distinct question (how it started / what shaped the approach / how that
+// shows up today / what's exciting looking ahead) instead of three
+// variations on "I like solving problems." Same two artefacts, same
+// pairing and order, same everything else — only the text changed.
 const BEATS = [
   {
-    text: 'It started unexpectedly, somewhere in my degree — I kept getting pulled toward the problem-solving part of every project, more than the visuals.',
+    text: 'It started unexpectedly during my degree — I found myself enjoying the problem-solving side of every project more than the visuals.',
     artefact: null,
   },
   {
-    text: 'That noticing became a direction: making things clean and accessible without ever feeling generic, because useful and good-looking were never supposed to compete.',
+    text: 'That curiosity shaped the way I approach design — creating experiences that are clear, accessible, and purposeful, because useful and beautiful should never have to compete.',
     artefact: 'notebook',
     side: 'right',
   },
   {
-    text: 'Right now, that means an internship at Air Balloon Digital Studio, and building this portfolio end to end.',
+    text: 'Today, that means turning research into interfaces that feel intuitive — asking the right questions, testing ideas, and refining them until they actually work for the people using them.',
     artefact: 'canvas',
     side: 'left',
   },
   {
-    text: "And it means still learning — mostly, to share rough work earlier instead of waiting until it feels ready.",
+    text: "Every project teaches me something new, and that's what keeps me excited about this work — there's always another problem worth understanding, and another experience worth making a little better.",
     artefact: null,
   },
 ]
