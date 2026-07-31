@@ -5,7 +5,7 @@ import ImageGallery from '../ImageGallery'
 function ResultsSection({ summary, improvements = [], images = [] }) {
   return (
     <Section background="muted">
-      <SectionTitle title="Final result" subtitle={summary} />
+      <SectionTitle title="Project outcome" subtitle={summary} />
 
       {improvements.length > 0 && (
         <div className="mt-12 max-w-3xl">

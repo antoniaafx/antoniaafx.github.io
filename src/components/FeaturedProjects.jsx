@@ -5,7 +5,14 @@ import FeaturedProjectCard from './FeaturedProjectCard'
 import { staggerContainer, revealOnce } from '../lib/motion'
 import projects from '../data/projects'
 
-const featuredProjects = projects.filter((project) => project.featured)
+// `featured` alone used to be enough to appear here, which meant this —
+// the homepage's single strongest showcase — could include projects with
+// no actual case study yet (just a "coming soon" placeholder). Requiring
+// `overview` too (the marker of a published case study — see this data
+// file's own header comment) keeps Home's Featured Work limited to
+// finished work, without hiding unfinished projects from the /projects
+// grid, which still lists every project regardless of this flag.
+const featuredProjects = projects.filter((project) => project.featured && project.overview)
 
 function FeaturedProjects() {
   const shouldReduceMotion = useReducedMotion()

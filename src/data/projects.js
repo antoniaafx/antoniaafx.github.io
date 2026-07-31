@@ -19,7 +19,7 @@
 // finding, quote, or metric — where real content is missing, it says so
 // instead of inventing a plausible-sounding result.
 
-import kegAndBarrelHero from '../assets/images/projects/keg-and-barrel/hero.webp.png'
+import kegAndBarrelHero from '../assets/images/projects/keg-and-barrel/hero.webp'
 
 const projects = [
   {
