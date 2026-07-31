@@ -18,8 +18,11 @@ const desktopLinkClasses = ({ isActive }) =>
 // border-width itself never changes and nothing shifts horizontally when
 // the active page changes. Hover gets a quieter neutral edge in the same
 // gutter, distinct from the solid accent used for "you are here".
+// py-3 (up from py-2.5) brings the tap target from 44px to 48px — text
+// size/line-height are untouched, only the padding grew, so this is a
+// larger hit area with no visual size change to the label itself.
 const mobileLinkClasses = ({ isActive }) =>
-  `block border-l-2 py-2.5 pl-4 text-base font-medium transition-colors ${
+  `block border-l-2 py-3 pl-5 text-base font-medium transition-colors ${
     isActive ? 'border-accent text-ink' : 'border-transparent text-ink-muted hover:border-line hover:text-ink'
   }`
 
@@ -65,7 +68,7 @@ function Navbar() {
         <Container>
           <nav className="flex h-16 items-center justify-between" aria-label="Primary">
             <NavLink to="/" className="font-display text-lg font-semibold tracking-tight text-ink">
-              Antonia
+              Antonia Afx
             </NavLink>
 
             {/* Thin hairline dividers between items (not the first) — organised
@@ -152,7 +155,7 @@ function Navbar() {
             className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-paper sm:hidden"
           >
             <Container>
-              <ul className="flex flex-col py-2">
+              <ul className="flex flex-col pb-3 pt-4">
                 {NAV_LINKS.map((link, index) => (
                   <li key={link.to} className={index > 0 ? 'border-t border-line' : ''}>
                     <NavLink to={link.to} className={mobileLinkClasses} end={link.to === '/'} onClick={closeMenu}>
