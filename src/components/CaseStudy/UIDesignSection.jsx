@@ -13,7 +13,7 @@ function UIDesignSection({ intro, images = [] }) {
     <Section>
       <SectionTitle title="UI design" subtitle={intro} />
       {images.length > 0 && (
-        <div className="mt-10">
+        <div className="mt-12">
           <ImageGallery images={images} />
         </div>
       )}

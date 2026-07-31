@@ -13,7 +13,7 @@ function ReflectionSection({ challenges, learned, improve }) {
   return (
     <Section>
       <SectionTitle title="Reflection" />
-      <div className="mt-10 grid gap-6 sm:grid-cols-3">
+      <div className="mt-12 grid gap-6 lg:grid-cols-3">
         {blocks.map((block) => (
           <div key={block.label} className="rounded-panel border border-line p-6">
             <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{block.label}</p>

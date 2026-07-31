@@ -6,7 +6,7 @@ function ProcessSection({ intro, steps = [] }) {
   return (
     <Section background="muted">
       <SectionTitle title="Design process" subtitle={intro} />
-      <div className="mt-10">
+      <div className="mt-12">
         <Timeline items={steps} />
       </div>
     </Section>

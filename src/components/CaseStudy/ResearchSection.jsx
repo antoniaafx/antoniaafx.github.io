@@ -25,7 +25,9 @@ import ImagePlaceholder from '../ImagePlaceholder'
 // (that's what introduced a second scale that didn't match the rest of
 // the portfolio). Hierarchy between "Comparative research," "Key insight,"
 // and "Competitor analysis" now comes entirely from the spacing rhythm
-// below and from Key Insight's ink-vs-ink-soft body colour, not from size.
+// below — every label is this same font-medium text-ink treatment, and
+// every paragraph beneath a label is text-ink-soft, the same body colour
+// Project Overview, Design Process, Final Result, and Reflection all use.
 function ResearchBlock({ block }) {
   if (block.type === 'text') {
     return (
@@ -36,21 +38,19 @@ function ResearchBlock({ block }) {
     )
   }
 
-  // The hero of the section, but at the same body text size as everything
-  // else — no separate "display" scale. The distinction is colour weight,
-  // the same existing convention Project Overview uses (The Problem in
-  // text-ink against Target users/Goals in text-ink-soft): these findings
-  // are the one place in Research set in full ink rather than ink-soft,
-  // plus the space already reserved around them by blockSpacing. Nothing
-  // here introduces a font size the rest of the portfolio doesn't already
-  // use for body copy.
+  // The hero of the section, but at the same body text size AND the same
+  // body text colour (text-ink-soft) as every other paragraph in Research
+  // and every equivalent paragraph in Project Overview, Design Process,
+  // Final Result, and Reflection. Hierarchy comes only from the label
+  // above it and the space blockSpacing reserves around it — not from a
+  // different font size and not from a different text colour.
   if (block.type === 'insights') {
     return (
       <div>
         {block.heading && <p className="font-medium text-ink">{block.heading}</p>}
         <div className={`space-y-6 ${block.heading ? 'mt-4' : ''}`}>
           {(block.items ?? []).map((item, index) => (
-            <p key={index} className="text-ink">
+            <p key={index} className="text-ink-soft">
               {item}
             </p>
           ))}
@@ -82,7 +82,7 @@ function ResearchBlock({ block }) {
     return (
       <div>
         {block.heading && <p className="font-medium text-ink">{block.heading}</p>}
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid gap-6 sm:grid-cols-2">
           {(block.items ?? []).map((item, index) => (
             <div
               key={item.name ?? index}
@@ -97,7 +97,7 @@ function ResearchBlock({ block }) {
               </div>
               <div className="border-t border-line p-4">
                 {item.name && <p className="font-medium text-ink">{item.name}</p>}
-                {item.note && <p className="mt-1 text-sm text-ink-soft">{item.note}</p>}
+                {item.note && <p className="mt-1 text-ink-soft">{item.note}</p>}
               </div>
             </div>
           ))}
