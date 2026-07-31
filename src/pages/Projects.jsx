@@ -26,6 +26,7 @@ function Projects() {
       />
       <motion.div {...introMotion}>
         <SectionTitle
+          as="h1"
           eyebrow="Design Archive"
           title="Projects"
           subtitle="A working record of how I approach a problem — research, structure, and interface design, from first questions to shipped product. Not a gallery of finished screens, but the explorations behind them."

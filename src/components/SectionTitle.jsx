@@ -15,7 +15,16 @@
 // everywhere but invisible on a dark section, so it needs an explicit
 // override here rather than relying on inheriting the section's own
 // `text-paper`. Defaults to false — every existing caller is unaffected.
-function SectionTitle({ eyebrow, title, subtitle, onDark = false }) {
+//
+// `as` — every page has its own real h1 elsewhere (Home's hero tagline,
+// About's "Hi, I'm Antonia.", the case study's title) except Projects,
+// which used to render its page title through this component's default h2
+// — leaving that page with no h1 at all. Defaults to 'h2' (every other
+// caller is unaffected); Projects passes `as="h1"` since this is its only
+// page-level heading. Visual size is unchanged either way (text-display-sm
+// is set directly, not inherited from the tag), so this is a semantic fix
+// only, not a redesign.
+function SectionTitle({ eyebrow, title, subtitle, onDark = false, as: Heading = 'h2' }) {
   return (
     <div className="max-w-2xl">
       {eyebrow && (
@@ -23,7 +32,7 @@ function SectionTitle({ eyebrow, title, subtitle, onDark = false }) {
           {eyebrow}
         </p>
       )}
-      <h2 className={`${eyebrow ? 'mt-3 ' : ''}text-display-sm ${onDark ? 'text-paper' : ''}`}>{title}</h2>
+      <Heading className={`${eyebrow ? 'mt-3 ' : ''}text-display-sm ${onDark ? 'text-paper' : ''}`}>{title}</Heading>
       {subtitle && <p className={`mt-3 text-lg ${onDark ? 'text-paper/80' : 'text-ink-soft'}`}>{subtitle}</p>}
     </div>
   )

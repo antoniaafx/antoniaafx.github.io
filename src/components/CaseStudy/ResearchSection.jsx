@@ -25,14 +25,24 @@ import ImagePlaceholder from '../ImagePlaceholder'
 // (that's what introduced a second scale that didn't match the rest of
 // the portfolio). Hierarchy between "Comparative research," "Key insight,"
 // and "Competitor analysis" now comes entirely from the spacing rhythm
-// below — every label is this same font-medium text-ink treatment, and
-// every paragraph beneath a label is text-ink-soft, the same body colour
-// Project Overview, Design Process, Final Result, and Reflection all use.
+// below — every label carries the same font-medium text-ink treatment,
+// and every paragraph beneath a label is text-ink-soft, the same body
+// colour Project Overview, Design Process, Final Result, and Reflection
+// all use.
+//
+// These three labels are real <h3> elements, not styled <p> tags — they're
+// genuine subsections of Research (same outline level 'gallery'/'image'
+// already use below), so a screen-reader user navigating by heading can
+// still jump between them. font-sans/font-medium/tracking-normal override
+// the sitewide h1–h4 base style (serif/semibold/tight-tracking) as utility
+// classes, which is what keeps them looking exactly like body text despite
+// being a heading tag — the visual requirement and the semantic one aren't
+// in conflict, they just needed separate handling.
 function ResearchBlock({ block }) {
   if (block.type === 'text') {
     return (
       <div>
-        {block.heading && <p className="font-medium text-ink">{block.heading}</p>}
+        {block.heading && <h3 className="font-sans font-medium tracking-normal text-ink">{block.heading}</h3>}
         {block.body && <p className={`text-ink-soft ${block.heading ? 'mt-3' : ''}`}>{block.body}</p>}
       </div>
     )
@@ -47,7 +57,7 @@ function ResearchBlock({ block }) {
   if (block.type === 'insights') {
     return (
       <div>
-        {block.heading && <p className="font-medium text-ink">{block.heading}</p>}
+        {block.heading && <h3 className="font-sans font-medium tracking-normal text-ink">{block.heading}</h3>}
         <div className={`space-y-6 ${block.heading ? 'mt-4' : ''}`}>
           {(block.items ?? []).map((item, index) => (
             <p key={index} className="text-ink-soft">
@@ -81,7 +91,7 @@ function ResearchBlock({ block }) {
   if (block.type === 'comparison') {
     return (
       <div>
-        {block.heading && <p className="font-medium text-ink">{block.heading}</p>}
+        {block.heading && <h3 className="font-sans font-medium tracking-normal text-ink">{block.heading}</h3>}
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
           {(block.items ?? []).map((item, index) => (
             <div

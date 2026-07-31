@@ -4,8 +4,17 @@ import SectionTitle from './SectionTitle'
 import SkillBadge from './SkillBadge'
 import EnvironmentalArtwork from './EnvironmentalArtwork'
 import { staggerContainer, fadeInUp, revealOnce } from '../lib/motion'
+import { research, design, tools } from '../data/skills'
 
-const SKILLS = ['Figma', 'UX Research', 'Wireframing', 'Prototyping', 'Responsive Design', 'User Testing']
+// A condensed preview of About's own Skills & tools section — two items
+// from each real category (research/design/tools), not a separately
+// maintained list. This used to be its own hardcoded array that had
+// drifted from About's: two entries ("Responsive Design", "User Testing")
+// didn't exist in the canonical data at all, so a recruiter clicking
+// between Home and About would see two different skill sets for the same
+// person. Deriving from the same source data/skills.js that About already
+// uses makes that drift structurally impossible going forward.
+const SKILLS = [...research.slice(0, 2), ...design.slice(0, 2), ...tools.slice(0, 2)]
 
 function SkillsOverview() {
   const shouldReduceMotion = useReducedMotion()
