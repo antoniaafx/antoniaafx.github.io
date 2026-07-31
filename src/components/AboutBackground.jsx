@@ -88,26 +88,43 @@ function PaperTape() {
   )
 }
 
+// One fixed "stage" every beat sits inside, centred in the paper's own
+// padded content area — not the 12-column, near-full-width grid the
+// illustrated beats used to stretch across while text-only beats sat in a
+// much narrower, differently-centred column. Same max-w-3xl measure
+// already used for the site's other "quiet reference" columns (Project
+// Overview, Research), so every beat now shares one left/right edge and
+// one horizontal centre, regardless of whether it's a single reflection
+// or an illustration+text pair.
+const STAGE_CLASS = 'mx-auto w-full max-w-3xl'
+
 function BeatContent({ beat }) {
   const Artefact = beat.artefact ? ARTEFACTS[beat.artefact] : null
   const reversed = beat.side === 'left'
 
   if (!Artefact) {
-    return <p className="mx-auto max-w-md text-center text-base leading-relaxed text-ink">{beat.text}</p>
+    return (
+      <div className={STAGE_CLASS}>
+        <p className="mx-auto max-w-md text-center text-base leading-relaxed text-ink">{beat.text}</p>
+      </div>
+    )
   }
 
+  // A true two-column grid (not a 12-column span) so the gap between the
+  // two columns — the "midpoint" between illustration and text — always
+  // lands at the stage's own centre, which is the paper's centre. Only
+  // `order` changes with `side`; both columns keep the same width, gap,
+  // and vertical centring either way, so left-illustration and
+  // right-illustration beats read as the same layout mirrored, not two
+  // different compositions.
   return (
-    <div className="lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-10">
-      <div
-        className={`mx-auto mb-6 w-40 sm:w-48 lg:mb-0 lg:w-64 xl:w-72 ${
-          reversed ? 'lg:order-1 lg:col-span-5 lg:col-start-1' : 'lg:col-span-5 lg:col-start-8'
-        }`}
-      >
+    <div className={`${STAGE_CLASS} grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10`}>
+      <div className={`mx-auto w-40 sm:w-48 lg:w-64 xl:w-72 ${reversed ? 'lg:order-1' : 'lg:order-2'}`}>
         <Artefact />
       </div>
       <p
         className={`mx-auto max-w-md text-center text-base leading-relaxed text-ink lg:mx-0 lg:text-left ${
-          reversed ? 'lg:col-span-6 lg:col-start-7' : 'lg:col-span-6 lg:col-start-1'
+          reversed ? 'lg:order-2' : 'lg:order-1'
         }`}
       >
         {beat.text}
