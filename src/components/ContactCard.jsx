@@ -1,4 +1,4 @@
-// A single contact option — email, LinkedIn, GitHub, etc.
+// A single contact option — email, LinkedIn, etc.
 //
 // `onDark` — new, for use inside a Section on the dark `ink` background
 // (About Contact). border-line/text-ink-muted/text-ink were tuned for a

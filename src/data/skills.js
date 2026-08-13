@@ -1,4 +1,5 @@
-// Real skill lists, used by the About page. Grouped by what each skill is
+// Real skill lists, used by AboutSkills (rendered on both Home and About).
+// Grouped by what each skill is
 // actually for (research vs. design vs. tooling) rather than the old ux/ui/
 // tools/soft-skills split, which read as four similar-looking grids. The
 // former "soft skills" list (communication, collaboration, etc.) isn't
@@ -9,4 +10,4 @@ export const research = ['User Research', 'Competitive Analysis', 'User Flows']
 
 export const design = ['Wireframing', 'Prototyping', 'Accessibility']
 
-export const tools = ['Figma', 'Canva', 'GitHub', 'VS Code']
+export const tools = ['Figma', 'Canva']

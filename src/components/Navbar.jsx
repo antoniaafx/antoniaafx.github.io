@@ -4,10 +4,13 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
 import { EASE } from '../lib/motion'
 
+// About is intentionally left out of this list — the page and its route
+// still exist (src/pages/About.jsx, still mounted in App.jsx), just no
+// longer surfaced as a primary destination. See Home.jsx: its useful
+// content (Skills & tools, Contact) now lives there instead.
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
-  { to: '/about', label: 'About' },
 ]
 
 const desktopLinkClasses = ({ isActive }) =>

@@ -4,6 +4,12 @@ import Section from './Section'
 import SectionTitle from './SectionTitle'
 import { fadeInUp } from '../lib/motion'
 
+// "My Story" — intentionally not rendered anywhere right now (see
+// About.jsx, which imports it only in a comment). Kept fully intact —
+// pinned/scroll interaction, paper illustrations, copy, responsive
+// fallback — as deliberately preserved inactive functionality, not dead
+// code, in case it's wanted again later. Do not remove during cleanup.
+//
 // Copy refined to remove repetition across beats — each one now answers a
 // distinct question (how it started / what shaped the approach / how that
 // shows up today / what's exciting looking ahead) instead of three

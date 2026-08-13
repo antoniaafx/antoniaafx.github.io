@@ -1,14 +1,11 @@
 import Section from './Section'
 import Button from './Button'
 
-// `eyebrow` is optional — only About's usage passes one, to close out its
-// journey structure ("Where I'm Going"). Home and CaseStudy render this
-// without it, unchanged.
-//
-// Links to /about#resume, not /contact — the standalone Contact page was
-// removed and merged into About's own closing section (AboutContact),
-// which is now the site's single "get in touch" destination everywhere
-// this button appears.
+// Now only used at the end of a case study (Home has its own full
+// AboutContact section instead of this shorter CTA — see Home.jsx).
+// Links to /#resume, not /about#resume: About is hidden from primary
+// navigation, so the real contact destination is now the AboutContact
+// section reused directly on Home, not the About page.
 function ContactCta({ eyebrow }) {
   return (
     <Section background="ink">
@@ -17,12 +14,12 @@ function ContactCta({ eyebrow }) {
         <h2 className={`text-display-sm text-paper sm:text-display-md ${eyebrow ? 'mt-3' : ''}`}>
           Let's build something great together.
         </h2>
-        <p className="mt-4 text-lg text-paper/80">
-          I'm currently looking for UX/UI internship and junior design opportunities. If my work looks like a fit,
-          I'd love to hear from you.
-        </p>
+        {/* No subtitle here — that copy (internship/junior-role framing)
+            lives once, on AboutContact, the page this button actually
+            lands on. Repeating it here made Home's CTA a duplicate of
+            About's closing section instead of a short prompt toward it. */}
         <div className="mt-8 flex justify-center">
-          <Button to="/about#resume" variant="inverse" size="lg">
+          <Button to="/#resume" variant="inverse" size="lg">
             Contact Me
           </Button>
         </div>

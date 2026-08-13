@@ -4,15 +4,14 @@ import Button from './Button'
 import ContactOptions from './ContactOptions'
 import ContactForm from './ContactForm'
 
-// The page's closing section — merged in from the removed standalone
-// Contact page (its hero heading and contact options, reused as-is). Its
-// form was dropped at the time since it had no real backend — ContactForm
-// below is that functionality finally added back in, appended after the
-// existing resume button and contact list rather than changing anything
-// about how those already present. `id="resume"` is the redirect target
-// for the old /resume URL (see App.jsx and ScrollToTop.jsx) — it's also,
-// now, the resume-download + contact destination that every "Contact Me"
-// button on the site points to.
+// Originally About's own closing section — merged in from the removed
+// standalone Contact page (its hero heading and contact options, reused
+// as-is), later joined by ContactForm. Now also rendered directly by
+// Home.jsx (the site's primary contact destination, since About is hidden
+// from primary navigation) — reused as the same component rather than
+// duplicated, so both places share one implementation. `id="resume"` is
+// the redirect target for the old /resume URL (see App.jsx and
+// ScrollToTop.jsx) and for every "Contact Me" button on the site.
 function AboutContact() {
   return (
     <Section id="resume" background="ink">

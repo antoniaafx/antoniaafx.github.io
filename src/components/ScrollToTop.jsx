@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 // page, not an in-page jump, so it should land at the top immediately like
 // a normal page load, not glide there.
 //
-// A location with a hash (currently only /about#resume, the redirect target
+// A location with a hash (currently only /#resume, the redirect target
 // for the removed /resume page) scrolls that element into view instead of
 // the top, also instant for the same reason. React has already committed
 // the destination page's DOM by the time this effect runs (effects fire

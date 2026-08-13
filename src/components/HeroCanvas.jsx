@@ -87,12 +87,13 @@ function HeroCanvas() {
                 I design thoughtful digital experiences through research, strategy, and human-centred design.
               </h1>
 
+              {/* Was a two-button row (View Projects + About Me) — About Me
+                  dropped since it only ever pointed to /about, now hidden
+                  from primary navigation; the introduction it led to lives
+                  on this page's own About Me section instead. */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Button to="/projects" variant="primary" size="md">
                   View Projects
-                </Button>
-                <Button to="/about" variant="secondary" size="md">
-                  About Me
                 </Button>
               </div>
             </div>
