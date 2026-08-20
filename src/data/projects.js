@@ -148,6 +148,29 @@ const projects = [
     },
   },
 
+  // Card/grid fields only, deliberately — the full case study lives in
+  // src/data/virtualCoach.js and src/components/CaseStudy/virtual-coach/,
+  // not in this object's overview/research/process/uiDesign/results/
+  // reflection shape (see CaseStudy.jsx's virtual-coach branch for why).
+  // No heroImage yet: no real screen assets exist in the repo for this
+  // project — ProjectCard already shows its own "Preview coming soon"
+  // placeholder for a falsy heroImage, same as every other unfinished
+  // image slot on the site. Placed second (right after Keg & Barrel, the
+  // other project with a full case study) rather than appended at the
+  // end — a deliberate storytelling choice, not just insertion order.
+  {
+    id: 'virtual-coach',
+    title: 'Virtual Coach',
+    description:
+      'A gamified nutrition-learning app exploring educational UX, gamification and user research — originally a four-person university project, later redesigned independently.',
+    problemStatement: 'Turning nutrition education into an interactive learning journey.',
+    category: 'UX/UI Design',
+    role: 'Project Lead & Lead UX/UI Designer',
+    tools: ['Figma', 'FigJam', 'Genially', 'Google Forms'],
+    heroImage: '',
+    featured: false,
+  },
+
   // Grid/homepage entry only — no case study written yet. Add overview,
   // research, process, uiDesign, results, and reflection (following the
   // keg-and-barrel shape above) to publish its full case study page.

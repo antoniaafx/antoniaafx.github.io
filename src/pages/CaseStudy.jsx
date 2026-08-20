@@ -10,11 +10,26 @@ import ProcessSection from '../components/CaseStudy/ProcessSection'
 import UIDesignSection from '../components/CaseStudy/UIDesignSection'
 import ResultsSection from '../components/CaseStudy/ResultsSection'
 import ReflectionSection from '../components/CaseStudy/ReflectionSection'
+import VirtualCoachCaseStudy from '../components/CaseStudy/virtual-coach/VirtualCoachCaseStudy'
 import projects from '../data/projects'
 
 function CaseStudy() {
   const { slug } = useParams()
   const project = projects.find((item) => item.id === slug)
+
+  // Virtual Coach's content doesn't fit the generic overview/research/
+  // process/uiDesign/results/reflection shape every other project uses
+  // below (see VirtualCoachCaseStudy.jsx for why), so it gets its own
+  // page component instead — same /projects/:slug route, same
+  // projects.js-driven lookup, just a different render for this one id.
+  if (project?.id === 'virtual-coach') {
+    return (
+      <>
+        <PageMeta title={project.title} description={project.description} path={`/projects/${project.id}`} />
+        <VirtualCoachCaseStudy />
+      </>
+    )
+  }
 
   // Projects can exist in data/projects.js (and link from /projects or the
   // homepage) before their full case study is written — show a clean
