@@ -1,6 +1,5 @@
 import Section from './Section'
 import SectionTitle from './SectionTitle'
-import Button from './Button'
 import ContactOptions from './ContactOptions'
 import ContactForm from './ContactForm'
 
@@ -11,49 +10,67 @@ import ContactForm from './ContactForm'
 // from primary navigation) — reused as the same component rather than
 // duplicated, so both places share one implementation. `id="resume"` is
 // the redirect target for the old /resume URL (see App.jsx and
-// ScrollToTop.jsx) and for every "Contact Me" button on the site.
+// ScrollToTop.jsx) and for the "Contact Me" CTA still elsewhere on the
+// site (ContactCta.jsx) — Resume itself has since moved to the hero as a
+// recruiter-facing download, not a step in this section's own hierarchy.
 function AboutContact() {
   return (
-    <Section id="resume" background="ink">
-      <SectionTitle
-        eyebrow="Where I'm Going"
-        title="Let's build something great together."
-        subtitle="I'm currently looking for UX/UI internship and junior design opportunities. If my work looks like a fit, I'd love to hear from you."
-        onDark
-      />
-      {/* Two columns at lg: — the same pattern AboutHero.jsx already uses
-          for its own text+visual split, just `items-start` instead of
-          `items-center` since these two columns have very different
-          content heights (a short link list vs. a full form). Source
-          order already has links before the form, so mobile keeps the
-          same stacking with no extra work. */}
-      <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
+    // scroll-mt-16 matches the sticky navbar's height (h-16 in Navbar.jsx)
+    // so scrolling/jumping to #resume lands with this section's top clear
+    // of the fixed header instead of tucked under it.
+    <Section id="resume" background="ink" className="scroll-mt-16">
+      {/* Heading/description/links share the SAME grid row as the note
+          (`items-start`), so both columns get one shared, natural top edge
+          with no manual offsets. ~40/60 left/note via `fr` units (not raw
+          %, which doesn't account for `gap` the way `fr` does) — the right
+          column is wider than the left, but that width is spent as
+          breathing room around the note (max-width, centred below), not
+          on stretching the note itself. Source order — heading/
+          description, then links, then the note — is also exactly the
+          stacking order needed below `lg:`, so mobile falls out for
+          free. */}
+      <div className="grid gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
         <div>
-          <div>
-            <Button href="/Antonia_Afxentiou_CV.pdf" download variant="inverse" size="lg">
-              Download Resume
-            </Button>
-          </div>
-          <div className="mt-10">
+          {/* No eyebrow — SectionTitle only reserves space for one (the
+              heading's own `mt-3`) when a truthy `eyebrow` is passed, so
+              omitting it here leaves no gap. */}
+          <SectionTitle
+            title="Let's build something great together."
+            subtitle="I'm currently looking for UX/UI internship and junior design opportunities. If my work looks like a fit, I'd love to hear from you."
+            onDark
+          />
+          {/* Direct communication options close out the column right
+              under the intro — mt-8 is the same "into a contact row"
+              gap the previous layout used here. */}
+          <div className="mt-8">
             <ContactOptions onDark />
           </div>
         </div>
 
-        {/* The pinned-page treatment (tape + paper panel) is unchanged —
-            just moved beside the links instead of underneath them. */}
-        <div className="relative">
-          <span
-            aria-hidden="true"
-            className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-2 bg-line/80 shadow-soft"
-          />
-          {/* -rotate-[0.3deg]: a barely-there natural warp, not a
-              scrapbook tilt — the requested "slight irregularity" without
-              paper texture, ripped edges, or anything that would compete
-              with the section's own dark, textured background. */}
-          <div className="-rotate-[0.3deg] rounded-panel border border-line bg-paper p-6 shadow-soft sm:p-8">
-            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Leave me a note</p>
-            <div className="mt-4">
-              <ContactForm />
+        {/* Below `lg:` there's no column to breathe against — heading,
+            links and note are one stacked column — so the note keeps its
+            previous, wider max-w-xl there (mobile is narrower than that
+            anyway, so it still fills the available width per-breakpoint).
+            Only at `lg:`, once the two-column split is live, does it drop
+            to max-w-md and centre in its (wider) column — the extra
+            column width becomes negative space around the note instead of
+            stretching it edge-to-edge. */}
+        <div className="w-full max-w-xl lg:max-w-md lg:mx-auto">
+          <div className="relative">
+            <span
+              aria-hidden="true"
+              className="absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-2 bg-line/80 shadow-soft"
+            />
+            {/* -rotate-[0.3deg]: a barely-there natural warp, not a
+                scrapbook tilt — the requested "slight irregularity"
+                without paper texture, ripped edges, or anything that would
+                compete with the section's own dark, textured
+                background. */}
+            <div className="-rotate-[0.3deg] rounded-panel border border-line bg-paper p-5 shadow-soft sm:p-6">
+              <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Leave me a note</p>
+              <div className="mt-3">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </div>

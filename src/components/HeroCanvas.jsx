@@ -90,10 +90,20 @@ function HeroCanvas() {
               {/* Was a two-button row (View Projects + About Me) — About Me
                   dropped since it only ever pointed to /about, now hidden
                   from primary navigation; the introduction it led to lives
-                  on this page's own About Me section instead. */}
+                  on this page's own About Me section instead. The second
+                  slot is now Download Resume rather than Contact Me — a
+                  recruiter-facing primary action, and the page already has
+                  a full contact section further down, so repeating that
+                  action here was redundant. `secondary` variant keeps View
+                  Projects the strongest CTA; same file/download behaviour
+                  as the other Download Resume buttons on the site (see
+                  AboutHero.jsx). */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Button to="/projects" variant="primary" size="md">
                   View Projects
+                </Button>
+                <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="md">
+                  Download Resume
                 </Button>
               </div>
             </div>

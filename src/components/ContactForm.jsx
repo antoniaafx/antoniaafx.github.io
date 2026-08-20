@@ -180,8 +180,11 @@ function ContactForm() {
     )
   }
 
+  // No max-width on the form itself — the note's width now comes from the
+  // panel wrapper in AboutContact.jsx, so the form just fills whatever
+  // that allows instead of capping its own width a second time.
   return (
-    <form onSubmit={handleSubmit} noValidate className="max-w-xl space-y-5">
+    <form onSubmit={handleSubmit} noValidate className="w-full space-y-4">
       <input
         type="text"
         name="_gotcha"
@@ -239,7 +242,7 @@ function ContactForm() {
         <textarea
           id={messageId}
           name="message"
-          rows={5}
+          rows={4}
           value={values.message}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -267,9 +270,15 @@ function ContactForm() {
         </p>
       )}
 
-      <Button type="submit" variant="primary" size="md" disabled={status === 'submitting'}>
-        {status === 'submitting' ? 'Sending…' : 'Send it my way'}
-      </Button>
+      {/* justify-end pins the button to the form's own right edge (not
+          absolutely positioned, so it stays in normal flow and keeps
+          responsive reflow reliable) — reads as closing out the note in
+          the bottom corner rather than trailing off at the left margin. */}
+      <div className="flex justify-end pt-1">
+        <Button type="submit" variant="primary" size="md" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Sending…' : 'Send it my way'}
+        </Button>
+      </div>
     </form>
   )
 }

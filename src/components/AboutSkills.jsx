@@ -25,9 +25,9 @@ function SkillGroup({ label, items }) {
         variants={shouldReduceMotion ? undefined : staggerContainer(0.06)}
         className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3"
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <motion.li key={item} variants={fadeInUp}>
-            <SkillBadge index={index} label={item} />
+            <SkillBadge label={item} />
           </motion.li>
         ))}
       </motion.ul>
