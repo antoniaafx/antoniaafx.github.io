@@ -69,7 +69,7 @@ function HeroCanvas() {
             headline, CTAs) rather than a separate row above it — one
             editorial "photo + copy column" unit instead of two stacked
             sections. The name reuses the nav's own logotype treatment
-            (font-display, semibold, tracking-tight — see Navbar.jsx) at a
+            (font-display, medium weight, tracking-tight — see Navbar.jsx) at a
             larger size, so the hero reads as the expanded version of the
             same personal mark rather than a new typographic voice. */}
         <div className={`relative z-10 flex flex-col items-start [grid-area:1/1] ${CONTENT_PADDING}`}>
@@ -77,12 +77,17 @@ function HeroCanvas() {
             <HeroPortrait />
 
             <div className="flex flex-col items-start pt-1">
-              <p className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">Antonia Afx</p>
+              <p className="font-display text-xl font-medium tracking-tight text-ink sm:text-2xl">Antonia Afx</p>
               <p className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-muted sm:text-xs">
                 UX/UI Designer
               </p>
               <span aria-hidden="true" className="mt-2.5 h-px w-8 bg-line" />
 
+              {/* font-semibold, not the h1 default of font-bold — this is a
+                  small, in-card mockup headline (text-lg growing to
+                  text-display-sm at most), not a true page hero; 700 read
+                  too heavy at that compact size, so it opts down to match
+                  H2's weight instead. See the h1 rule in index.css. */}
               <h1 className="mt-6 max-w-md font-display text-lg font-semibold leading-snug text-ink sm:text-xl md:text-2xl lg:text-display-sm">
                 I design thoughtful digital experiences through research, strategy, and human-centred design.
               </h1>
@@ -90,16 +95,20 @@ function HeroCanvas() {
               {/* Was a two-button row (View Projects + About Me) — About Me
                   dropped since it only ever pointed to /about, now hidden
                   from primary navigation; the introduction it led to lives
-                  on this page's own About Me section instead. The second
+                  on this page's own About section instead. The second
                   slot is now Download Resume rather than Contact Me — a
                   recruiter-facing primary action, and the page already has
                   a full contact section further down, so repeating that
                   action here was redundant. `secondary` variant keeps View
                   Projects the strongest CTA; same file/download behaviour
                   as the other Download Resume buttons on the site (see
-                  AboutHero.jsx). */}
+                  AboutHero.jsx). View Projects now targets `/#work` (the
+                  homepage's own Work section) instead of the legacy
+                  /projects route, since the one-page homepage is the
+                  primary path now — same content either way (ProjectsGrid
+                  powers both). */}
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Button to="/projects" variant="primary" size="md">
+                <Button to="/#work" variant="primary" size="md">
                   View Projects
                 </Button>
                 <Button href="/Antonia_Afxentiou_CV.pdf" download variant="secondary" size="md">

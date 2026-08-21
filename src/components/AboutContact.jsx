@@ -6,19 +6,22 @@ import ContactForm from './ContactForm'
 // Originally About's own closing section — merged in from the removed
 // standalone Contact page (its hero heading and contact options, reused
 // as-is), later joined by ContactForm. Now also rendered directly by
-// Home.jsx (the site's primary contact destination, since About is hidden
-// from primary navigation) — reused as the same component rather than
-// duplicated, so both places share one implementation. `id="resume"` is
-// the redirect target for the old /resume URL (see App.jsx and
-// ScrollToTop.jsx) and for the "Contact Me" CTA still elsewhere on the
-// site (ContactCta.jsx) — Resume itself has since moved to the hero as a
-// recruiter-facing download, not a step in this section's own hierarchy.
+// Home.jsx as the homepage's own Contact section (id="contact") — reused
+// as the same component rather than duplicated, so both places share one
+// implementation. `id="contact"` is the target for the primary nav's
+// Contact link (see Navbar.jsx), the legacy /resume and /contact URL
+// redirects (App.jsx), and the "Contact Me" CTA elsewhere on the site
+// (ContactCta.jsx) — Resume itself moved to the hero as a recruiter-facing
+// download, not a step in this section's own hierarchy.
 function AboutContact() {
   return (
     // scroll-mt-16 matches the sticky navbar's height (h-16 in Navbar.jsx)
-    // so scrolling/jumping to #resume lands with this section's top clear
-    // of the fixed header instead of tucked under it.
-    <Section id="resume" background="ink" className="scroll-mt-16">
+    // so scrolling/jumping to #contact lands with this section's top clear
+    // of the fixed header instead of tucked under it. tabIndex={-1}: not
+    // part of the normal tab order, but focusable via ScrollToTop's
+    // post-scroll `.focus()` call so keyboard/screen-reader users actually
+    // land here, not silently still on whatever link triggered the jump.
+    <Section id="contact" background="ink" className="scroll-mt-16" tabIndex={-1}>
       {/* Heading/description/links share the SAME grid row as the note
           (`items-start`), so both columns get one shared, natural top edge
           with no manual offsets. ~40/60 left/note via `fr` units (not raw

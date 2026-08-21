@@ -100,7 +100,7 @@ function HeroWireframeLayer({ contentPadding }) {
                 rather than drifting once the real text wraps differently
                 than a fixed-height bar would. */}
             <div className="relative">
-              <p aria-hidden="true" className="invisible font-display text-xl font-semibold tracking-tight sm:text-2xl">
+              <p aria-hidden="true" className="invisible font-display text-xl font-medium tracking-tight sm:text-2xl">
                 Antonia Afx
               </p>
               <span className="absolute left-0 top-0 h-3.5 w-20 rounded-full bg-line sm:h-4" />

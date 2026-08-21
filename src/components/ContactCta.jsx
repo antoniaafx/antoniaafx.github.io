@@ -3,9 +3,9 @@ import Button from './Button'
 
 // Now only used at the end of a case study (Home has its own full
 // AboutContact section instead of this shorter CTA — see Home.jsx).
-// Links to /#resume, not /about#resume: About is hidden from primary
-// navigation, so the real contact destination is now the AboutContact
-// section reused directly on Home, not the About page.
+// Links to /#contact — the homepage's Contact section (AboutContact,
+// id="contact"), the site's one real contact destination now that About
+// is hidden from primary navigation.
 function ContactCta({ eyebrow }) {
   return (
     <Section background="ink">
@@ -19,7 +19,7 @@ function ContactCta({ eyebrow }) {
             lands on. Repeating it here made Home's CTA a duplicate of
             About's closing section instead of a short prompt toward it. */}
         <div className="mt-8 flex justify-center">
-          <Button to="/#resume" variant="inverse" size="lg">
+          <Button to="/#contact" variant="inverse" size="lg">
             Contact Me
           </Button>
         </div>

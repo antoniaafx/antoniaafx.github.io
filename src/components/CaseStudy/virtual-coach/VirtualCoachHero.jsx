@@ -6,6 +6,15 @@ import PhoneScreen from './PhoneScreen'
 import { fadeInUp, staggerContainer } from '../../../lib/motion'
 import { hero, screens } from '../../../data/virtualCoach'
 
+// Home, Levels and Achievements are each one long scroll capture (Home is
+// 1771px tall at 390px wide). A standard phone-screen window (9:19.5,
+// pinned to the top of the source image with no vertical shift) happens
+// to land on exactly the right content for a hero teaser in all three:
+// Home's streak/friends/quick-links block, Levels' intro + first two
+// levels, Achievements' badge shelf + first few rows — without needing a
+// separate cropped asset.
+const HERO_CROP = { aspect: '9/19.5', focus: 0 }
+
 // Same mount-triggered stagger CaseHero uses (this is the first thing
 // visible on load, not scrolled into) — a custom hero rather than reusing
 // CaseHero itself, because this project needs a positioning badge, a
@@ -58,23 +67,35 @@ function VirtualCoachHero() {
           </div>
         </motion.dl>
 
-        {/* Home centred and largest; Levels/Achievements layered behind it
-            at a restrained rotation — composition guidance from the brief,
-            not a literal device-mockup effect. Side screens only appear at
-            `lg:` — below that there isn't reliably enough width for three
-            screens without crowding the margins (see the tablet/mobile
-            verification notes in the implementation report), so tablet and
-            mobile get a single, clean Home screen instead of a compressed
-            version of the desktop composition. */}
-        <motion.div {...itemMotion} className="relative mx-auto mt-12 flex max-w-md items-center justify-center py-4">
-          <div className="pointer-events-none absolute left-0 top-8 hidden -rotate-6 lg:block">
-            <PhoneScreen screen={screens.levels} size="md" />
+        <motion.div {...itemMotion} className="mx-auto mt-12 max-w-md">
+          {/* Desktop: Home centred and largest, Levels/Achievements
+              layered behind it at a restrained rotation — composition
+              guidance from the brief, not a literal device-mockup effect.
+              Only shown at `lg:` — below that there isn't reliably enough
+              width for three screens without crowding the margins. */}
+          <div className="relative hidden items-center justify-center py-4 lg:flex">
+            <div className="pointer-events-none absolute left-0 top-8 -rotate-6">
+              <PhoneScreen screen={screens.levels} size="md" crop={HERO_CROP} />
+            </div>
+            <div className="relative z-10">
+              <PhoneScreen screen={screens.home} size="lg" crop={HERO_CROP} priority />
+            </div>
+            <div className="pointer-events-none absolute right-0 top-12 rotate-6">
+              <PhoneScreen screen={screens.achievements} size="md" crop={HERO_CROP} />
+            </div>
           </div>
-          <div className="relative z-10">
-            <PhoneScreen screen={screens.home} size="lg" priority />
+
+          {/* Tablet/mobile: Home alone reads clearest at this width — no
+              layered siblings competing for a narrower measure — with a
+              small supporting pair underneath rather than nothing at all,
+              so the gamified-levels/achievements idea still comes through
+              on a phone. Two small screens, not three crowded ones. */}
+          <div className="flex justify-center lg:hidden">
+            <PhoneScreen screen={screens.home} size="lg" crop={HERO_CROP} priority />
           </div>
-          <div className="pointer-events-none absolute right-0 top-12 hidden rotate-6 lg:block">
-            <PhoneScreen screen={screens.achievements} size="md" />
+          <div className="mt-5 flex justify-center gap-4 lg:hidden">
+            <PhoneScreen screen={screens.levels} size="sm" crop={HERO_CROP} className="-rotate-3" />
+            <PhoneScreen screen={screens.achievements} size="sm" crop={HERO_CROP} className="rotate-3" />
           </div>
         </motion.div>
       </motion.div>

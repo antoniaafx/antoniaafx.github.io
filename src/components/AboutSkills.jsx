@@ -38,7 +38,7 @@ function SkillGroup({ label, items }) {
 function AboutSkills() {
   return (
     <Section background="muted" animate={false} artwork={<EnvironmentalArtwork variant="skills" />}>
-      <SectionTitle title="Skills & tools" subtitle="What I bring to a design process, end to end." />
+      <SectionTitle title="Skills & tools" />
       <div className="mt-12 space-y-12">
         {GROUPS.map((group) => (
           <SkillGroup key={group.label} {...group} />

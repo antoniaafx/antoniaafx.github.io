@@ -10,7 +10,7 @@ import SectionTitle from './SectionTitle'
 // work of showing process; this just introduces.
 //
 // Uses Section's default ("content", max-w-6xl) container — same as
-// FeaturedProjects/AboutSkills/AboutContact below it — rather than the
+// AboutSkills/AboutContact below it — rather than the
 // narrower "narrow" (max-w-3xl) it used before. That narrower container
 // still centers via `mx-auto`, but at wide viewports it's noticeably
 // inset from where the other sections' left edge sits, which is what

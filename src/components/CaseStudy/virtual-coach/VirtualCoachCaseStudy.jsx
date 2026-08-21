@@ -1,10 +1,10 @@
 import Section from '../../Section'
 import SectionTitle from '../../SectionTitle'
 import Timeline from '../../Timeline'
-import ImageGallery from '../../ImageGallery'
 import ReflectionSection from '../ReflectionSection'
 import ContactCta from '../../ContactCta'
 import VirtualCoachHero from './VirtualCoachHero'
+import VirtualCoachUserFlow from './VirtualCoachUserFlow'
 import PhoneScreen from './PhoneScreen'
 import StatCallout from './StatCallout'
 import ArrowPair from './ArrowPair'
@@ -40,15 +40,28 @@ import {
 // original-prototype-vs-redesign story to tell. Still routed through the
 // same /projects/:slug architecture (see CaseStudy.jsx) and still built
 // entirely from the site's existing Section/SectionTitle/Timeline/
-// ImageGallery/ReflectionSection/ContactCta components plus the same
-// rounded-panel/border-line card recipe used throughout — nothing here is
-// a new design system, just new content arranged with the existing one.
+// ReflectionSection/ContactCta components plus the same rounded-panel/
+// border-line card recipe used throughout — nothing here is a new design
+// system, just new content arranged with the existing one.
 //
 // A dot-bullet list is reused often below — same recipe ProjectOverview
 // and ResultsSection already use for exactly this.
 function Dot() {
   return <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-muted" aria-hidden="true" />
 }
+
+// Crop windows into the same real screens, reused across a few sections —
+// see PhoneScreen's own comment for how `focus` maps to a position in the
+// source image. `focus` values below were chosen by eye against each
+// source screen's actual layout (see the implementation report for the
+// full breakdown); they're not exact pixel measurements.
+const TOP_CROP = { aspect: '9/19.5', focus: 0 }
+const LEVELS_PROGRESS_CROP = { aspect: '9/19.5', focus: 11 }
+const LESSON_CROPS = [
+  { aspect: '3/4', focus: 10 }, // Learn — "What is Protein?"
+  { aspect: '3/4', focus: 49 }, // Apply — Recipe
+  { aspect: '3/4', focus: 71 }, // Test — Fight the Protein Boss
+]
 
 function DotList({ items, textColor = 'text-ink-soft' }) {
   return (
@@ -94,7 +107,7 @@ function VirtualCoachCaseStudy() {
         <SectionTitle title="The challenge" />
         <div className="mt-10 max-w-3xl">
           <p className="text-ink-soft">{challenge.body}</p>
-          <p className="mt-8 border-l-2 border-accent pl-6 font-display text-2xl text-ink sm:text-3xl">
+          <p className="mt-8 border-l-2 border-accent pl-6 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
             {challenge.question}
           </p>
         </div>
@@ -161,18 +174,18 @@ function VirtualCoachCaseStudy() {
       {/* Mapping the experience */}
       <Section>
         <SectionTitle title="Mapping the experience" subtitle={flow.intro} />
-        <div className="mt-12 grid gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
+        <div className="mt-12 max-w-2xl">
           <Timeline items={flow.steps} />
-          <ImageGallery
-            images={[
-              {
-                src: screens.figjamFlow.src,
-                alt: screens.figjamFlow.alt,
-                caption: 'virtual-coach-user-flow — add the FigJam export here',
-                span: 'wide',
-              },
-            ]}
-          />
+        </div>
+        {/* The reconstructed flow needs its own full width for the
+            hub-and-spoke layout below — a narrower two-column split (like
+            the Timeline above uses) doesn't leave room for five branch
+            columns. mt-8, tighter than the mt-12 above the Timeline: this
+            diagram is a continuation of the same "mapping the experience"
+            thought, not a new sub-topic that needs a full section-level
+            gap of its own. */}
+        <div className="mt-8">
+          <VirtualCoachUserFlow />
         </div>
       </Section>
 
@@ -212,6 +225,26 @@ function VirtualCoachCaseStudy() {
           <Timeline items={lesson.steps} />
           <PhoneScreen screen={screens.level2} size="lg" className="mx-auto" />
         </div>
+
+        {/* The full screen above shows the whole task sequence at once;
+            these are labelled detail crops of that same image (not
+            separate assets — see LESSON_CROPS) so the three key moments
+            read clearly without hunting for tiny text in a long
+            screenshot. */}
+        <div className="mt-14 grid grid-cols-3 gap-4 sm:gap-6">
+          {lesson.detailCrops.map((detail, index) => (
+            <div key={detail.caption}>
+              <PhoneScreen
+                screen={{ ...screens.level2, alt: '' }}
+                size="sm"
+                crop={LESSON_CROPS[index]}
+                className="mx-auto"
+              />
+              <p className="mt-3 text-center font-medium text-ink">{detail.caption}</p>
+              <p className="mt-1 text-center text-sm text-ink-soft">{detail.description}</p>
+            </div>
+          ))}
+        </div>
       </Section>
 
       {/* Meet Coach V */}
@@ -232,8 +265,13 @@ function VirtualCoachCaseStudy() {
             </div>
           </div>
           <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
-            {coachV.states.map((key) => (
-              <PhoneScreen key={key} screen={screens[key]} size="sm" />
+            {coachV.states.map((state) => (
+              <div key={state.key}>
+                <PhoneScreen screen={screens[state.key]} size="sm" />
+                <p className="mt-2 text-center text-caption font-medium uppercase tracking-wide text-ink-muted">
+                  {state.caption}
+                </p>
+              </div>
             ))}
           </div>
         </div>
@@ -243,10 +281,12 @@ function VirtualCoachCaseStudy() {
       <Section>
         <SectionTitle title="Making progress visible" subtitle={motivation.intro} />
 
+        {/* Streak in full, plus a cropped detail of the Levels screen's
+            star ratings — not the same full Levels/Achievements screens
+            already shown in the hero and in their own sections below. */}
         <div className="mt-10 flex flex-wrap items-end justify-center gap-4">
           <PhoneScreen screen={screens.streak} size="sm" />
-          <PhoneScreen screen={screens.levels} size="md" />
-          <PhoneScreen screen={screens.achievements} size="sm" />
+          <PhoneScreen screen={{ ...screens.levels, alt: '' }} size="md" crop={LEVELS_PROGRESS_CROP} />
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -393,8 +433,13 @@ function VirtualCoachCaseStudy() {
             <div key={tier.label}>
               <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{tier.label}</p>
               <div className="mt-4 flex flex-wrap gap-4">
-                {tier.screens.map((key) => (
-                  <PhoneScreen key={key} screen={screens[key]} size={tier.label === 'Primary' ? 'lg' : 'md'} />
+                {tier.screens.map((item) => (
+                  <PhoneScreen
+                    key={item.key}
+                    screen={item.crop ? { ...screens[item.key], alt: '' } : screens[item.key]}
+                    size={item.size}
+                    crop={item.crop ? TOP_CROP : undefined}
+                  />
                 ))}
               </div>
             </div>

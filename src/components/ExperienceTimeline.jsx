@@ -71,11 +71,7 @@ const timelineItems = [
 function ExperienceTimeline() {
   return (
     <Section>
-      <SectionTitle
-        eyebrow="What I Learned"
-        title="Experience & education"
-        subtitle="A snapshot of my design journey so far — expand any entry for the full detail."
-      />
+      <SectionTitle title="Experience & education" />
       <div className="mt-12">
         <Timeline items={timelineItems} markerColor="bg-raspberry" />
       </div>

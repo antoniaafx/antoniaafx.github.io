@@ -6,8 +6,17 @@
   (e.g. --color-accent produces bg-accent / text-accent / border-accent).
 */
 @theme {
-  /* ---- Typography ---- */
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  /* ---- Typography ----
+     Bricolage Grotesque + Inter. Bricolage replaced DM Serif Display here
+     (DM Serif read too thin/delicate for this site once seen live) — same
+     role in the system, reserved for major headings only (hero/page
+     titles, major section titles; h3/h4 default to Inter — see the base
+     layer below), just a substantial grotesque instead of a light serif.
+     Unlike DM Serif, Bricolage is a real variable font, so display
+     headings now carry actual weight (600/700, not a flat 400) — see the
+     h1/h2 split below and the per-component overrides (Navbar's wordmark,
+     HeroCanvas, FeaturedProjectCard) for the specific choices. */
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* Display sizes for hero / section headings, layered on top of Tailwind's
@@ -124,9 +133,15 @@
       "narrow" (max-w-3xl, body copy / prose), "content" (max-w-6xl, default
       page width), "wide" (max-w-7xl, full-bleed layouts/galleries).
   ---- Font weight convention ----
-    font-normal (400) body copy · font-medium (500) UI labels/buttons ·
-    font-semibold (600) subheadings/emphasis · font-bold (700) headings only.
-    Avoid font-black/extrabold — it reads heavy-handed for this aesthetic.
+    font-normal (400) body copy · font-medium (500) UI labels/buttons/
+    eyebrows, and the "Antonia Afx" wordmark specifically (a deliberate
+    identity element, kept lighter than the headings around it so it
+    doesn't compete with them) · font-semibold (600) Inter subheadings
+    (h3/h4) and emphasis, and font-display H2s/featured-project titles ·
+    font-bold (700) font-display H1s/hero headlines only — Bricolage
+    Grotesque is a real variable font, so this is a genuine heavier
+    weight, not a synthetic one. Avoid font-black — it reads heavy-handed
+    for this aesthetic even where 700 reads confident.
   ---- Breakpoints (Tailwind defaults, used deliberately not overridden) ----
     sm 640px · md 768px · lg 1024px · xl 1280px · 2xl 1536px.
     Roughly: base = mobile, sm/md = tablet, lg+ = desktop. Build mobile-first
@@ -150,11 +165,39 @@
     @apply bg-paper text-ink font-sans antialiased;
   }
 
-  h1,
-  h2,
+  /* Page titles and hero headlines — the biggest, most confident moment
+     on a page — get the heaviest weight Bricolage carries in this system.
+     700 is a genuine variable-font weight here (not a synthetic bold the
+     way it would have been on DM Serif Display), so it reads as
+     substantial rather than heavy-handed. tracking-tight (not
+     tracking-wide): -0.025em sits right in the "-0.01em to -0.03em" range
+     that suits a large Bricolage heading — positive tracking on a
+     heading this size would look stretched, not elegant.
+     HeroCanvas's own h1 (the small, in-card mockup headline, not a true
+     page hero) opts back down to font-semibold explicitly — 700 read too
+     heavy at that compact size; see HeroCanvas.jsx. */
+  h1 {
+    @apply font-display font-bold tracking-tight text-ink;
+  }
+
+  /* Major section headings ("Skills & tools," "Featured work") — one
+     step down from a page hero, still clearly a major heading, not
+     heavy enough to compete with an actual h1. */
+  h2 {
+    @apply font-display font-semibold tracking-tight text-ink;
+  }
+
+  /* h3/h4 default to Inter, not a smaller display weight — this is the
+     deliberate contrast the type system leans on: Bricolage marks "this
+     is a major heading," Inter marks "this is functional structure"
+     (subsection labels, card titles, timeline entries). font-semibold
+     gives them enough weight to read as headings without competing with
+     h1/h2. Any heading that genuinely wants the display treatment despite
+     being an h3 (e.g. a large featured-project card title) opts back in
+     explicitly — see FeaturedProjectCard. */
   h3,
   h4 {
-    @apply font-display font-semibold tracking-tight text-ink;
+    @apply font-sans font-semibold tracking-normal text-ink;
   }
 
   ::selection {

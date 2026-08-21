@@ -22,91 +22,135 @@
 // from section `testing` describe the *original prototype* specifically
 // and must stay labelled as such — never attribute them to the redesign.
 
+import vcHome from '../assets/images/projects/virtual-coach/home.png'
+import vcLevels from '../assets/images/projects/virtual-coach/levels.png'
+import vcLevel2 from '../assets/images/projects/virtual-coach/level-2.png'
+import vcAchievements from '../assets/images/projects/virtual-coach/achievements.png'
+import vcStreak from '../assets/images/projects/virtual-coach/streak.png'
+import vcRecipes from '../assets/images/projects/virtual-coach/recipes.png'
+import vcHabits from '../assets/images/projects/virtual-coach/habits.png'
+import vcFriends from '../assets/images/projects/virtual-coach/FRIENDS.png'
+import vcLeaderboard from '../assets/images/projects/virtual-coach/leaderboard.png'
+import vcProfile from '../assets/images/projects/virtual-coach/profile.png'
+import vcEditProfile from '../assets/images/projects/virtual-coach/edit-profile.png'
+import vcLogin from '../assets/images/projects/virtual-coach/login.png'
+import vcIntroduction from '../assets/images/projects/virtual-coach/coach-introduction.png'
+import vcWelcome from '../assets/images/projects/virtual-coach/welcome.png'
+import vcSplash from '../assets/images/projects/virtual-coach/splash.png'
+
 // ---------------------------------------------------------------------
-// SCREENS — none of these image files exist in the repo yet. Every entry
-// below intentionally has `src: undefined` so each screen slot falls back
-// to the site's existing ImagePlaceholder (via PhoneScreen.jsx) instead of
-// a broken <img>. To wire in the real redesign screens:
+// SCREENS — the real redesign screens, added to
+// src/assets/images/projects/virtual-coach/. `width`/`height` are each
+// file's real pixel dimensions (not arbitrary) — passed through to the
+// rendered <img> so the browser can reserve the correct box before the
+// image loads, preventing layout shift on a page with this many screens.
 //
-//   1. Add the exported images to src/assets/images/projects/virtual-coach/
-//      using the filenames noted per screen below.
-//   2. Import each one at the top of this file, e.g.
-//        import vcHome from '../assets/images/projects/virtual-coach/virtual-coach-home.webp'
-//   3. Set it as that screen's `src` below.
+// `level-1.png` is intentionally not wired in here: it's labelled "Level
+// 1: The Basics" but its task copy is an unedited copy of Level 2's
+// Protein content (down to the same "prtotein" typo) — using it would
+// visibly expose that mismatch. Level 2 already covers the "from lesson
+// to challenge" story on its own, per the brief. See the implementation
+// report for the full source-UI issue list.
 //
-// Nothing else needs to change — every section already reads from this
-// object.
 // ---------------------------------------------------------------------
 export const screens = {
   home: {
-    src: undefined, // virtual-coach-home.webp
-    alt: 'Virtual Coach Home screen showing the current lesson, streak, and quick access to levels and achievements.',
+    src: vcHome,
+    width: 390,
+    height: 1771,
+    alt: "Virtual Coach home screen showing a daily streak tracker, friends' progress, and quick links to Levels, Recipes and Habits.",
   },
   levels: {
-    src: undefined, // virtual-coach-levels.webp
-    alt: 'Virtual Coach Levels screen showing completed, current and locked nutrition learning levels.',
+    src: vcLevels,
+    width: 390,
+    height: 2265,
+    alt: 'Virtual Coach Levels screen showing completed, current and locked nutrition learning levels, leading up to a final Boss Battle.',
   },
   level2: {
-    src: undefined, // virtual-coach-level-2.webp
-    alt: 'Virtual Coach Level 2: Protein screen showing the Watch, Compare, Apply and Battle sequence.',
+    src: vcLevel2,
+    width: 390,
+    height: 1839,
+    alt: 'Virtual Coach Level 2: Protein screen showing the Watch, Compare, Recipe and Boss Battle task sequence.',
   },
   achievements: {
-    src: undefined, // virtual-coach-achievements.webp
-    alt: 'Virtual Coach Achievements screen showing earned badges such as Protein Master and Quiz Whiz.',
+    src: vcAchievements,
+    width: 390,
+    height: 1263,
+    alt: 'Virtual Coach Achievements screen showing level badges and earned or in-progress learning badges with progress toward each one.',
   },
   streak: {
-    src: undefined, // virtual-coach-streak.webp
-    alt: 'Virtual Coach Streak screen showing consecutive days of learning activity.',
+    src: vcStreak,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Streak screen showing a 1-day streak, a weekly progress row, and a Claim Reward button.',
   },
   recipes: {
-    src: undefined, // virtual-coach-recipes.webp
-    alt: 'Virtual Coach Recipes screen showing meal suggestions connected to the learning content.',
+    src: vcRecipes,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Recipes screen showing Breakfast, Lunch, Dinner and Snacks meal categories.',
   },
   habits: {
-    src: undefined, // virtual-coach-habits.webp
-    alt: 'Virtual Coach Habit Tracker screen showing everyday nutrition-related tasks.',
+    src: vcHabits,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Habit Tracker showing completed and incomplete nutrition habits, with tabs for Nutrition, Learning and Goals.',
   },
   friends: {
-    src: undefined, // virtual-coach-friends.webp
-    alt: 'Virtual Coach Friends screen showing connected users and shared progress.',
+    src: vcFriends,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Friends screen showing a searchable friends list and pending friend requests.',
   },
   leaderboard: {
-    src: undefined, // virtual-coach-leaderboard.webp
-    alt: 'Virtual Coach Leaderboard screen showing local, global and friend rankings.',
+    src: vcLeaderboard,
+    width: 390,
+    height: 844,
+    alt: "Virtual Coach Leaderboard screen showing local rankings and each friend's points.",
   },
   profile: {
-    src: undefined, // virtual-coach-profile.webp
-    alt: "Virtual Coach Profile screen showing a user's progress, achievements and social connections.",
+    src: vcProfile,
+    width: 390,
+    height: 844,
+    alt: "Virtual Coach Profile screen showing a user's avatar, followers and friends count.",
   },
   editProfile: {
-    src: undefined, // virtual-coach-edit-profile.webp
-    alt: 'Virtual Coach Edit Profile screen.',
+    src: vcEditProfile,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Edit Profile screen with name, username and password fields.',
   },
   login: {
-    src: undefined, // virtual-coach-login.webp
-    alt: 'Virtual Coach Login screen.',
+    src: vcLogin,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach Login screen with username and password fields.',
   },
   introduction: {
-    src: undefined, // virtual-coach-introduction.webp
-    alt: 'Coach V introducing the Virtual Coach learning experience.',
+    src: vcIntroduction,
+    width: 390,
+    height: 844,
+    alt: "Coach V introducing itself and asking the user to introduce themselves before starting.",
   },
   welcome: {
-    src: undefined, // virtual-coach-welcome.webp
-    alt: 'Coach V welcoming a new user to Virtual Coach.',
-  },
-  video: {
-    src: undefined, // virtual-coach-video.webp (Coach V "learning/video" state)
-    alt: 'Coach V presenting an educational video within a lesson.',
+    src: vcWelcome,
+    width: 390,
+    height: 844,
+    alt: 'Coach V welcoming a returning user back by name.',
   },
   splash: {
-    src: undefined, // virtual-coach-splash.webp
-    alt: 'Virtual Coach splash / onboarding screen.',
-  },
-  figjamFlow: {
-    src: undefined, // virtual-coach-user-flow.png (FigJam export)
-    alt: 'FigJam export of the Virtual Coach application flow, mapped before prototyping began.',
+    src: vcSplash,
+    width: 390,
+    height: 844,
+    alt: 'Virtual Coach splash screen showing the Coach V logo mark.',
   },
 }
+// No `figjamFlow` entry — the original FigJam export is lost, not just
+// unsupplied yet. "Mapping the experience" now shows VirtualCoachUserFlow
+// (a reconstruction built from these same screens) instead of an empty
+// placeholder for that specific missing file — see
+// VirtualCoachUserFlow.jsx for the full flow definition and the
+// implementation report for the evidence behind it.
 
 // ---------------------------------------------------------------------
 // CONTENT
@@ -254,6 +298,15 @@ export const lesson = {
     { label: 'Battle', description: 'Complete the Protein Boss challenge.' },
     { label: 'Progress', description: 'Earn XP and continue through the learning journey.' },
   ],
+  // Level 2's screen is one long scroll capture — these are labelled CSS
+  // crops of that same image (see VirtualCoachCaseStudy.jsx), not
+  // separate assets, so a recruiter can see the task structure without
+  // scanning the full-length screenshot for tiny text.
+  detailCrops: [
+    { caption: 'Learn', description: '"What is Protein?" — the intro video task.' },
+    { caption: 'Apply', description: 'Find a real recipe high in protein.' },
+    { caption: 'Test', description: 'Fight the Protein Boss.' },
+  ],
 }
 
 export const coachV = {
@@ -267,7 +320,16 @@ export const coachV = {
     'Celebrate streaks',
     'Contextualise learning',
   ],
-  states: ['introduction', 'welcome', 'streak', 'video'],
+  // Three real, distinct functional states — not three full phone screens
+  // of the same character for their own sake. `caption` is the visible
+  // label carrying the meaning (see VirtualCoachCaseStudy.jsx), so these
+  // crops use empty alt text rather than repeating "Coach V..." three
+  // times in a row for screen-reader users.
+  states: [
+    { key: 'welcome', caption: 'Welcome' },
+    { key: 'introduction', caption: 'Guide' },
+    { key: 'streak', caption: 'Celebrate' },
+  ],
 }
 
 export const motivation = {
@@ -363,14 +425,48 @@ export const revisit = {
   },
 }
 
+// Three tiers instead of five, and `crop: true` on any screen already
+// shown full-size earlier on the page (Home/Levels/Achievements in the
+// hero + their own dedicated sections; Level 2 in "From lesson to
+// challenge") — this section recaps the whole system, so it's fine for
+// those screens to appear again, but not at the same full-scroll-length
+// treatment a third time. Habit Tracker/Streak/Recipes and the tier-3
+// screens are shown here for the first time (or, for Streak/Friends/
+// Leaderboard, small already, so a small repeat isn't a fresh full
+// treatment) at their natural size — no crop needed.
 export const showcase = {
   intro: 'A closer look at the independent redesign across the product.',
   tiers: [
-    { label: 'Primary', screens: ['home', 'levels', 'achievements'] },
-    { label: 'Learning', screens: ['levels', 'level2'] },
-    { label: 'Behaviour', screens: ['recipes', 'habits'] },
-    { label: 'Social', screens: ['friends', 'leaderboard'] },
-    { label: 'Supporting', screens: ['profile', 'editProfile', 'login', 'splash', 'streak'] },
+    {
+      label: 'Hero screens',
+      screens: [
+        { key: 'home', size: 'md', crop: true },
+        { key: 'levels', size: 'md', crop: true },
+        { key: 'achievements', size: 'md', crop: true },
+      ],
+    },
+    {
+      label: 'Important UX screens',
+      screens: [
+        { key: 'level2', size: 'md', crop: true },
+        { key: 'habits', size: 'md' },
+        { key: 'streak', size: 'md' },
+        { key: 'recipes', size: 'md' },
+      ],
+    },
+    {
+      label: 'Supporting ecosystem',
+      screens: [
+        { key: 'friends', size: 'sm' },
+        { key: 'leaderboard', size: 'sm' },
+        { key: 'profile', size: 'sm' },
+        { key: 'editProfile', size: 'sm' },
+        { key: 'login', size: 'sm' },
+        { key: 'splash', size: 'sm' },
+        { key: 'welcome', size: 'sm' },
+        { key: 'introduction', size: 'sm' },
+      ],
+    },
   ],
 }
 

@@ -14,18 +14,17 @@ function App() {
   const shouldReduceMotion = useReducedMotion()
 
   // The standalone Resume and Contact pages were both removed — their
-  // content lives in AboutContact, which About.jsx still renders (that
-  // page is preserved, just hidden from primary navigation) and which
-  // Home.jsx now also renders directly as its own closing section. This
-  // redirects to Home's copy, the one a visitor actually reaches through
-  // the current navigation. Redirected here, before the animated route
-  // tree below, rather than as a normal <Route element={<Navigate .../>}>
-  // entry: that would still mount and key into AnimatePresence for a
-  // "page" that never renders anything, playing a full exit/enter
-  // transition cycle for a blank flash before landing on Home. This
-  // redirects instantly instead.
+  // content lives in AboutContact (id="contact"), which About.jsx still
+  // renders (that page is preserved, just hidden from primary navigation)
+  // and which Home.jsx also renders as its own Contact section — the
+  // homepage's primary contact destination now. Redirected here, before
+  // the animated route tree below, rather than as a normal
+  // <Route element={<Navigate .../>}> entry: that would still mount and
+  // key into AnimatePresence for a "page" that never renders anything,
+  // playing a full exit/enter transition cycle for a blank flash before
+  // landing on Home. This redirects instantly instead.
   if (location.pathname === '/resume' || location.pathname === '/contact') {
-    return <Navigate to="/#resume" replace />
+    return <Navigate to="/#contact" replace />
   }
 
   return (
