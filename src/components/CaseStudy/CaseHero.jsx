@@ -6,7 +6,12 @@ import { fadeInUp, staggerContainer } from '../../lib/motion'
 
 // Mount-triggered stagger, same rationale as the homepage Hero — this is
 // the first thing visible when the page loads, not something scrolled into.
-function CaseHero({ title, description, role, timeline, tools = [], heroImage }) {
+// `responsibilities` is optional — a single short scope/ownership line
+// (e.g. "Led solo, end to end") that a project can fold into the hero's
+// own metadata row instead of repeating in a separate section further
+// down the page. Renders nothing when omitted, so every existing caller
+// is unaffected.
+function CaseHero({ title, description, role, timeline, tools = [], responsibilities, heroImage }) {
   const shouldReduceMotion = useReducedMotion()
   const containerMotion = shouldReduceMotion
     ? {}
@@ -52,6 +57,12 @@ function CaseHero({ title, description, role, timeline, tools = [], heroImage })
             <div>
               <dt className="text-caption font-medium uppercase tracking-wide text-ink-muted">Tools</dt>
               <dd className="mt-1 text-sm text-ink-soft">{tools.join(' · ')}</dd>
+            </div>
+          )}
+          {responsibilities && (
+            <div>
+              <dt className="text-caption font-medium uppercase tracking-wide text-ink-muted">Responsibilities</dt>
+              <dd className="mt-1 max-w-xs text-sm text-ink-soft">{responsibilities}</dd>
             </div>
           )}
         </motion.dl>

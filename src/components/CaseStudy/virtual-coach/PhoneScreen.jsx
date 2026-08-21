@@ -10,10 +10,16 @@ import ImagePlaceholder from '../../ImagePlaceholder'
 // the image renders at its own natural height instead of being forced
 // into that ratio — real screenshots are never stretched or cropped to
 // fit an assumed aspect ratio.
+// Phase 2 adds `xs` (compact secondary-support mentions — Streak, Habits,
+// Friends/Leaderboard — paired inline with a caption rather than standing
+// as their own block) and `xl` (the one breakout-climax anchor, "The
+// redesigned interface"). `sm`/`md`/`lg` are unchanged from Phase 1.
 const SIZES = {
+  xs: 'w-20 sm:w-24',
   sm: 'w-32 sm:w-36',
   md: 'w-44 sm:w-52',
   lg: 'w-56 sm:w-64',
+  xl: 'w-72 sm:w-80 lg:w-96',
 }
 
 // `crop` — several of the real screens are one long scroll capture (Home,

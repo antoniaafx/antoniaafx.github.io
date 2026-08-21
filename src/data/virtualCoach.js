@@ -3,7 +3,7 @@
 // card fields) because this project's case study doesn't fit the generic
 // overview/research/process/uiDesign/results/reflection shape the other
 // projects use — see VirtualCoachCaseStudy.jsx for why it gets its own
-// page rather than being forced into CaseStudy.jsx's generic renderer.
+// page rather than being forced into a shared renderer.
 //
 // Collaboration note: this was a four-person university group project.
 // "I" is used for Antonia's personal design contribution (UI redesign,
@@ -21,6 +21,21 @@
 // figure below is copied from that source data, not invented. Findings
 // from section `testing` describe the *original prototype* specifically
 // and must stay labelled as such — never attribute them to the redesign.
+//
+// PHASE 1 STRUCTURAL REFACTOR — most exports below keep their original
+// shape and wording (moving *where* content renders, not rewriting it).
+// The exceptions, each noted at the field itself, are:
+//   `context.facts`   — 6 → 3, dropping facts already stated in `hero`
+//   `coachV.states`    — 3 → 2, Streak removed (now shown once, in
+//                         Building Progression; Coach V's celebratory role
+//                         is already covered in `coachV.roles` as text)
+//   `showcase`         — reshaped from a 3-tier, 15-screen gallery into a
+//                         single curated anchor + a small supporting group,
+//                         per the approved screen-usage rules (see the
+//                         Phase 1 report for the full before/after map)
+//   `nextSteps.items`  — 7 → 4, folding the dropped items' substance into
+//                         the closest remaining theme rather than deleting
+//                         them outright
 
 import vcHome from '../assets/images/projects/virtual-coach/home.png'
 import vcLevels from '../assets/images/projects/virtual-coach/levels.png'
@@ -37,6 +52,7 @@ import vcLogin from '../assets/images/projects/virtual-coach/login.png'
 import vcIntroduction from '../assets/images/projects/virtual-coach/coach-introduction.png'
 import vcWelcome from '../assets/images/projects/virtual-coach/welcome.png'
 import vcSplash from '../assets/images/projects/virtual-coach/splash.png'
+import vcCard from '../assets/images/projects/virtual-coach/virtual-coach-card.png'
 
 // ---------------------------------------------------------------------
 // SCREENS — the real redesign screens, added to
@@ -44,6 +60,9 @@ import vcSplash from '../assets/images/projects/virtual-coach/splash.png'
 // file's real pixel dimensions (not arbitrary) — passed through to the
 // rendered <img> so the browser can reserve the correct box before the
 // image loads, preventing layout shift on a page with this many screens.
+// Unchanged in Phase 1 — the registry itself doesn't need to change, only
+// which sections reference which entries (see the Phase 1 report's screen
+// usage map for the full before/after).
 //
 // `level-1.png` is intentionally not wired in here: it's labelled "Level
 // 1: The Basics" but its task copy is an unedited copy of Level 2's
@@ -52,6 +71,14 @@ import vcSplash from '../assets/images/projects/virtual-coach/splash.png'
 // to challenge" story on its own, per the brief. See the implementation
 // report for the full source-UI issue list.
 //
+// Login and Splash are no longer referenced by any section as of Phase 1
+// (see `screen usage rules`) — a normal login form and a splash screen
+// don't carry design-thinking weight on their own, and neither performs a
+// specific narrative role elsewhere in this case study. Left in this
+// registry rather than deleted: the underlying image assets are still
+// real project artifacts, and removing the export entries here doesn't
+// delete the files or reduce the app's asset footprint, so there's no
+// benefit to removing them versus simply not referencing them.
 // ---------------------------------------------------------------------
 export const screens = {
   home: {
@@ -145,12 +172,6 @@ export const screens = {
     alt: 'Virtual Coach splash screen showing the Coach V logo mark.',
   },
 }
-// No `figjamFlow` entry — the original FigJam export is lost, not just
-// unsupplied yet. "Mapping the experience" now shows VirtualCoachUserFlow
-// (a reconstruction built from these same screens) instead of an empty
-// placeholder for that specific missing file — see
-// VirtualCoachUserFlow.jsx for the full flow definition and the
-// implementation report for the evidence behind it.
 
 // ---------------------------------------------------------------------
 // CONTENT
@@ -164,6 +185,14 @@ export const hero = {
   focus: 'UX/UI Design · UX Research · Gamification',
   tools: 'Figma · FigJam · Genially · Google Forms',
   team: '4 students',
+  // The finished three-phone composite (Profile/Achievements, daily
+  // streak, Levels) also used as the project-grid card cover (see
+  // projects.js) — one real pixel dimension (3:2), so its aspect-ratio
+  // box matches the source exactly with no cropping.
+  image: vcCard,
+  imageAlt: 'Virtual Coach nutrition app shown across achievements, daily streak, and learning levels screens',
+  imageWidth: 1536,
+  imageHeight: 1024,
 }
 
 export const context = {
@@ -172,10 +201,13 @@ export const context = {
     'I served as Project Lead and Lead UX/UI Designer, leading the interface design and contributing extensively across research, user flows, prototyping, gamification, educational content, testing and evaluation.',
     "After completing the academic project, I independently returned to the concept and redesigned the interface to apply what I'd learned since.",
   ],
+  // 6 → 3: "Original context", "Team" and "My role" are dropped — the
+  // hero already states the team size (`hero.team`) and role
+  // (`hero.role`), and "University group project" is already the first
+  // sentence of `intro` above and the hero's own positioning badge. The 3
+  // remaining facts are the ones not already stated elsewhere on this
+  // page.
   facts: [
-    { label: 'Original context', value: 'University group project' },
-    { label: 'Team', value: '4 students' },
-    { label: 'My role', value: 'Project Lead & Lead UX/UI Designer' },
     { label: 'Original prototype', value: 'Genially' },
     { label: 'Current redesign', value: 'Figma' },
     { label: 'Evaluation', value: '13 participants' },
@@ -220,6 +252,10 @@ export const users = {
   ],
 }
 
+// Unchanged data — now rendered inside ONE section ("What the research
+// told me") together with `decisions` below, instead of two separate
+// sections doing the same evidence-to-decision job in two different
+// visual languages back-to-back. See VirtualCoachCaseStudy.jsx.
 export const research = {
   intro:
     'We evaluated the concept with 13 participants before building the prototype. Rather than reporting every result, these are the findings that connected most directly to product decisions.',
@@ -257,6 +293,10 @@ export const decisions = {
   ],
 }
 
+// Unchanged data. Rendered as a compact single-line sequence in "Mapping
+// the experience" now (not a full Timeline) — this is early planning
+// context for the diagram that follows, not a second major artifact in
+// its own right.
 export const flow = {
   intro: 'Before building the prototype, we mapped the application flow in FigJam.',
   steps: [
@@ -269,6 +309,10 @@ export const flow = {
   ],
 }
 
+// Unchanged data shape — `loop` renders alone in "Designing how users
+// learn" (06); `levelsIntro`/`levelsList`/`levelsCallouts` render in
+// "Building progression" (07). Splitting these into two sections is a
+// composition change (see VirtualCoachCaseStudy.jsx), not a data change.
 export const learningSystem = {
   intro: 'Every level in Virtual Coach follows the same underlying loop — the logic behind the product, independent of any single screen.',
   loop: [
@@ -320,18 +364,21 @@ export const coachV = {
     'Celebrate streaks',
     'Contextualise learning',
   ],
-  // Three real, distinct functional states — not three full phone screens
-  // of the same character for their own sake. `caption` is the visible
-  // label carrying the meaning (see VirtualCoachCaseStudy.jsx), so these
-  // crops use empty alt text rather than repeating "Coach V..." three
-  // times in a row for screen-reader users.
+  // 3 → 2: the Streak screen no longer appears here — it now appears once,
+  // in Building Progression, where it belongs alongside the rest of the
+  // progression system rather than being shown a second time to illustrate
+  // "celebration." Coach V's celebratory role is still stated in `roles`
+  // above ("Celebrate streaks"), in text, per the approved Phase 1 rule.
   states: [
     { key: 'welcome', caption: 'Welcome' },
     { key: 'introduction', caption: 'Guide' },
-    { key: 'streak', caption: 'Celebrate' },
   ],
 }
 
+// Unchanged data. `drivers` + `social` render together in "Building
+// progression" (07) now; `achievementsExamples` renders there too, folded
+// into the Mastery driver as a supporting detail instead of its own
+// full sub-section.
 export const motivation = {
   intro: 'Four mechanisms work together to keep the learning experience motivating.',
   drivers: [
@@ -357,6 +404,11 @@ export const motivation = {
   ],
 }
 
+// Unchanged data. No longer its own section — `items[0]` (Recipes) now
+// appears as a supporting visual next to the matching research finding in
+// "What the research told me" (04); `items[1]` (Habit Tracker) now
+// appears in "Building progression" (07), since it genuinely supports the
+// progression/consistency story there.
 export const beyondLesson = {
   intro: 'Nutrition knowledge becomes more useful when users can connect it to everyday behaviour.',
   items: [
@@ -365,6 +417,9 @@ export const beyondLesson = {
   ],
 }
 
+// Unchanged data. No longer its own section — folds into "Building
+// progression" (07) as one concise paired mention (Friends + Leaderboard
+// together), per the approved screen-usage rules.
 export const social = {
   intro:
     'The concept also explored social motivation through friends, shared progress, and local, global and friend-based ranking. It stays a smaller part of the experience — the learning journey remains the primary purpose.',
@@ -391,6 +446,11 @@ export const testing = {
   ],
 }
 
+// Unchanged data. Now rendered inside the SAME section as `testing` above
+// (10 — "Testing the original prototype") instead of its own separate
+// "Where the original prototype fell short" section, so the case study
+// makes its methodological point once, clearly, instead of running two
+// visually similar "here's what was wrong" sections back to back.
 export const prototypeLimitations = {
   intro:
     "The original prototype was built in Genially. Genially let us build an interactive learning experience, but it couldn't support several planned data-driven features.",
@@ -425,60 +485,52 @@ export const revisit = {
   },
 }
 
-// Three tiers instead of five, and `crop: true` on any screen already
-// shown full-size earlier on the page (Home/Levels/Achievements in the
-// hero + their own dedicated sections; Level 2 in "From lesson to
-// challenge") — this section recaps the whole system, so it's fine for
-// those screens to appear again, but not at the same full-scroll-length
-// treatment a third time. Habit Tracker/Streak/Recipes and the tier-3
-// screens are shown here for the first time (or, for Streak/Friends/
-// Leaderboard, small already, so a small repeat isn't a fresh full
-// treatment) at their natural size — no crop needed.
+// Reshaped for Phase 1 — was a 3-tier, 15-screen gallery ("Hero screens" /
+// "Important UX screens" / "Supporting ecosystem"). Per the approved
+// screen-usage rules, Home, Levels, Achievements, Level 2, Streak,
+// Recipes, Habits, Friends, Leaderboard, Welcome and Introduction have all
+// already appeared meaningfully earlier in the page by the time a reader
+// reaches this section — repeating them here again was the old showcase's
+// core problem, not a strength. Login and Splash never carried real
+// design-thinking weight. What's actually left to curate into a "here's
+// the redesigned product, together" moment is: one full anchor view of
+// Home (the only screen that legitimately earns a second, larger
+// appearance — hero teaser vs. full reveal are genuinely different jobs),
+// plus Profile and Edit Profile as a small, low-priority supporting group
+// (they show the app is a complete product without pretending they carry
+// the same design-thinking weight as the learning/progression screens).
+// This is deliberately a smaller set than the blueprint's own "3–5
+// supporting screens" estimate — per the blueprint's own explicit
+// allowance, the right curated set here is smaller, because the
+// deduplication work elsewhere already did its job.
 export const showcase = {
   intro: 'A closer look at the independent redesign across the product.',
-  tiers: [
-    {
-      label: 'Hero screens',
-      screens: [
-        { key: 'home', size: 'md', crop: true },
-        { key: 'levels', size: 'md', crop: true },
-        { key: 'achievements', size: 'md', crop: true },
-      ],
-    },
-    {
-      label: 'Important UX screens',
-      screens: [
-        { key: 'level2', size: 'md', crop: true },
-        { key: 'habits', size: 'md' },
-        { key: 'streak', size: 'md' },
-        { key: 'recipes', size: 'md' },
-      ],
-    },
-    {
-      label: 'Supporting ecosystem',
-      screens: [
-        { key: 'friends', size: 'sm' },
-        { key: 'leaderboard', size: 'sm' },
-        { key: 'profile', size: 'sm' },
-        { key: 'editProfile', size: 'sm' },
-        { key: 'login', size: 'sm' },
-        { key: 'splash', size: 'sm' },
-        { key: 'welcome', size: 'sm' },
-        { key: 'introduction', size: 'sm' },
-      ],
-    },
+  anchor: { key: 'home', size: 'lg' },
+  supporting: [
+    { key: 'profile', size: 'sm', label: 'Profile' },
+    { key: 'editProfile', size: 'sm', label: 'Edit profile' },
   ],
 }
 
+// 7 → 4. The dropped items' substance isn't deleted — it's folded into
+// the closest remaining theme:
+//   "Gamification" (XP/stars/badges/streaks/leaderboard comprehension)
+//     → folded into Usability
+//   "Motivation" (which mechanisms encourage return) and
+//   "Learning retention" (recall after days/weeks)
+//     → folded into Learning flow
 export const nextSteps = {
   intro: "The independent redesign hasn't been validated with users yet — these are the questions I'd want to answer first.",
   items: [
     { label: 'Navigation', body: 'Can users easily find and continue their current lesson?' },
-    { label: 'Learning flow', body: 'Do users understand Learn → Practice → Apply → Test → Reward?' },
-    { label: 'Gamification', body: 'Do users understand the difference between XP, stars, badges, streaks and leaderboard points?' },
-    { label: 'Motivation', body: 'Which mechanisms genuinely encourage users to return?' },
-    { label: 'Usability', body: 'Where do users hesitate or make mistakes?' },
-    { label: 'Learning retention', body: 'Can users recall key concepts after several days or weeks?' },
+    {
+      label: 'Learning flow',
+      body: 'Do users understand Learn → Practice → Apply → Test → Reward — and which mechanisms genuinely encourage them to return, or help them recall key concepts after days or weeks?',
+    },
+    {
+      label: 'Usability',
+      body: 'Where do users hesitate or make mistakes — including whether they understand the difference between XP, stars, badges, streaks and leaderboard points?',
+    },
     { label: 'Accessibility', body: 'Can the interface support different visual, motor and cognitive needs?' },
   ],
 }

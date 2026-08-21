@@ -16,13 +16,10 @@ function DetailList({ items }) {
   )
 }
 
-// Builds each entry's expandable content — the exact same responsibilities/
-// achievements/courses markup that used to live in the separate, always-
-// visible AboutExperience and AboutEducation sections, just relocated here
-// as the timeline's own "Show more" detail instead of repeating the same
-// facts a second time further down the page. Returns null when an entry
-// has nothing to expand into, so Timeline correctly skips the toggle for
-// it (e.g. an experience entry with no achievements listed).
+// Builds each entry's detail content — the responsibilities/achievements/
+// courses markup rendered as part of the timeline entry itself. Returns
+// null when an entry has nothing to show (e.g. an experience entry with no
+// achievements listed), so Timeline skips rendering the details block.
 function experienceDetails(item) {
   const hasResponsibilities = item.responsibilities?.length > 0
   const hasAchievements = item.achievements?.length > 0
@@ -55,18 +52,20 @@ function educationDetails(item) {
 
 const timelineItems = [
   ...education.map((item) => ({
+    sortDate: item.sortDate,
     label: item.degree,
     meta: item.dates,
     description: item.institution,
     details: educationDetails(item),
   })),
   ...experience.map((item) => ({
+    sortDate: item.sortDate,
     label: item.title,
     meta: item.dates,
     description: item.role,
     details: experienceDetails(item),
   })),
-]
+].sort((a, b) => a.sortDate.localeCompare(b.sortDate))
 
 function ExperienceTimeline() {
   return (

@@ -12,12 +12,7 @@ import { Link } from 'react-router-dom'
 // Project →" — nothing else. The project number, category tab, and every
 // other field this card used to carry now live only on the case study
 // page itself.
-// `thumbnail` — an optional custom cover node, for the one card (Virtual
-// Coach) whose cover is a composed arrangement of several screens rather
-// than one photo. Every other caller only ever passes `heroImage`, so
-// falls straight through to the existing behaviour, byte-for-byte
-// unchanged — this is additive, not a second card system.
-function ProjectCard({ id, title, description, problemStatement, heroImage, thumbnail }) {
+function ProjectCard({ id, title, description, problemStatement, heroImage }) {
   const summary = problemStatement || description
 
   return (
@@ -29,9 +24,7 @@ function ProjectCard({ id, title, description, problemStatement, heroImage, thum
     // makes the image sit full-bleed at the top while still respecting
     // the card's own rounded corners.
     <article className="group relative overflow-hidden rounded-panel bg-paper shadow-[0_1px_2px_rgba(30,24,64,0.08),0_10px_24px_-14px_rgba(30,24,64,0.18)] transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:rotate-[1.5deg] hover:shadow-[0_4px_10px_rgba(30,24,64,0.1),0_26px_44px_-18px_rgba(30,24,64,0.26)] focus-within:-translate-y-1 focus-within:rotate-[1.5deg] focus-within:shadow-[0_4px_10px_rgba(30,24,64,0.1),0_26px_44px_-18px_rgba(30,24,64,0.26)]">
-      {thumbnail ? (
-        <div className="aspect-[3/2] overflow-hidden bg-paper-muted">{thumbnail}</div>
-      ) : heroImage ? (
+      {heroImage ? (
         // Full-bleed, edge to edge — a cover image, not a thumbnail
         // sitting inside a second bordered box. The very slight
         // independent scale + drift on the image (distinct from the
@@ -67,12 +60,7 @@ function ProjectCard({ id, title, description, problemStatement, heroImage, thum
         {/* Stretched-link pattern: the whole cover is hoverable, so the
             whole cover should be clickable — one real anchor whose hit
             area is expanded via ::after rather than a second, nested
-            link wrapping the card. `after:z-20` — same reasoning as
-            FeaturedProjectCard's own stretched link: a composed
-            `thumbnail` (Virtual Coach) layers its own z-10 screen inside
-            the cover, so this needs an explicit higher z-index to stay
-            the actual click target above it; a no-op for every other
-            card, whose cover has no z-indexed layers to compete with. */}
+            link wrapping the card. */}
         <Link
           to={`/projects/${id}`}
           className="mt-4 flex w-fit items-center gap-1.5 text-sm font-medium text-accent-dark underline-offset-4 hover:underline after:absolute after:inset-0 after:z-20 after:content-['']"

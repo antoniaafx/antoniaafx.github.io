@@ -1,7 +1,7 @@
 import ImagePlaceholder from './ImagePlaceholder'
 
-// Shared by ResearchSection, ProcessSection, UIDesignSection, and
-// ResultsSection — anywhere a case study needs to show one or more images.
+// Shared across both case studies — anywhere a project needs to show one
+// or more images with an optional caption.
 // Pass `span: 'wide'` on an item to let it take the full row.
 function ImageGallery({ images = [] }) {
   if (images.length === 0) return null

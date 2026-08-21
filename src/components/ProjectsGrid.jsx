@@ -1,15 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import SectionTitle from './SectionTitle'
 import ProjectCard from './ProjectCard'
-import VirtualCoachThumbnail from './CaseStudy/virtual-coach/VirtualCoachThumbnail'
 import { fadeInUp, staggerContainer, revealOnce } from '../lib/motion'
 import projects from '../data/projects'
-
-// The one project whose card cover is a composed arrangement of several
-// screens (see VirtualCoachThumbnail) rather than a single heroImage photo.
-const CARD_THUMBNAILS = {
-  'virtual-coach': <VirtualCoachThumbnail />,
-}
 
 // Extracted from the standalone Projects page so the homepage's Work
 // section and the legacy /projects page render the exact same heading +
@@ -58,7 +51,7 @@ function ProjectsGrid({ headingLevel = 'h2', onDark = false, showSubtitle = true
       >
         {projects.map((project, index) => (
           <motion.div key={project.id} variants={shouldReduceMotion ? undefined : fadeInUp}>
-            <ProjectCard index={index} {...project} thumbnail={CARD_THUMBNAILS[project.id]} />
+            <ProjectCard index={index} {...project} />
           </motion.div>
         ))}
       </motion.div>
