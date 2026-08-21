@@ -49,8 +49,8 @@ function CaseStudy() {
         <h1 className="mt-4 text-display-sm">This case study isn't published yet.</h1>
         <p className="mt-4 text-lg text-ink-soft">Check back soon, or explore the rest of the work.</p>
         <div className="mt-8 flex justify-center">
-          <Button to="/projects" variant="primary">
-            Back to projects
+          <Button to="/#work" variant="primary">
+            Back to work
           </Button>
         </div>
       </div>

@@ -22,9 +22,16 @@ function CaseHero({ title, description, role, timeline, tools = [], responsibili
     <Section animate={false} spacing="hero">
       <motion.div {...containerMotion}>
         <motion.div {...itemMotion}>
-          <Link to="/projects" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink">
+          {/* The homepage's Work section (`id="work"`, see Home.jsx) is the
+              only place project cards live now — the standalone /projects
+              route is intentionally hidden from navigation, so this must
+              not send visitors back there. `scroll-mt-16` on that section
+              plus ScrollToTop's own hash handling (see ScrollToTop.jsx)
+              already land the scroll position correctly below the sticky
+              navbar, on both a same-page and cross-page jump. */}
+          <Link to="/#work" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink">
             <span aria-hidden="true">←</span>
-            Back to projects
+            Back to work
           </Link>
         </motion.div>
 

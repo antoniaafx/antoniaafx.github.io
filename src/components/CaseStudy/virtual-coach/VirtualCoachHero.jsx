@@ -25,9 +25,11 @@ function VirtualCoachHero() {
     <Section animate={false} spacing="hero">
       <motion.div {...containerMotion}>
         <motion.div {...itemMotion}>
-          <Link to="/projects" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink">
+          {/* Same destination as CaseHero's back link — the homepage's
+              Work section, not the hidden standalone /projects route. */}
+          <Link to="/#work" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink">
             <span aria-hidden="true">←</span>
-            Back to projects
+            Back to work
           </Link>
         </motion.div>
 
