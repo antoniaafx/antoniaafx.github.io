@@ -25,7 +25,7 @@ export const challenge = {
   // into a single line of context here instead, since it's one fact, not
   // a parallel list that needs its own container.
   context:
-    'Mainly tourists and visitors looking for a lively spot to watch live sport — Premier League matches, Rugby World Cup-level events — plus regular local pub-goers.',
+    'Mainly tourists and visitors looking for a lively place to watch live sport, including Premier League matches and major events such as the Rugby World Cup, while also serving regular local pub-goers.',
   // Unchanged content, four goals, same order.
   goals: [
     'Give the pub a real online presence for the first time, built entirely from scratch',

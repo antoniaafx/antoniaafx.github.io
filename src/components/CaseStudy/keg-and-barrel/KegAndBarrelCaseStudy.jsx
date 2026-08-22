@@ -8,24 +8,24 @@ import ContactCta from '../../ContactCta'
 import projects from '../../../data/projects'
 import { challenge, understanding, structuring, designingExperience, finalWebsite, outcome, reflection } from '../../../data/kegAndBarrel'
 
-// PHASE 2 — VISUAL HIERARCHY & EDITORIAL SYSTEM. Phase 1 fixed the story
-// order (see the Phase 1 report); this pass is about how the reader
-// experiences it — width rhythm, typographic hierarchy, and a real
-// site-flow diagram — without touching the section order, the copy, or
-// any asset. Section order is unchanged from Phase 1:
+// PHASE 3 — HIERARCHY & CONSISTENCY REFINEMENT. Chapter eyebrows
+// ("01 — The Challenge" etc.) are removed site-wide on this page —
+// headings now open each section directly. Section order is unchanged:
 //   Hero → Challenge → Understanding the Experience → Structuring the
 //   Website → Designing the Experience → Final Website → Outcome →
 //   Reflection
 //
-// Width rhythm (via each Section's `containerSize`): Narrow (Challenge,
-// Outcome — reading/reflective moments) → Standard (Understanding,
-// Structuring — mixed text + evidence) → Wide (Designing the Experience —
-// building visual momentum) → Breakout (Final Website — the one visual
-// climax) → Narrow (Outcome) → Standard (Reflection). Chapter numbers
-// (SectionTitle's existing `eyebrow` prop, e.g. "01 — The Challenge") stop
-// after the climax — Outcome and Reflection are the closing beat, not
-// another numbered chapter, the same way a magazine feature's numbering
-// stops once the story has landed.
+// Every section (including Challenge and Outcome, previously on a
+// narrower container) now shares the same `content` container width, with
+// prose constrained to an inner max-w-3xl wrapper where needed — so every
+// section's left edge and content width line up. Wide/Breakout stay wider
+// only where evidence (Designing the Experience's image, Final Website's
+// mockups) genuinely needs the extra room. Emphasis throughout comes from
+// placement, spacing, and weight rather than one-off oversized text. The
+// Challenge statement is the page's one true pull-statement; Key Insight
+// sits one tier down, at the same text-lg scale SectionTitle's own
+// subtitle already uses, so it reads as an important conclusion rather
+// than competing with actual section headings.
 //
 // Background rhythm groups sections by narrative beat rather than
 // alternating every single one (a `default,muted,default,muted...`
@@ -39,9 +39,9 @@ function Dot() {
 
 function DotList({ items }) {
   return (
-    <ul className="space-y-2">
+    <ul className="space-y-3">
       {items.map((item) => (
-        <li key={item} className="flex gap-2 text-ink-soft">
+        <li key={item} className="flex gap-2 text-ink">
           <Dot />
           {item}
         </li>
@@ -65,9 +65,8 @@ function SiteFlowDiagram({ steps }) {
     <ol className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
       {steps.map((step, index) => (
         <li key={step} className="flex flex-col items-stretch gap-3 sm:flex-1 sm:flex-row sm:items-center">
-          <div className="flex-1 rounded-control border border-line bg-paper px-6 py-4 text-center shadow-soft">
-            <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Step {index + 1}</p>
-            <p className="mt-1 font-display text-xl font-semibold text-ink sm:text-2xl">{step}</p>
+          <div className="flex flex-1 items-center justify-center rounded-control border border-line bg-paper px-6 py-6 text-center shadow-soft">
+            <p className="font-display text-xl font-semibold text-ink sm:text-2xl">{step}</p>
           </div>
           {index < steps.length - 1 && (
             <span aria-hidden="true" className="flex items-center justify-center text-lg text-ink-muted">
@@ -88,54 +87,48 @@ function KegAndBarrelCaseStudy() {
     <>
       <CaseHero {...project} />
 
-      {/* 01 — The Challenge. NARROW — a focused reading moment. The
-          problem statement is the section's one large pull-statement
-          (labelled "The problem," matching the small-label-then-large-
-          statement pattern the brief asked for), target-user context
-          folds into one supporting line beneath it, and goals stay a
-          plain list — three short parallel phrases were never a card's
-          worth of content. */}
-      <Section background="muted" containerSize="narrow">
-        <SectionTitle eyebrow="01 — The Challenge" title="The Challenge" />
-        <div className="mt-10">
-          <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">The problem</p>
-          <p className="mt-3 text-2xl text-ink sm:text-3xl">{challenge.problem}</p>
-          <p className="mt-6 text-ink-soft">{challenge.context}</p>
+      {/* 01 — The Challenge. Same `content`-width container as the rest of
+          the case study, with prose held to an inner max-w-3xl so the
+          section's left edge and line length match everywhere else. Three
+          distinct subsections (the problem statement, Target audience,
+          Goals) at the same mt-10 rhythm — Target audience gets the same
+          caption-label treatment Goals already used, so all three read as
+          separate, equally-weighted pieces of information rather than the
+          audience line looking like a continuation of the problem
+          paragraph. */}
+      <Section background="muted" containerSize="content">
+        <SectionTitle title="The Challenge" />
+        <div className="mt-10 max-w-3xl">
+          <p className="text-xl font-medium leading-snug text-ink sm:text-2xl">{challenge.problem}</p>
         </div>
-        <div className="mt-10">
+        <div className="mt-10 max-w-3xl">
+          <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Target audience</p>
+          <p className="mt-3 text-ink-soft">{challenge.context}</p>
+        </div>
+        <div className="mt-10 max-w-3xl">
           <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">Goals</p>
-          <div className="mt-3">
+          <div className="mt-4">
             <DotList items={challenge.goals} />
           </div>
         </div>
       </Section>
 
-      {/* 02 — Understanding the Experience. STANDARD. The research
-          context stays a normal paragraph; "Key insight" is promoted to
-          the same pull-statement scale as the problem statement above —
-          it's the payoff of the section, not another sentence to skim
-          past. Competitor evidence gets its own, wider moment below a
-          rule, styled as one shared comparison (a single divider between
-          the two references) rather than two separate gallery cards. */}
+      {/* 02 — Understanding the Experience. One research narrative, read
+          top to bottom: introductory context (the SectionTitle subtitle),
+          the comparative/best-practice research explanation, the
+          competitor evidence that backs it up (grouped directly beneath
+          the research it supports, not detached behind its own rule), and
+          finally Key Insight — the section's one pull-statement, styled
+          as the conclusion of everything above it, set off by a single
+          rule rather than another mid-section block. */}
       <Section containerSize="content">
-        <SectionTitle eyebrow="02 — Understanding the Experience" title="Understanding the Experience" subtitle={understanding.intro} />
+        <SectionTitle title="Understanding the Experience" subtitle={understanding.intro} />
         <div className="mt-12 max-w-3xl">
           <h3 className="font-sans font-medium tracking-normal text-ink">{understanding.research.heading}</h3>
           <p className="mt-3 text-ink-soft">{understanding.research.body}</p>
-
-          <div className="mt-10">
-            <p className="text-caption font-medium uppercase tracking-wide text-accent-dark">{understanding.insight.heading}</p>
-            <div className="mt-4 space-y-5">
-              {understanding.insight.items.map((item) => (
-                <p key={item} className="text-xl leading-snug text-ink sm:text-2xl">
-                  {item}
-                </p>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <div className="mt-14 max-w-5xl border-t border-line pt-10">
+        <div className="mt-8 max-w-5xl">
           <h3 className="font-sans font-medium tracking-normal text-ink">{understanding.competitors.heading}</h3>
           <div className="mt-6 grid gap-8 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-line">
             {understanding.competitors.items.map((item, index) => (
@@ -155,13 +148,33 @@ function KegAndBarrelCaseStudy() {
             ))}
           </div>
         </div>
+
+        <div className="mt-14 max-w-3xl border-t border-line pt-10">
+          <p className="text-caption font-medium uppercase tracking-wide text-accent-dark">{understanding.insight.heading}</p>
+          <div className="mt-4 space-y-3">
+            {understanding.insight.items.map((item) => (
+              <p key={item} className="text-lg font-medium leading-snug text-ink">
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
       </Section>
 
-      {/* 03 — Structuring the Website. STANDARD. The three-step site flow
-          is now a real (small, deliberately simple) diagram instead of a
-          typographic line — see SiteFlowDiagram above. */}
-      <Section containerSize="content">
-        <SectionTitle eyebrow="03 — Structuring the Website" title="Structuring the Website" subtitle={structuring.intro} />
+      {/* 03 — Structuring the Website. The three-step site flow is a real
+          (small, deliberately simple) diagram — see SiteFlowDiagram above —
+          with the "Step N" labels removed so each node reads as a plain
+          named stop (Home → Menu → Contact) rather than a numbered
+          procedure; the node text is centered in a taller card so nothing
+          looks like it's missing. Extra `mt-8 sm:mt-14` on top of the
+          Section's own standard padding widens the gap after Key Insight
+          specifically — Understanding and Structuring share a background
+          by design (see the top-of-file note), so this section needed its
+          own stronger-than-usual lead-in to still read as a new chapter
+          rather than borrowing the alternating-background cue every other
+          chapter break in this page uses. */}
+      <Section containerSize="content" className="mt-8 sm:mt-14">
+        <SectionTitle title="Structuring the Website" subtitle={structuring.intro} />
         <div className="mt-10 max-w-3xl">
           <SiteFlowDiagram steps={structuring.flow} />
           <p className="mt-6 text-ink-soft">{structuring.description}</p>
@@ -174,25 +187,31 @@ function KegAndBarrelCaseStudy() {
           of its own (not a small gallery cell) so it will carry genuine
           presence once the real asset lands — still a placeholder today,
           per the strict no-fabrication rule.
-          `container={false}` + two explicit Containers: the chapter
-          eyebrow/heading anchors to the same `content` width/left-edge the
-          homepage and every Standard section use, while the two-column
-          body below gets the wider `wide` column for the image to sit in
-          — so the heading doesn't jump to Wide's own (further-left) edge
-          the way a single ambient Container would force it to. Same
-          pattern at every other Wide/Breakout section below. */}
+          `container={false}` + two explicit Containers: the heading
+          anchors to the same `content` width/left-edge the homepage and
+          every Standard section use, while the two-column body below gets
+          the wider `wide` column for the image to sit in — so the heading
+          doesn't jump to Wide's own (further-left) edge the way a single
+          ambient Container would force it to. Same pattern at every other
+          Wide/Breakout section below. `lg:items-start` (not `items-center`)
+          keeps the text column flush with the top of the row, right under
+          the heading, instead of vertically centering against the image
+          column and reading as detached from it. The image column is
+          capped at max-w-sm so the placeholder (and, later, the real
+          screenshot) doesn't dominate the section — same aspect-[3/4]
+          ratio, just a smaller frame. */}
       <Section background="muted" containerSize="wide" container={false}>
         <Container size="content">
-          <SectionTitle eyebrow="04 — Designing the Experience" title="Designing the Experience" />
+          <SectionTitle title="Designing the Experience" />
         </Container>
         <Container size="wide">
-          <div className="mt-10 grid gap-12 lg:grid-cols-[0.55fr_0.45fr] lg:items-center">
+          <div className="mt-10 grid gap-12 lg:grid-cols-[0.62fr_0.38fr] lg:items-start">
             <div className="max-w-xl space-y-6">
               <p className="text-ink-soft">{designingExperience.process}</p>
               <p className="text-ink-soft">{designingExperience.system}</p>
             </div>
             {designingExperience.images.map((image) => (
-              <div key={image.caption} className="overflow-hidden rounded-panel border border-line bg-paper shadow-soft">
+              <div key={image.caption} className="mx-auto w-full max-w-sm overflow-hidden rounded-panel border border-line bg-paper shadow-soft">
                 <div className="aspect-[3/4]">
                   {image.src ? (
                     <img src={image.src} alt={image.caption} className="h-full w-full object-cover" />
@@ -216,7 +235,7 @@ function KegAndBarrelCaseStudy() {
           exact composition these are designed around. */}
       <Section containerSize="breakout" container={false}>
         <Container size="content">
-          <SectionTitle eyebrow="05 — Final Website" title="Final Website" subtitle={finalWebsite.intro} />
+          <SectionTitle title="Final Website" subtitle={finalWebsite.intro} />
         </Container>
         <Container size="breakout">
           <div className="relative mt-14 sm:mt-16 sm:pb-16">
@@ -250,15 +269,15 @@ function KegAndBarrelCaseStudy() {
         </Container>
       </Section>
 
-      {/* 06 — Outcome. NARROW — deliberately back to a calm reading width
-          straight after the climax. No chapter number: this and
-          Reflection are the closing beat, not another numbered chapter. */}
-      <Section background="muted" containerSize="narrow">
+      {/* 06 — Outcome. Same `content`-width container as the rest of the
+          case study, prose held to max-w-3xl. No summary paragraph — the
+          outcome bullets carry the section on their own, the same closing
+          beat as before, just without a lead-in restating what they
+          already say. No chapter number: this and Reflection are the
+          closing beat, not another numbered chapter. */}
+      <Section background="muted" containerSize="content">
         <SectionTitle title="Outcome" />
-        <div className="mt-10">
-          <p className="text-2xl text-ink sm:text-3xl">{outcome.summary}</p>
-        </div>
-        <div className="mt-10">
+        <div className="mt-10 max-w-3xl">
           <DotList items={outcome.improvements} />
         </div>
       </Section>
