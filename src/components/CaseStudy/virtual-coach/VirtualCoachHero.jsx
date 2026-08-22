@@ -37,7 +37,7 @@ function VirtualCoachHero() {
           <Badge>{hero.positioning}</Badge>
         </motion.div>
 
-        <motion.h1 {...itemMotion} className="mt-4 max-w-3xl text-display-md sm:text-display-lg">
+        <motion.h1 {...itemMotion} className="mt-3 max-w-3xl text-display-md sm:text-display-lg">
           {hero.title}
         </motion.h1>
         <motion.p {...itemMotion} className="mt-6 max-w-2xl text-lg text-ink-soft">

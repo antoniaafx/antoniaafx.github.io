@@ -27,7 +27,7 @@ function AboutPreview() {
       <div className="max-w-2xl">
         <span aria-hidden="true" className="block h-0.5 w-10 rounded-full bg-accent" />
         <h2 className="mt-4 text-display-sm">A little about me</h2>
-        <p className="mt-4 text-lg text-ink-soft">
+        <p className="mt-3 text-lg text-ink-soft">
           I'm a UX/UI designer studying Communications and Internet Studies at Cyprus University of Technology. I focus
           on turning real problems into clear, intuitive digital experiences, combining research-driven decisions with
           thoughtful visual design.

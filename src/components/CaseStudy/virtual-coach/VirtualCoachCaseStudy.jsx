@@ -60,6 +60,16 @@ import {
 // one (both are "what we found/mapped"), the Learning loop + Building
 // progression share one (both are "how the system works"), and What I'd
 // test next + Reflection share the closing background.
+//
+// Chapter heading → first content block follows the sitewide two-tier
+// rhythm (same convention Keg & Barrel's chapters use): no subtitle → mt-10
+// (Where it started, The challenge, Revisiting Virtual Coach); subtitle
+// present → mt-12, since the reader has already read one paragraph before
+// reaching the next content block (Understanding the users, What the
+// research told me, Designing how users learn, From lesson to challenge,
+// Meet Coach V, Building progression, What I'd test next). The redesigned
+// interface's climax visual is the one deliberate exception (mt-14 sm:16),
+// matching Keg & Barrel's own Final Website climax spacing.
 function Dot() {
   return <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-muted" aria-hidden="true" />
 }
@@ -340,7 +350,7 @@ function VirtualCoachCaseStudy() {
         </Container>
         <Container size="wide">
           {/* Primary */}
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-center">
+          <div className="mt-12 grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-center">
             <PhoneScreen screen={screens.levels} size="lg" className="mx-auto" />
             <div>
               <ol className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -600,7 +610,7 @@ function VirtualCoachCaseStudy() {
           from here on, this and Reflection are the closing beat. */}
       <Section containerSize="narrow">
         <SectionTitle title="What I'd test next" subtitle={nextSteps.intro} />
-        <div className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-x-10 gap-y-6 sm:grid-cols-2">
           {nextSteps.items.map((question, index) => (
             <div key={question.label} className="border-t border-line pt-4">
               <p className="text-caption font-medium uppercase tracking-wide text-ink-muted">{String(index + 1).padStart(2, '0')}</p>
